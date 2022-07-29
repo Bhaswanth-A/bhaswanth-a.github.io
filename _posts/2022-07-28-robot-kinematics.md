@@ -1,7 +1,7 @@
 ---
 title: Robot Kinematics
 date: 2022-07-29 00:00:00 +0800
-categories: [Robotics, Theory]
+categories: [Blog, Robotics]
 tags: [kinematics]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true

@@ -1,7 +1,7 @@
 ---
 title: Robotic Arm on ROS
 date: 2022-07-29 00:00:00 +0800
-categories: [Robotics, Projects]
+categories: [Projects, Robotics]
 tags: [ros, urdf]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true
