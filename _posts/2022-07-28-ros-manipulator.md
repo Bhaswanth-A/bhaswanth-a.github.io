@@ -6,6 +6,7 @@ tags: [ros, urdf]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true
 pin: true
+image: /assets/images/ldr.png
 ---
 
 *Github: [https://github.com/Bhaswanth-A/robot-manipulator](https://github.com/Bhaswanth-A/robot-manipulator)*
