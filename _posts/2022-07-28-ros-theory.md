@@ -11,6 +11,23 @@ toc: true
 image: /assets/images/ldr.png
 ---
 
+# Synopsis
+
+ROS is an open-source project that provides a framework to your robot. It has become an integral part of robots today, and has massively impacted the Robotics Arena. ROS is extremely fascinating to study, but is not easy or beginner friendly.
+
+**ROS Theory** is an attempt to document the basics of ROS. This documentation will take you through a number of examples to better understand the concepts, and is neatly demonstarted by code and pictures of my terminal.
+
+## Table of contents
+
+1. [Introduction](https://bhaswanth-a.github.io/posts/ros-theory/#introduction)
+2. [Tools](https://bhaswanth-a.github.io/posts/ros-theory/#ros-tools)
+3. [Topics](https://bhaswanth-a.github.io/posts/ros-theory/#ros-topics)
+4. [Messages](https://bhaswanth-a.github.io/posts/ros-theory/#ros-messages)
+5. [Services](https://bhaswanth-a.github.io/posts/ros-theory/#ros-services)
+6. [Actions](https://bhaswanth-a.github.io/posts/ros-theory/#ros-actions)
+7. [TF2](https://bhaswanth-a.github.io/posts/ros-theory/#ros-tf2)
+
+
 # Introduction
 
 ## 1.1 What is ROS?
