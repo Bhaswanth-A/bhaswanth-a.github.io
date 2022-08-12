@@ -9,7 +9,7 @@ pin: true
 image: /assets/images/ldr.png
 ---
 
-*Github: [https://github.com/Bhaswanth-A/robot-manipulator](https://github.com/Bhaswanth-A/robot-manipulator)*
+[![Bhaswanth-A/robot-manipulator - GitHub](https://gh-card.dev/repos/Bhaswanth-A/robot-manipulator.svg?fullname=)](https://github.com/Bhaswanth-A/robot-manipulator)
 
 # Introduction
 
