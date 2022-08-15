@@ -218,8 +218,8 @@ def train_model(X_train, y_train, X_test, y_test, learning_rate, max_epochs, bat
         y_test_true_classified = np.argmax(y_test, axis=1).astype(np.int32)
         print(classification_report(y_test_true_classified, y_test_pred_classified))
         
-				# CONFUSION MATRIX
-				cm = confusion_matrix(y_test_true_classified, y_test_pred_classified)
+		# CONFUSION MATRIX
+		cm = confusion_matrix(y_test_true_classified, y_test_pred_classified)
         plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
         plt.colorbar()
         plt.tight_layout()
