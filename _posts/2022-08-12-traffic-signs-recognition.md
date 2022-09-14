@@ -11,12 +11,20 @@ image: /assets/images/ldr.png
 
 [![Bhaswanth-A/Traffic-Signs-Recognition - GitHub](https://gh-card.dev/repos/Bhaswanth-A/Traffic-Signs-Recognition.svg?fullname=)](https://github.com/Bhaswanth-A/Traffic-Signs-Recognition)
 
+## Introduction
+
+The following project shows the implementation of a simple convolutional neural network (CNN). The model will be able to identify which signal it is when presented with a colour image of a traffic sign. Being my first project in deep learning, I gained extensive knowledge about how the dataset is composed, how to pre-process images, which deep network to use, and how to efficiently choose the number of layers and units.
+
 ## Dataset
 
 The dataset used for this project can be obtained from
 [Public Archive: daaeac0d7ce1152aea9b61d9f1e19370](https://sid.erda.dk/public/archives/daaeac0d7ce1152aea9b61d9f1e19370/published-archive.html)
 
 ## Data Preprocessing
+
+The entire dataset contains images of different sizes. Since the very first operation of the model involves reading and standardizing the images, it is important to resize all the images to a predefined size, 32x32 in this case. The colorspace of the images is also converted from RGB to grayscale. 
+
+Another important data preprocessing step is one-hot encoding. One-hot encoding refers to the process of converting categorical data variables to a numerical form, and this is done with a 43-dimensional array. 
 
 ### Image Resizing
 
@@ -78,6 +86,8 @@ y_test = dataset.y[idx_test,:]
 
 ### Creating minibatches of data
 
+Every training iteration would require the addition of a minibatch of randomly chosen samples taken from the practise set. Different minibatches of data in every generator will compel the model to learn the in-out connection rather than memorizing the sequence.
+
 ```python
 n_samples = X_train.shape[0]
 
@@ -135,6 +145,8 @@ def dropout(in_tensors, keep_proba, is_training):
 ```
 
 ### Structure
+
+The model will be composed of the following layers:
 
 1. 2D convolution, 5x5, 32 filters
 2. 2D convolution, 5x5, 64 filters
