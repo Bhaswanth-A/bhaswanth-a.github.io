@@ -9,4 +9,4 @@ pin: true
 image: /assets/images/ldr.png
 ---
 
-*To be updated*
+*To be Updated*
