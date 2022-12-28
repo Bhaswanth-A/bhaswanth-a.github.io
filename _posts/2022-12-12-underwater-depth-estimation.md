@@ -10,6 +10,11 @@ image: /assets/images/ldr.png
 math: true
 ---
 
+# **Abstract**
+
+Sophisticated robots operating in an underwater environment require vision to perform different tasks. This project involves developing a reliable vision system by employing a depth camera, rather than a conventional binocular-stereo camera, for underwater depth estimation and localization. The project's initial phase, until midsemester, consisted of testing the depth camera's ability to estimate depth in the air. This report covers the second phase of the project, which involves underwater experimentation with objects for depth measurements.  
+
+
 # **1. DEPTH ESTIMATION AND LOCALIZATION**
 
 ## **1.1. Camera Calibration**
