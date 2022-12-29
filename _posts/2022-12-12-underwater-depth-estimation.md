@@ -17,9 +17,9 @@ math: true
 Sophisticated robots operating in an underwater environment require vision to perform different tasks. This project involves developing a reliable vision system by employing a depth camera, rather than a conventional binocular-stereo camera, for underwater depth estimation and localization. The project's initial phase, until midsemester, consisted of testing the depth camera's ability to estimate depth in the air. This report covers the second phase of the project, which involves underwater experimentation with objects for depth measurements.  
 
 
-# **1. DEPTH ESTIMATION AND LOCALIZATION**
+# **DEPTH ESTIMATION AND LOCALIZATION**
 
-## **1.1. Camera Calibration**
+## **Camera Calibration**
 
 Camera calibration is the process of estimating the parameters of a lens and camera image sensor. These calibrated camera parameters can be used to rectify the image by correcting lens distortion, estimating the depth of objects, and localization of the camera in the environment.
 
@@ -130,7 +130,7 @@ The Intel Realsense SDK, however, does not allow simultaneous RGB stream of the 
 
 ![5.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/5%201.png)
 
-## **1.2 Depth Estimation**
+## **Depth Estimation**
 
 ### **Using calibrated IR data:**
 
@@ -157,7 +157,7 @@ The image on the left below shows the color frame and the corresponding distance
 ![1.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/1%202.png){: width="380" height="594" }{: .left}  ![2.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/2%203.png){: width="380" height="594" }{: .left} 
 
 
-# 2. OAK-D Camera
+# OAK-D Camera
 
 The OAK-D depth camera by Luxonis has three on-board cameras which can implement stereo and RGB vision used for depth and AI processing. The camera has a baseline length of 7.5cm, which is the distance between the left and the right stereo cameras.
 
@@ -171,11 +171,11 @@ The camera is capable of performing stereo depth perception with filtering, post
 ![1.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/1%203.png){: width="370" height="594" }{: .left} 
 
 
-# **3. UNDERWATER TESTING**
+# **UNDERWATER TESTING**
 
 The depth camera calibrated in the air cannot be used for performing underwater experiments due to differences in disparities caused by the refraction of light. As a result, the depth camera needs to be calibrated underwater and then used for depth estimation.
 
-## **3.1 Setup**
+## **Setup**
 
 The setup to perform underwater depth measurement involves placing the OAK-D depth camera in a transparent container and holding it inside water partially submerged, as shown in the images below. The entire setup and all the experiments were performed in the swimming pool.
 
@@ -183,7 +183,7 @@ The setup to perform underwater depth measurement involves placing the OAK-D dep
 
 ![4.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/4%201.jpeg){: width="380" height="594" }{: .left} 
 
-## **3.2 Camera Calibration**
+## **Camera Calibration**
 
 The camera is calibrated using a charuco board, in a process very similar to calibrating using the Zhang Zhengyou technique. The charuco board is printed onto a flat surface, and 13 different images are captured in different orientations.
 
@@ -324,7 +324,7 @@ Once the camera calibration is complete, we obtain the distortion coefficients, 
                 ],
 ```
 
-## **3.3 Depth Estimation**
+## **Depth Estimation**
 
 The StereoDepth node, provided by the OAK-D API, is used to calculate the disparity and depth from the stereo camera pair.
 
@@ -364,7 +364,7 @@ The same experiments are performed underwater, but now using the newly calibrate
 
 From the above images, we see that as the bottle is placed farther away from the depth camera setup, the value of the depth increases, and the disparity map changes accordingly. From the experiments performed above, we find that the depth camera can measure a depth of up to 1m (~3ft) underwater.
 
-## **3.4 Camera Localization**
+## **Camera Localization**
 
 As done earlier, the position of the depth camera can be estimated using the extrinsic parameters of the camera.
 
