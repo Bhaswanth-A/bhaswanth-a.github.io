@@ -6,7 +6,7 @@ tags: [emfme, microstrip, filter]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true
 pin: false
-image: /assets/images/ldr.png
+image: /assets/images/Thumbnail/filter.png  # 300 x 112
 math: true
 ---
 

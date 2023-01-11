@@ -6,7 +6,7 @@ tags: [ml, dl, cnn, object detection, computer vision]     # TAG names should al
 author: <author_id>
 mermaid: true
 pin: true
-image: /assets/images/ldr.png
+image: /assets/images/Thumbnail/traffic.png
 ---
 
 [![Bhaswanth-A/Traffic-Signs-Recognition - GitHub](https://gh-card.dev/repos/Bhaswanth-A/Traffic-Signs-Recognition.svg?fullname=)](https://github.com/Bhaswanth-A/Traffic-Signs-Recognition)

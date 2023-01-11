@@ -6,7 +6,7 @@ tags: [ml, dl, cnn, computer vision, python]     # TAG names should always be lo
 author: <author_id>
 mermaid: true
 pin: true
-image: /assets/images/ldr.png
+image: /assets/images/Thumbnail/lqr.png
 math: true
 ---
 
