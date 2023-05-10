@@ -12,6 +12,8 @@ image: /assets/images/ldr.png
 
 [Resources](https://drive.google.com/drive/folders/1aieMBbykgYkurXrpAslhvecRk1wsl551?usp=share_link)
 
+[Programming](https://atsushisakai.github.io/PythonRobotics/modules/path_planning/path_planning.html)
+
 # Path Planning
 
 Path planning, also known as motion planning, is the process of finding a feasible path from a starting point to a desired goal point while avoiding obstacles in between. This is a fundamental problem in robotics, automation, and computer graphics.
