@@ -4,7 +4,7 @@ icon: fas fa-info-circle
 order: 7
 ---
 
-Hi, I'm Bhaswanth Ayapilla, a third-year undergraduate student at BITS Pilani, pursuing Electronics and Communication engineering along with a minor in Robotics and Automation. I am passionate about robotics, deep learning and electronics.
+Hi, I'm Bhaswanth Ayapilla, a third-year undergraduate student at BITS Pilani, pursuing Electronics and Communication engineering along with a minor in Robotics and Automation. I am passionate about robotics, reinforcement learning and deep learning.
 
 
 **Personal Email**: bhaswanthayapilla@gmail.com
