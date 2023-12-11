@@ -1,8 +1,8 @@
 ---
-title: Smart Robotic Agricultural System based on IoT
+title: Smart Agricultural Seeding Robot
 date: 2022-08-12 00:00:00 +0800
-categories: [Projects, IoT]
-tags: [ml, dl, cnn, computer vision, python]     # TAG names should always be lowercase
+categories: [Projects, Robotics]
+tags: [arduino, electronics]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true
 pin: true

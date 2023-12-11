@@ -2,7 +2,7 @@
 title: Development of Python-Based Simulator for Analyzing Autonomous Underwater Glider Motions and Performance
 date: 2023-12-05 00:00:00 +0800
 categories: [Projects, Robotics]
-tags: [python, underwater, dynamics, simulation]     # TAG names should always be lowercase
+tags: [python, underwater, dynamics, simulation, pid, control]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true
 pin: true
