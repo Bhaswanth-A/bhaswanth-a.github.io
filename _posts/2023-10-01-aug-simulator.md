@@ -12,6 +12,8 @@ image: /assets/images/ldr.png
 
 [![Bhaswanth-A/AUG-Simulator - GitHub](https://gh-card.dev/repos/Bhaswanth-A/AUG-Simulator.svg)](https://github.com/Bhaswanth-A/AUG-Simulator)
 
+The following project was done as part of my undergraduate thesis at the [Institute for Systems and Robotics](https://welcome.isr.tecnico.ulisboa.pt/), Lisbon under the supervision of [Dr. David Cabecinhas](https://welcome.isr.tecnico.ulisboa.pt/author/davidalexandre/) and [Dr. Pedro Batista](https://welcome.isr.tecnico.ulisboa.pt/author/pedrotiagomartins/)
+
 # Abstract
 
 The objective of this thesis is to design, develop, and implement a comprehensive Python-based simulator for Autonomous Underwater Gliders (AUGs), enabling the precise simulation and in-depth analysis of various motions exhibited by them. Underwater Gliders are a unique kind of vehicle that fall under the class of Autonomous Underwater Vehicles (AUVs), which maneuver through a water body by varying their buoyancy and attitude using internal mass actuators and a buoyancy engine. 
