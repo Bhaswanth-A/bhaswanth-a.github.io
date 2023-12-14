@@ -9,4 +9,11 @@ pin: true
 image: /assets/images/ldr.png
 ---
 
-*To be updated*
+<iframe width="800" height="480" src="https://youtube.com/embed/UMo89byXeQk" frameborder="0" allowfullscreen></iframe>
+
+
+<iframe width="800" height="480" src="https://youtube.com/embed/ftDED7YHEFA" frameborder="0" allowfullscreen></iframe>
+
+Code and ROS bag for sample implementation taken from: 
+[Github 1](https://github.com/uzh-rpg/rpg_svo)
+[Github2](https://github.com/uzh-rpg/rpg_svo_pro_open)
