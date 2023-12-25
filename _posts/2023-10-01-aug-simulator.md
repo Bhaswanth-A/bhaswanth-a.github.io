@@ -7,7 +7,7 @@ author: <author_id>
 mermaid: true
 pin: true
 math: true
-image: /assets/images/ldr.png
+image: /assets/images/Thumbnail/slocum_rsz1.jpg
 ---
 
 [![Bhaswanth-A/AUG-Simulator - GitHub](https://gh-card.dev/repos/Bhaswanth-A/AUG-Simulator.svg)](https://github.com/Bhaswanth-A/AUG-Simulator)

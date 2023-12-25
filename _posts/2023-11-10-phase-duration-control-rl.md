@@ -7,7 +7,7 @@ author: <author_id>
 mermaid: true
 pin: true
 math: true
-image: /assets/images/ldr.png
+image: /assets/images/Thumbnail/matsc_rsz.png
 ---
 
 The following work was carried out during my summer internship at the [Multi-Agent Robotic Motion Laboratory, National University of Singapore](https://www.marmotlab.org/index.html) under the supervision of [Dr. Guillaume Sartoretti](https://www.marmotlab.org/bio.html).

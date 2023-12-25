@@ -6,7 +6,7 @@ tags: [ml, iot]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true
 pin: false
-image: /assets/images/ldr.png
+image: /assets/images/Thumbnail/iot_rsz.jpg
 ---
 
 # Introduction

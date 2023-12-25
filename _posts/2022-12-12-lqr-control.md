@@ -7,6 +7,7 @@ author: <author_id>
 mermaid: true
 pin: true
 image: /assets/images/Thumbnail/lqr.png
+
 math: true
 ---
 

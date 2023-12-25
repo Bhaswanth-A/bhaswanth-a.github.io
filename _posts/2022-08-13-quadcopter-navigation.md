@@ -6,8 +6,10 @@ tags: [electronics, arduino, led]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true
 pin: true
-image: /assets/images/ldr.png
+image: /assets/images/Thumbnail/drone_rsz.png
 ---
+
+Implementing Semi-Direct Visual Odometry (SVO) on drones for autonomous navigation.
 
 <iframe width="800" height="480" src="https://youtube.com/embed/UMo89byXeQk" frameborder="0" allowfullscreen></iframe>
 
@@ -17,3 +19,4 @@ image: /assets/images/ldr.png
 Code and ROS bag for sample implementation taken from: 
 [Github 1](https://github.com/uzh-rpg/rpg_svo)
 [Github2](https://github.com/uzh-rpg/rpg_svo_pro_open)
+

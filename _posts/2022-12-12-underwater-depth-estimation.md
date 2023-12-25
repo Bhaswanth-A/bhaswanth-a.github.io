@@ -38,22 +38,26 @@ The following are the components of the camera calibration matrix:
     ![Untitled](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/Untitled9.png){: width="380" height="594" }{: .center} 
     
 
-$$
-Radial \space distortion: \begin{aligned}& x_{\text {corrected }}=x\left(1+k_1 r^2+k_2 r^4+k_3 r^6\right) \\& y_{\text {corrected }}=y\left(1+k_1 r^2+k_2 r^4+k_3 r^6\right)\end{aligned} 
-$$
+Radial distortion:
 
 $$
-Tangential \space distortion: \newline \begin{aligned}& x_{\text {corrected }}=x+\left[2 p_1 x y+p_2\left(r^2+2 x^2\right)\right] \\& y_{\text {corrected }}=y+\left[p_1\left(r^2+2 y^2\right)+2 p_2 x y\right]\end{aligned}
+\begin{aligned}& x_{\text {corrected }}=x\left(1+k_1 r^2+k_2 r^4+k_3 r^6\right) \\& y_{\text {corrected }}=y\left(1+k_1 r^2+k_2 r^4+k_3 r^6\right)\end{aligned} 
 $$
 
-$where,$
-$x, y = undistorted \space pixel \space locations$
+Tangential distortion:
+
+$$
+\begin{aligned}& x_{\text {corrected }}=x+\left[2 p_1 x y+p_2\left(r^2+2 x^2\right)\right] \\& y_{\text {corrected }}=y+\left[p_1\left(r^2+2 y^2\right)+2 p_2 x y\right]\end{aligned}
+$$
+
+where,
+$x$, $y$ = undistorted pixel locations
 
 $r^2=x^2+y^2$
 
-$k_1,k_2,k_3 - \space radial \space distortion \space coefficients$
+$k_1,k_2,k_3 \space -$ radial distortion coefficients
 
-$p_1,p_2- \space tangential \space distortion \space coefficients$
+$p_1,p_2 \space -$ tangential distortion coefficients
 
 There exist quite a few methods for camera calibration, the most popular one being the Zhang Zhengyou calibration method.
 
@@ -64,42 +68,65 @@ The Zhang Zhengyou technique is a calibration method that uses a checkerboard pa
 
 The method requires test patterns for camera calibration. The following shows the set of all test images used for calibration -
 
-![1.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/1.jpeg){: width="380" height="594" }{: .left}    
+![1.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/1.jpeg)
 
-![2.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/2.jpeg){: width="380" height="594" }{: .left}
+![2.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/2.jpeg)
 
-![3.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/3.jpeg){: width="380" height="594" }{: .left}    
+![3.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/3.jpeg)
 
-![4.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/4.jpeg){: width="380" height="594" }{: .left}
+![4.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/4.jpeg)
 
-![5.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/5.jpeg){: width="380" height="594" }{: .left}    
+![5.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/5.jpeg)
 
-![6.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/6.jpeg){: width="380" height="594" }{: .left}
+![6.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/6.jpeg)
 
 
 The corners of the checkerboard are found using OpenCV, as shown below.
 
-![1.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/1.png){: width="380" height="594" }{: .left}  
+![1.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/1.png)
 
-![3.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/3.png){: width="380" height="594" }{: .left} 
+![3.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/3.png)
 
-![2.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/2.png){: width="380" height="594" }{: .left}  
+![2.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/2.png)
 
-![5.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/5.png){: width="380" height="594" }{: .left} 
+![5.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/5.png)
 
-![4.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/4.png){: width="380" height="594" }{: .left}  
+![4.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/4.png)
 
-![6.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/6.png){: width="380" height="594" }{: .left} 
+![6.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/6.png)
 
 Once the calibration is done, we can take an image and undistort it. The camera matrix and the distortion coefficients can then be stored. The following are the results obtained after running the code -
 
 ![image.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/image.png)
 
-![image2.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/image2.png){: width="380" height="594" }{: .left} 
+<!-- ![image2.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/image2.png){: width="380" height="594" }{: .left} 
 
 ![image3.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/image3.png){: width="380" height="594" }{: .left} 
 
-![image4.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/image4.png){: width="380" height="594" }{: .left} 
+![image4.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/image4.png){: width="380" height="594" }{: .left}  -->
+
+Camera Matrix:
+
+$$
+\begin{bmatrix}
+    1.07443280e+03 & 0.00000000 \mathrm{e}+00 & \quad 4.32669818 \mathrm{e}+02 \\
+    0.00000000 \mathrm{e}+00 & \quad 1.01862189 \mathrm{e}+03 & \quad 2.63179677 \mathrm{e}+02\\
+    0.00000000 \mathrm{e}+00 & \quad 0.00000000 \mathrm{e}+00 & \quad 1.00000000 \mathrm{e}+00\\
+\end{bmatrix}
+
+$$
+
+Distortion Parameters:
+
+$$
+\begin{bmatrix}
+    -0.09265683 & 0.80628656 & -0.00354457 & -0.00947235 & -1.59645404
+\end{bmatrix}
+$$
+
+Total Error: $0.06509290538498035$
+
+
 
 
 ### **Depth camera:**
@@ -154,7 +181,9 @@ The entire process of camera calibration, rectification, block matching, dispari
 
 The image on the left below shows the color frame and the corresponding distance at the point of placement of the cursor, while the image on the right shows the depth frame.
 
-![1.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/1%202.png){: width="380" height="594" }{: .left}  ![2.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/2%203.png){: width="380" height="594" }{: .left} 
+![1.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/1%202.png){: width="380" height="594" }{: .center}  
+
+![2.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/2%203.png){: width="380" height="594" }{: .center} 
 
 
 # OAK-D Camera
@@ -166,9 +195,9 @@ The OAK-D depth camera by Luxonis has three on-board cameras which can implement
 
 The camera is capable of performing stereo depth perception with filtering, post-processing, RGB-depth alignment, and high configurability.
 
-![2.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/2%204.png){: width="389" height="594" }{: .left} 
+![2.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/2%204.png){: width="389" height="594" }{: .center} 
 
-![1.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/1%203.png){: width="370" height="594" }{: .left} 
+![1.png](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/1%203.png){: width="370" height="594" }{: .center} 
 
 
 # **UNDERWATER TESTING**
@@ -179,9 +208,9 @@ The depth camera calibrated in the air cannot be used for performing underwater 
 
 The setup to perform underwater depth measurement involves placing the OAK-D depth camera in a transparent container and holding it inside water partially submerged, as shown in the images below. The entire setup and all the experiments were performed in the swimming pool.
 
-![3.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/3%201.jpeg){: width="380" height="594" }{: .left} 
+![3.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/3%201.jpeg){: width="380" height="594" }{: .center} 
 
-![4.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/4%201.jpeg){: width="380" height="594" }{: .left} 
+![4.jpeg](/assets/images/Underwater%20Perception%20and%20Navigation%207b07d806054842b887b63405dd37ddab/4%201.jpeg){: width="380" height="594" }{: .center} 
 
 ## **Camera Calibration**
 
