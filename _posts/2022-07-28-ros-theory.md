@@ -8,7 +8,7 @@ mermaid: true
 pin: true
 math: true
 toc: true
-image: /assets/images/ldr.png
+image: /assets/images/ros-nedir_1.jpg
 ---
 
 # Synopsis

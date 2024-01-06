@@ -5,7 +5,7 @@ categories: [Blog, Electronics]
 tags: [arduino]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true
-image: /assets/images/ldr.png
+image: /assets/images/tinkercad_circuits_1.png
 ---
 
 # Introduction

@@ -7,7 +7,7 @@ author: <author_id>
 mermaid: true
 pin: true
 math: true
-image: /assets/images/ldr.png
+image: /assets/images/manipulator_1.jpg
 ---
 
 # Joints

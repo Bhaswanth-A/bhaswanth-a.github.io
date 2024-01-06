@@ -7,7 +7,7 @@ author: <author_id>
 mermaid: true
 pin: true
 math: true
-image: /assets/images/ldr.png
+image: /assets/images/Path Planning 035901279cc342358ee1ff168f77dd73/thumbnail_1.jpg
 ---
 
 [Resources](https://drive.google.com/drive/folders/1aieMBbykgYkurXrpAslhvecRk1wsl551?usp=share_link)

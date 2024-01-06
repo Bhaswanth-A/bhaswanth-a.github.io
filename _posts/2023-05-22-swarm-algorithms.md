@@ -7,7 +7,7 @@ author: <author_id>
 mermaid: true
 pin: true
 math: true
-image: /assets/images/ldr.png
+image: /assets/images/Swarm Robot Coordination bad71fb1f6434c1f86377bbde4e3c576/algo_thumbnail_2.jpg
 ---
 
 The following are some of the algorithms that can be used to perform different tasks with swarm robots using Python:
