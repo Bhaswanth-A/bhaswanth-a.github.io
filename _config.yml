@@ -34,8 +34,11 @@ url: "https://bhaswanth-a.github.io/"
 github:
   username: Bhaswanth-A # change to your github username
 
-twitter:
-  username: BhaswanthA # change to your twitter username
+# twitter:
+#   username: BhaswanthA # change to your twitter username
+
+instagram:
+  username: bhaswanth_a
 
 social:
   # Change to your full name.
@@ -46,6 +49,7 @@ social:
     # The first element serves as the copyright owner's link
     # - https://twitter.com/username # change to your twitter homepage
     - https://github.com/Bhaswanth-A # change to your github homepage
+    - https://www.instagram.com/bhaswanth_a/
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     - https://www.linkedin.com/in/bhaswanth-a/
