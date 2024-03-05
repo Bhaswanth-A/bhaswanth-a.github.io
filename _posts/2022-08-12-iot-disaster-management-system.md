@@ -9,6 +9,8 @@ pin: false
 image: /assets/images/Thumbnail/iot_rsz.jpg
 ---
 
+[![Bhaswanth-A/IoT-Disaster-Management-System-for-Floods - GitHub](https://gh-card.dev/repos/Bhaswanth-A/IoT-Disaster-Management-System-for-Floods.svg)](https://github.com/Bhaswanth-A/IoT-Disaster-Management-System-for-Floods)
+
 # Introduction
 
 Floods are the most catastrophic and cataclysmic events of all-natural disasters. The World Meteorological Organization has stated that out of all the disasters in the world, floods are the most severe. Specifically, in India, about 12% of the land is vulnerable to flood conditions. Heavy unprecedented rainfall results in floods bringing everyday life to a standstill. Most floods occur during monsoons; however, floods can also occur due to dams & levees breaking, which can be triggered by thunderstorms, cyclones, and low-pressure regions.
