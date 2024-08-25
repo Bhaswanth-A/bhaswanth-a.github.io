@@ -8,6 +8,9 @@ order: 4
     <img align="left" src="/assets/images/me1_border.png" alt="drawing" width="400"/>
 </div> -->
 
+![](/assets/aboutme.jpg)
+
+
 <!-- Hey there! I am Bhaswanth Ayapilla, a passionate fourth-year undergraduate student at BITS Pilani Hyderabad. I am pursuing Electronics and Communication Engineering, with a minor in Robotics and Automation. -->
 
 Hey there! I am Bhaswanth Ayapilla, and I am an incoming student at the Masters in Robotic Systems Development (MRSD) program at Carnegie Mellon University. I am in my final year pursuing a Bachelor's degree in Electronics and Communication Engineering at BITS Pilani Hyderabad, with a focused minor in Robotics and Automation.
