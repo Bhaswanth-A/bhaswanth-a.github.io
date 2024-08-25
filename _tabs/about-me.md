@@ -1,7 +1,7 @@
 ---
 title: About Me
 icon: fas fa-user
-order: 4
+order: 1
 ---
 
 <!-- <div style="text-align: right">
