@@ -27,9 +27,14 @@
   
 -
   type: linkedin
-  icon: 'fab fa-linkedin'   # icons powered by <https://fontawesome.com/>
+  icon: 'fab fa-linkedin-in'   # icons powered by <https://fontawesome.com/>
   url:  'https://www.linkedin.com/in/bhaswanth-a/'                  # Fill with your Linkedin homepage
 # -
 #   type: stack-overflow
 #   icon: 'fab fa-stack-overflow'
 #   url:  ''                  # Fill with your stackoverflow homepage
+
+-
+  type: cv
+  icon: 'fas fa-file'   # icons powered by <https://fontawesome.com/>
+  url:  'https://bhaswanth-a.github.io/cv/'

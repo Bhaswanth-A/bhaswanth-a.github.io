@@ -15,7 +15,7 @@ order: 1
 
 <!-- Hey there! I am Bhaswanth Ayapilla, a passionate fourth-year undergraduate student at BITS Pilani Hyderabad. I am pursuing Electronics and Communication Engineering, with a minor in Robotics and Automation. -->
 
-I am currently pursuing my Masters in Robotic Systems Development (MRSD) program at Carnegie Mellon University. I am a recent graduate from BITS Pilani Hyderabad, India, where I majored in Electronics and Communication Engineering, with a focused minor in Robotics and Automation. My aspirations lie at the intersection of computer vision, planning and decision-making, and robot learning. 
+I'm currently pursuing my Masters in Robotic Systems Development (MRSD) program at Carnegie Mellon University. I am a recent graduate from BITS Pilani Hyderabad, India, where I majored in Electronics and Communication Engineering, with a focused minor in Robotics and Automation. My aspirations lie at the intersection of computer vision, planning and decision-making, and robot learning. 
 
 <!-- I have a deep-rooted passion for robotics, reinforcement learning, and deep learning, which has shaped my academic journey and career aspirations. -->
 
@@ -31,7 +31,7 @@ Please find my [CV](https://bhaswanth-a.github.io/cv/) under the Home page.
 
 # Contact
 
-**Personal email:** [bhaswanthayapilla@gmail.com](mailto:bhaswanthayapilla@gmail.com) \
-**Institute email:** [bayapill@andrew.cmu.edu](mailto:bayapill@andrew.cmu.edu) \ 
-**Phone:** +1 (412) 224-0713 \ 
+**Personal email:** [bhaswanthayapilla@gmail.com](mailto:bhaswanthayapilla@gmail.com) \\
+**Institute email:** [bayapill@andrew.cmu.edu](mailto:bayapill@andrew.cmu.edu) \\
+**Phone:** +1 (412) 224-0713 \\
 ** All other socials can be found at the bottom left of the page.
