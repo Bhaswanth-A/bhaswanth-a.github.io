@@ -1,8 +1,9 @@
 ---
 title: The Singapore AUV Challenge!
 date: 2022-09-02 00:00:00 +0800
-categories: [SAUVC, Robotics]
+categories: [Projects, Robotics]
 tags:    # TAG names should always be lowercase
+subsection: "SAUVC"
 author: <author_id>
 mermaid: true
 pin: true

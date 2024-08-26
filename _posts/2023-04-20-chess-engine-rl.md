@@ -3,6 +3,7 @@ title: Chess Engine using Reinforcement Learning
 date: 2023-03-29 00:00:00 +0800
 categories: [Projects, RL]
 tags: [rl, games]     # TAG names should always be lowercase
+subsection: "Academic Projects"
 author: <author_id>
 mermaid: true
 pin: true

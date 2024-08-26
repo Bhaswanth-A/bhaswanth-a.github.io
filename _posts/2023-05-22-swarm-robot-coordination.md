@@ -4,6 +4,7 @@ date: 2023-05-22 00:00:00 +0800
 categories: [Projects, Robotics]
 tags: [swarm, python, simulation]     # TAG names should always be lowercase
 author: <author_id>
+subsection: "Academic Projects"
 mermaid: true
 pin: true
 math: true

@@ -1,8 +1,9 @@
 ---
 title: Acoustic Localization
 date: 2022-09-01 00:00:00 +0800
-categories: [SAUVC, Robotics]
+categories: [Projects, Robotics]
 tags: [acoustics, localization]     # TAG names should always be lowercase
+subsection: "SAUVC"
 author: <author_id>
 mermaid: true
 pin: true

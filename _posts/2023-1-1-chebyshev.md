@@ -3,6 +3,7 @@ title: Third-order Tchebyshev Low-pass Filter
 date: 2022-12-12 00:00:00 +0800
 categories: [Projects, Electronics]
 tags: [emfme, microstrip, filter]     # TAG names should always be lowercase
+subsection: "Academic Projects"
 author: <author_id>
 mermaid: true
 pin: false

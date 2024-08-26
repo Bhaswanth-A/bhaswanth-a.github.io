@@ -1,8 +1,9 @@
 ---
 title: Object Detection
 date: 2022-09-01 00:00:00 +0800
-categories: [SAUVC, Robotics]
+categories: [Projects, Robotics]
 tags: [dl, cnn, computer vision, python, yolo]     # TAG names should always be lowercase
+subsection: "SAUVC"
 author: <author_id>
 mermaid: true
 pin: true

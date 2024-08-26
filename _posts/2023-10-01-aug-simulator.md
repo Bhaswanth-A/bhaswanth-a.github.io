@@ -3,6 +3,7 @@ title: Development of Python-Based Simulator for Analyzing Autonomous Underwater
 date: 2023-12-05 00:00:00 +0800
 categories: [Projects, Robotics]
 tags: [python, underwater, dynamics, simulation, pid, control]     # TAG names should always be lowercase
+subsection: "Research Experience"
 author: <author_id>
 mermaid: true
 pin: true
