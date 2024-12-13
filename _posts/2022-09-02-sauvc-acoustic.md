@@ -6,7 +6,7 @@ tags: [acoustics, localization]     # TAG names should always be lowercase
 subsection: "SAUVC"
 author: <author_id>
 mermaid: true
-pin: true
+pin: false
 image: /assets/images/ldr.png
 ---
 

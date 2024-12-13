@@ -23,7 +23,7 @@ timezone: Asia/Kolkata
 
 title: Bhaswanth Ayapilla # the main title
 
-tagline: Robotics and Reinforcement Learning Enthusiast # it will display as the sub-title
+tagline: Robotics | Computer Vision | Learning # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive, and powerful Jekyll theme for presenting professional writing.

@@ -1,0 +1,106 @@
+---
+layout: page
+# The Home page layout
+---
+
+<div id="post-list">
+    <!-- Handle pinned posts first -->
+    {% assign pinned_posts = site.posts | where: "cmu_pin", true %}
+    {% if pinned_posts.size > 0 %}
+    <div id="pinned-posts">
+        <h2>Capstone Project - CMU MRSD</h2>
+        {% for post in pinned_posts %}
+        <div class="post-preview pinned">
+            <h1>
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h1>
+
+            <div class="post-content">
+                <div class="post-img-cnt">
+                    <a href="{{ post.url | relative_url }}">
+                        <img src="{{ post.image | default: '/assets/default-image.jpg' }}" alt="{{ post.title }} image" class="post-img">
+                    </a>
+                </div>
+                <p>
+                    {% include no-linenos.html content=post.content %}
+                    {{ post.content | markdownify | strip_html | truncate: 200 }}
+                </p>
+            </div>
+
+            <div class="post-meta text-muted d-flex justify-content-between">
+                <div>
+                    <!-- posted date -->
+                    <i class="far fa-calendar fa-fw"></i>
+                    {% include timeago.html date=post.date tooltip=true %}
+
+                    <!-- time to read -->
+                    <i class="far fa-clock fa-fw"></i>
+                    {% include read-time.html content=post.content %}
+
+                    <!-- page views -->
+                    {% if site.google_analytics.pv.proxy_endpoint or site.google_analytics.pv.cache_path %}
+                    <i class="far fa-eye fa-fw"></i>
+                    <span id="pv_{{-post.title-}}" class="pageviews">
+                        <i class="fas fa-spinner fa-spin fa-fw"></i>
+                    </span>
+                    {% endif %}
+                </div>
+            </div> <!-- .post-meta -->
+
+        </div> <!-- .post-preview -->
+        {% endfor %}
+    </div> <!-- #pinned-posts -->
+    {% endif %}
+
+    <!-- Handle subsections -->
+    {% assign subsections = site.posts | group_by: "cmu_subsection" %}
+    {% for subsection in subsections %}
+    <div class="subsection">
+        <h2>{{ subsection.name }}</h2> <!-- Subsection title -->
+        
+        {% for post in subsection.items %}
+        {% if post.categories contains 'CMU MRSD' and post.pin != true %}
+        <div class="post-preview">
+            <h1>
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h1>
+
+            <div class="post-content">
+                <div class="post-img-cnt">
+                    <a href="{{ post.url | relative_url }}">
+                        <img src="{{ post.image | default: '/assets/default-image.jpg' }}" alt="{{ post.title }} image" class="post-img">
+                    </a>
+                </div>
+                <p>
+                    {% include no-linenos.html content=post.content %}
+                    {{ post.content | markdownify | strip_html | truncate: 200 }}
+                </p>
+            </div>
+
+            <div class="post-meta text-muted d-flex justify-content-between">
+                <div>
+                    <!-- posted date -->
+                    <i class="far fa-calendar fa-fw"></i>
+                    {% include timeago.html date=post.date tooltip=true %}
+
+                    <!-- time to read -->
+                    <i class="far fa-clock fa-fw"></i>
+                    {% include read-time.html content=post.content %}
+
+                    <!-- page views -->
+                    {% if site.google_analytics.pv.proxy_endpoint or site.google_analytics.pv.cache_path %}
+                    <i class="far fa-eye fa-fw"></i>
+                    <span id="pv_{{-post.title-}}" class="pageviews">
+                        <i class="fas fa-spinner fa-spin fa-fw"></i>
+                    </span>
+                    {% endif %}
+                </div>
+            </div> <!-- .post-meta -->
+
+        </div> <!-- .post-preview -->
+        {% endif %}
+        {% endfor %}
+
+    </div> <!-- .subsection -->
+    {% endfor %}
+</div> <!-- #post-list -->

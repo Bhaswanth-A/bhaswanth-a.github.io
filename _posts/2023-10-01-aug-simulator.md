@@ -6,7 +6,7 @@ tags: [python, underwater, dynamics, simulation, pid, control]     # TAG names s
 subsection: "Research Experience"
 author: <author_id>
 mermaid: true
-pin: true
+pin: false
 math: true
 image: /assets/images/Thumbnail/slocum_rsz1.jpg
 ---

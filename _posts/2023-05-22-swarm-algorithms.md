@@ -5,7 +5,7 @@ categories: [Blog, Robotics]
 tags: [swarm, python, simulation]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true
-pin: true
+pin: false
 math: true
 image: /assets/images/Swarm Robot Coordination bad71fb1f6434c1f86377bbde4e3c576/algo_thumbnail_2.jpg
 ---

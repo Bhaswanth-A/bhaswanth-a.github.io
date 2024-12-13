@@ -3,12 +3,11 @@ title: Thruster Control of AUV Using LQR
 date: 2022-08-12 00:00:00 +0800
 categories: [Projects, Robotics]
 tags: [control, lqr, pid, simulink, matlab]     # TAG names should always be lowercase
-subsection: "Academic Projects"
+subsection: "Academic Projects at BITS Pilani"
 author: <author_id>
 mermaid: true
-pin: true
+pin: false
 image: /assets/images/Thumbnail/lqr.png
-
 math: true
 ---
 

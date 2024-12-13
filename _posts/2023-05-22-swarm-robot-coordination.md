@@ -4,9 +4,9 @@ date: 2023-05-22 00:00:00 +0800
 categories: [Projects, Robotics]
 tags: [swarm, python, simulation]     # TAG names should always be lowercase
 author: <author_id>
-subsection: "Academic Projects"
+subsection: "Academic Projects at BITS Pilani"
 mermaid: true
-pin: true
+pin: false
 math: true
 image: /assets/images/Thumbnail/swarm_rsz.jpeg
 ---

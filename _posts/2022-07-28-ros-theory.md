@@ -5,7 +5,7 @@ categories: [Blog, Robotics]
 tags: [ros]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true
-pin: true
+pin: false
 math: true
 toc: true
 image: /assets/images/ros-nedir_1.jpg

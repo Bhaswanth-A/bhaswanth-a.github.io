@@ -6,7 +6,7 @@ tags: [ml, dl, cnn, object detection, computer vision]     # TAG names should al
 subsection: "Personal Projects"
 author: <author_id>
 mermaid: true
-pin: true
+pin: false
 image: /assets/images/Thumbnail/traffic.png
 ---
 

@@ -5,7 +5,7 @@ categories: [Blog, Robotics]
 tags: [kinematics]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true
-pin: true
+pin: false
 math: true
 image: /assets/images/manipulator_1.jpg
 ---

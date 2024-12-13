@@ -6,7 +6,7 @@ tags: [ros, urdf]     # TAG names should always be lowercase
 subsection: "Personal Projects"
 author: <author_id>
 mermaid: true
-pin: true
+pin: false
 image: /assets/images/Thumbnail/arm.png
 ---
 

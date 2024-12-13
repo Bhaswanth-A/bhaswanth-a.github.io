@@ -5,7 +5,7 @@ categories: [Blog, Robotics]
 tags: [planning, astar, dijkstra, search]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true
-pin: true
+pin: false
 math: true
 image: /assets/images/Path Planning 035901279cc342358ee1ff168f77dd73/thumbnail_1.jpg
 ---

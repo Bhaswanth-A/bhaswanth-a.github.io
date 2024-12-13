@@ -6,7 +6,7 @@ tags: [rl]     # TAG names should always be lowercase
 subsection: "Research Experience"
 author: <author_id>
 mermaid: true
-pin: true
+pin: false
 math: true
 image: /assets/images/Thumbnail/matsc_rsz.png
 ---

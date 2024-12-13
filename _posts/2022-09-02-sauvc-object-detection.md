@@ -6,7 +6,7 @@ tags: [dl, cnn, computer vision, python, yolo]     # TAG names should always be 
 subsection: "SAUVC"
 author: <author_id>
 mermaid: true
-pin: true
+pin: false
 image: /assets/images/ldr.png
 ---
 

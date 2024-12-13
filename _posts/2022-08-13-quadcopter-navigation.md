@@ -3,10 +3,10 @@ title: Quadcopter Navigation
 date: 2022-08-12 00:00:00 +0800
 categories: [Projects, Electronics]
 tags: [electronics, arduino, led]     # TAG names should always be lowercase
-subsection: "Academic Projects"
+subsection: "Academic Projects at BITS Pilani"
 author: <author_id>
 mermaid: true
-pin: true
+pin: false
 image: /assets/images/Thumbnail/drone_rsz.png
 ---
 
