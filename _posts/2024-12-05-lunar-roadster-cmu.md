@@ -40,7 +40,7 @@ Team: Bhaswanth Ayapilla, Ankit Aggarwal, Deepam Ameria, Simson D'Souza, Boxiang
 
 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 20px; margin: 0 auto; background-color: transparent; color: #000;">
     <a href="https://github.com/Lunar-ROADSTER" target="_blank" style="text-decoration: none; color: inherit;">
-        <img src="https://avatars.githubusercontent.com/u/104859443?v=4" alt="Lunar-ROADSTER GitHub" style="width: 100px; height: 100px; border-radius: 50%; box-shadow: 0px 4px 8px rgba(0,0,0,0.1);">
+        <img src="https://github.com/LunarROADSTER.png" alt="Lunar-ROADSTER GitHub" style="width: 100px; height: 100px; border-radius: 50%; box-shadow: 0px 4px 8px rgba(0,0,0,0.1);">
     </a>
     <a href="https://github.com/Lunar-ROADSTER" target="_blank" style="text-decoration: none; color: #0366d6; font-size: 18px; font-weight: bold;">
         Lunar-ROADSTER GitHub
