@@ -465,6 +465,18 @@ $ docker tag <service_name> <your_dockerhub_username>/<name>:<tag>
 $ docker push <your_dockerhub_username>/<name>:<tag>
 ```
 
+In case you're not logged in, use
+
+```bash
+$ docker login -u <username>
+```
+
+And then enter the password.
+
+It is necessary to include your Docker Hub username in the tag.
+
+
+
 # Additional Resources
 
 - [Docker for Development](https://docs.nav2.org/tutorials/docs/docker_dev.html)
