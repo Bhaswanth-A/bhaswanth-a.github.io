@@ -476,6 +476,47 @@ And then enter the password.
 It is necessary to include your Docker Hub username in the tag.
 
 
+# Building Docker Images for Multiple Architectures
+
+- Ensure `qemu` emulation is enabled: You need to have `qemu-user-static` installed and properly configured for cross-platform builds.
+
+```bash
+$ sudo apt-get install -y qemu-user-static
+$ docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+```
+
+This ensures that the `qemu` emulator is registered for the required architectures.
+
+When building or running Docker images for a different architecture:
+
+1. Build Process: QEMU emulates the target architecture (e.g., `arm64`) on the host (e.g., `amd64`), enabling you to compile binaries and packages for the target system.
+2. Run Process: QEMU interprets `arm64` instructions so that the container can run on an `amd64` host without errors.
+
+- Setup `buildx`
+
+```bash
+$ docker buildx create --name multiarch --use
+$ docker buildx inspect --bootstrap
+```
+
+- Tag the image that you want to push
+
+```bash
+$ docker tag <service_name> <your_dockerhub_username>/<name>:<tag>
+```
+
+- Build the multi-arch image
+
+```bash
+$ docker buildx build --platform linux/amd64,linux/arm64/v8 \
+  -t your-dockerhub-username/your-image-name:tag \
+  --push \
+  -f /path/to/Dockerfile /path/to/context
+```
+
+- The image will be pushed to Docker Hub
+
+
 
 # Additional Resources
 
