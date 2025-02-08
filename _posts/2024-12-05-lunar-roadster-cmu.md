@@ -54,6 +54,8 @@ Team: Bhaswanth Ayapilla, Ankit Aggarwal, Deepam Ameria, Simson D'Souza, Boxiang
 
 ### Conceptual Design Review Report (CoDRR)
 
+Date: $12^{th}$ December, $2024$
+
 <object data="/assets/pdfs/TeamI_CoDR_Report.pdf" width="100%" height="800" type="application/pdf">
     <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/TeamI_CoDR_Report.pdf">here</a>.</p>
 </object>
@@ -80,6 +82,6 @@ Date: $14^{th}$ February, $2025$
 
 Date: $7^{th}$ February, $2025$
 
-<object data="/assets/pdfs/ilr/Bhaswanth_Ayapilla_ILR01.pdf" width="100%" height="800" type="application/pdf">
-    <p>Your browser does not support PDFs. Please download the slides <a href="assets/pdfs/ilr/Bhaswanth_Ayapilla_ILR01.pdf">here</a>.</p>
+<object data="/assets/pdfs/Bhaswanth_Ayapilla_ILR01.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the slides <a href="assets/pdfs/Bhaswanth_Ayapilla_ILR01.pdf">here</a>.</p>
 </object>
