@@ -50,15 +50,36 @@ Team: Bhaswanth Ayapilla, Ankit Aggarwal, Deepam Ameria, Simson D'Souza, Boxiang
 
 ---
 
-## Conceptual Design Review Report (CoDRR)
+## Design Review
+
+### Conceptual Design Review Report (CoDRR)
+
 <object data="/assets/pdfs/TeamI_CoDR_Report.pdf" width="100%" height="800" type="application/pdf">
     <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/TeamI_CoDR_Report.pdf">here</a>.</p>
 </object>
 
----
-
-## Conceptual Design Review Presentation (CoDRP)
+### Conceptual Design Review Presentation (CoDRP)
 
 <object data="/assets/pdfs/TeamI_CoDR_Slides.pdf" width="100%" height="800" type="application/pdf">
     <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/TeamI_CoDR_Slides.pdf">here</a>.</p>
+</object>
+
+---
+
+## Progress Review Presentations
+
+### Progress Review 1
+
+Date: $14^{th}$ February, $2025$
+
+---
+
+## Individual Lab Reports
+
+### ILR 01
+
+Date: $7^{th}$ February, $2025$
+
+<object data="/assets/pdfs/ilr/Bhaswanth Ayapilla ILR01.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the slides <a href="assets/pdfs/ilr/Bhaswanth Ayapilla ILR01.pdf">here</a>.</p>
 </object>
