@@ -80,6 +80,6 @@ Date: $14^{th}$ February, $2025$
 
 Date: $7^{th}$ February, $2025$
 
-<object data="/assets/pdfs/ilr/Bhaswanth Ayapilla ILR01.pdf" width="100%" height="800" type="application/pdf">
-    <p>Your browser does not support PDFs. Please download the slides <a href="assets/pdfs/ilr/Bhaswanth Ayapilla ILR01.pdf">here</a>.</p>
+<object data="/assets/pdfs/ilr/Bhaswanth_Ayapilla_ILR01.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the slides <a href="assets/pdfs/ilr/Bhaswanth_Ayapilla_ILR01.pdf">here</a>.</p>
 </object>
