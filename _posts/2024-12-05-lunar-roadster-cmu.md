@@ -68,6 +68,12 @@ Date: $12^{th}$ December, $2024$
 
 ---
 
+## Spring Test Plan
+
+<object data="/assets/pdfs/TeamI_SpringTestPlan.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/TeamI_SpringTestPlan.pdf">here</a>.</p>
+</object>
+
 ## Progress Review Presentations
 
 ### Progress Review 1
@@ -83,5 +89,5 @@ Date: $14^{th}$ February, $2025$
 Date: $7^{th}$ February, $2025$
 
 <object data="/assets/pdfs/Bhaswanth_Ayapilla_ILR01.pdf" width="100%" height="800" type="application/pdf">
-    <p>Your browser does not support PDFs. Please download the slides <a href="assets/pdfs/Bhaswanth_Ayapilla_ILR01.pdf">here</a>.</p>
+    <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/Bhaswanth_Ayapilla_ILR01.pdf">here</a>.</p>
 </object>
