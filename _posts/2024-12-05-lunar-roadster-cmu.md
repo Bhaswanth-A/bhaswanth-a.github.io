@@ -56,29 +56,42 @@ Team: Bhaswanth Ayapilla, Ankit Aggarwal, Deepam Ameria, Simson D'Souza, Boxiang
 
 Date: $12^{th}$ December, $2024$
 
-<object data="/assets/pdfs/TeamI_CoDR_Report.pdf" width="100%" height="800" type="application/pdf">
-    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/TeamI_CoDR_Report.pdf">here</a>.</p>
+<object data="/assets/pdfs/capstone/TeamI_CoDR_Report.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_CoDR_Report.pdf">here</a>.</p>
 </object>
 
 ### Conceptual Design Review Presentation (CoDRP)
 
-<object data="/assets/pdfs/TeamI_CoDR_Slides.pdf" width="100%" height="800" type="application/pdf">
-    <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/TeamI_CoDR_Slides.pdf">here</a>.</p>
+<object data="/assets/pdfs/capstone/TeamI_CoDR_Slides.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/capstone/TeamI_CoDR_Slides.pdf">here</a>.</p>
 </object>
 
 ---
 
 ## Spring Test Plan
 
-<object data="/assets/pdfs/TeamI_SpringTestPlan.pdf" width="100%" height="800" type="application/pdf">
-    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/TeamI_SpringTestPlan.pdf">here</a>.</p>
+<object data="/assets/pdfs/capstone/TeamI_SpringTestPlan.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_SpringTestPlan.pdf">here</a>.</p>
 </object>
 
 ## Progress Review Presentations
 
 ### Progress Review 1
 
-Date: $14^{th}$ February, $2025$
+Date: $13^{th}$ February, $2025$
+
+<object data="/assets/pdfs/capstone/TeamI_Progress_Review_1.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_Progress_Review_1.pdf">here</a>.</p>
+</object>
+
+
+### Progress Review 2
+
+Date: $27^{th}$ February, $2025$
+
+<object data="/assets/pdfs/capstone/TeamI_Progress_Review_2.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_Progress_Review_2.pdf">here</a>.</p>
+</object>
 
 ---
 
@@ -88,6 +101,20 @@ Date: $14^{th}$ February, $2025$
 
 Date: $7^{th}$ February, $2025$
 
-<object data="/assets/pdfs/Bhaswanth_Ayapilla_ILR01.pdf" width="100%" height="800" type="application/pdf">
-    <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/Bhaswanth_Ayapilla_ILR01.pdf">here</a>.</p>
+<object data="/assets/pdfs/capstone/Bhaswanth_Ayapilla_ILR01.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/capstone/Bhaswanth_Ayapilla_ILR01.pdf">here</a>.</p>
 </object>
+
+### ILR 02
+
+Date: $14^{th}$ February, $2025$
+
+<object data="/assets/pdfs/capstone/Bhaswanth_Ayapilla_ILR02.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/capstone/Bhaswanth_Ayapilla_ILR02.pdf">here</a>.</p>
+</object>
+
+
+### ILR 03
+
+Date: $28^{th}$ February, $2025$
+
