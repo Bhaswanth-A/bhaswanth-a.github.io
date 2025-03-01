@@ -118,3 +118,7 @@ Date: $14^{th}$ February, $2025$
 
 Date: $28^{th}$ February, $2025$
 
+<object data="/assets/pdfs/capstone/Bhaswanth_Ayapilla_ILR03.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/capstone/Bhaswanth_Ayapilla_ILR03.pdf">here</a>.</p>
+</object>
+
