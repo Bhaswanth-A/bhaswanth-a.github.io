@@ -52,6 +52,14 @@ Team: Bhaswanth Ayapilla, Ankit Aggarwal, Deepam Ameria, Simson D'Souza, Boxiang
 
 ## Design Review
 
+### Preliminary Design Review (PDR)
+
+Date: $11^{th}$ March, $2025$
+
+<object data="/assets/pdfs/capstone/TeamI_PDR.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_PDR.pdf">here</a>.</p>
+</object>
+
 ### Conceptual Design Review Report (CoDRR)
 
 Date: $12^{th}$ December, $2024$
@@ -68,10 +76,24 @@ Date: $12^{th}$ December, $2024$
 
 ---
 
-## Spring Test Plan
+## Test Plans
+
+### Spring Test Plan
 
 <object data="/assets/pdfs/capstone/TeamI_SpringTestPlan.pdf" width="100%" height="800" type="application/pdf">
     <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_SpringTestPlan.pdf">here</a>.</p>
+</object>
+
+### Spring Validation Demo Test Plan
+
+<object data="/assets/pdfs/capstone/TeamI_SVD.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_SVD.pdf">here</a>.</p>
+</object>
+
+### Fall Validation Demo Test Plan
+
+<object data="/assets/pdfs/capstone/TeamI_FVD.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_FVD.pdf">here</a>.</p>
 </object>
 
 ## Progress Review Presentations

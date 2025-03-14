@@ -61,7 +61,7 @@ def read_dataset_ppm(rootpath, n_labels, resize_to):
             labels.append(label)
             images.append(img)
         
-    return Dataset(X = img_stack(images), y = np.array(labels))
+    return Dataset(X = img_stack(/assets/images/L3D/a3/images), y = np.array(labels))
 
 def img_stack(imgs):
     return np.stack([img[:,:,np.newaxis] for img in imgs], axis=0).astype(np.float32)
