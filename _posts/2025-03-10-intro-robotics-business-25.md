@@ -13,6 +13,6 @@ image: /assets/images/ldr.png
 
 # Company Analysis: Advanced Construction Robotics
 
-<!-- <object data="/assets/pdfs/capstone/TeamI_CoDR_Report.pdf" width="100%" height="800" type="application/pdf">
-    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_CoDR_Report.pdf">here</a>.</p>
-</object> -->
+<object data="/assets/pdfs/business/TeamI_ACR_Analysis.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/business/TeamI_ACR_Analysis.pdf">here</a>.</p>
+</object>
