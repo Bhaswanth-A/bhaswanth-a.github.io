@@ -66,6 +66,12 @@ Date: $17^{th}$ April, $2025$
 
 ## Encore
 
+Date: $24^{th}$ April, $2025$
+
+<object data="/assets/pdfs/capstone/TeamI_SVDEncore.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_SVDEncore.pdf">here</a>.</p>
+</object>
+
 
 ---
 

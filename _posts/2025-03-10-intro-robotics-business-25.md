@@ -16,3 +16,9 @@ image: /assets/images/ldr.png
 <object data="/assets/pdfs/business/TeamI_ACR_Analysis.pdf" width="100%" height="800" type="application/pdf">
     <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/business/TeamI_ACR_Analysis.pdf">here</a>.</p>
 </object>
+
+# Patent Analysis
+
+<object data="/assets/pdfs/business/TeamI_Patent_Analysis.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/business/TeamI_Patent_Analysis.pdf">here</a>.</p>
+</object>
