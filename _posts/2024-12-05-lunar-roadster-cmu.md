@@ -86,6 +86,10 @@ Date: $24^{th}$ April, $2025$
 
 Date: $29^{th}$ April, $2025$
 
+<object data="/assets/pdfs/capstone/TeamI_CDR.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_CDR.pdf">here</a>.</p>
+</object>
+
 
 ## Preliminary Design Review (PDR)
 
