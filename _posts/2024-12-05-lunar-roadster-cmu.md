@@ -52,21 +52,26 @@ Team: Bhaswanth Ayapilla, Ankit Aggarwal, Deepam Ameria, Simson D'Souza, Boxiang
 
 # Spring Validation Demo
 
+## Demo
+
+<iframe width="800" height="480" src="https://www.youtube.com/embed/tUjzHp1q6YU" frameborder="0" allowfullscreen></iframe>
+
 ## SVD Presentation
 
 Date: $17^{th}$ April, $2025$
+
+<iframe width="800" height="480" src="https://www.youtube.com/embed/owFLCF9u4Xk" frameborder="0" allowfullscreen></iframe>
 
 <object data="/assets/pdfs/capstone/TeamI_SVD.pdf" width="100%" height="800" type="application/pdf">
     <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_SVD.pdf">here</a>.</p>
 </object>
 
 
-## Demo 
-
-
 ## Encore
 
 Date: $24^{th}$ April, $2025$
+
+<!-- <iframe width="800" height="480" src="https://www.youtube.com/embed/tzTjdkMnZA8" frameborder="0" allowfullscreen></iframe> -->
 
 <object data="/assets/pdfs/capstone/TeamI_SVDEncore.pdf" width="100%" height="800" type="application/pdf">
     <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_SVDEncore.pdf">here</a>.</p>
@@ -76,6 +81,11 @@ Date: $24^{th}$ April, $2025$
 ---
 
 # Design Review
+
+## Critical Design Review (CDR)
+
+Date: $29^{th}$ April, $2025$
+
 
 ## Preliminary Design Review (PDR)
 
