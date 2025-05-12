@@ -804,3 +804,437 @@ def neus_sdf_to_density(signed_distance, s):
 
 
 Low `s` results in a more blurry render, while a higher value of `s` makes it look sharp.
+
+---
+
+# Assignment 4
+
+Questions: [Github Assignment 4](https://github.com/learning3d/assignment4)
+
+## 1. 3D Gaussian Splatting
+
+### 1.1 3D Gaussian Rasterization
+
+Run:
+
+```zsh
+python render.py --gaussians_per_splat 1024
+```
+
+Output GIF:
+
+![image](/assets/images/L3D/a4/Q1/output//q1_render.gif)
+
+### 1.2 Training 3D Gaussian Representations
+
+Run:
+
+```zsh
+python train.py --gaussians_per_splat 2048 --device cuda
+```
+
+I modified the `run_training` function to improve performance and reduce CUDA memory usage. Specifically, I:
+
+- Reduced the number of Gaussians from 10k to 7k by subsampling the points file, lowering the overall GPU memory footprint.
+
+- Ensured key Gaussian parameters (opacities, scales, colours, and means) were trainable and set up an optimizer with different learning rates for each parameter group (as mentioned in 1.2.1)
+
+- Wrapped the forward pass in `autocast` and used `GradScaler` to scale the loss, which both reduced memory usage and accelerated computation
+
+I called the `scene.render` method to generate the predicted image from the input camera parameters, using the specified image size, background color, and the number of Gaussians per splat. I then computed the L1 loss between the rendered (predicted) image and the ground truth image.
+
+Learning rates that I used for each parameter:
+- `pre_act_opacities` = `0.001`
+- `pre_act_scales` = `0.001`
+- `colours` = `0.02`
+- `means` = `0.0002`
+
+Number of iterations that I trained the model for = `1000`
+
+Mean PSNR: 27.356
+
+Mean SSIM: 0.915
+
+Training final render GIF:
+
+![image](/assets/images/L3D/a4/Q1/output//q1_training_final_renders.gif)
+
+Training progress GIF:
+
+![image](/assets/images/L3D/a4/Q1/output//q1_training_progress.gif)
+
+
+### 1.3 Extensions
+
+#### 1.3.1 Rendering Using Spherical Harmonics 
+
+Run:
+
+```zsh
+python render.py --gaussians_per_splat 1024
+```
+
+GIF:
+
+| Original | Spherical Harmonics |
+|:---:|:---:|
+|![image](/assets/images/L3D/a4/Q1/output//q1_render.gif) |![image](/assets/images/L3D/a4/Q1/output//q13_render.gif)|
+
+
+RGB image comparisons of the renderings obtained from both the cases:
+
+| Frame | Original | Spherical Harmonics |
+|:---:|:---:|:---:|
+|000|![image](/assets/images/L3D/a4/Q1/output//q1_render/000.png) |![image](/assets/images/L3D/a4/Q1/output//q13_render/000.png)|
+|015|![image](/assets/images/L3D/a4/Q1/output//q1_render/015.png) |![image](/assets/images/L3D/a4/Q1/output//q13_render/015.png)|
+|021|![image](/assets/images/L3D/a4/Q1/output//q1_render/018.png) |![image](/assets/images/L3D/a4/Q1/output//q13_render/018.png)|
+|030|![image](/assets/images/L3D/a4/Q1/output//q1_render/030.png) |![image](/assets/images/L3D/a4/Q1/output//q13_render/030.png)|
+
+Differences that can be observed:
+- Frame 000 and 015: The spherical harmonics rendering looks more photorealistic because the angular variations in color better capture how the material responds to illumination from different directions.
+- Frames 021 and 030: The spherical harmonics rendering looks more glossy and reflective because the added directional sensitivity leads to more dynamic and detailed shading.
+
+
+## 2. Diffusion-guided Optimization
+
+### 2.1 SDS Loss + Image Optimization
+
+Run:
+
+```zsh
+python Q21_image_optimization.py --sds_guidance 1
+```
+
+| Prompt | Without Guidance | With Guidance |
+|:---:|:---:|:---:|
+|Iterations | 400 | 2000|
+| "a hamburger" | ![image](/assets/images/L3D/a4/Q2/output//image_0/a_hamburger/output.png) | ![image](/assets/images/L3D/a4/Q2/output//image/a_hamburger/output.png) |
+| "a standing corgi dog" | ![image](/assets/images/L3D/a4/Q2/output//image_0/a_standing_corgi_dog/output.png) | ![image](/assets/images/L3D/a4/Q2/output//image/a_standing_corgi_dog/output.png) |
+| "a fish in a pan" | ![image](/assets/images/L3D/a4/Q2/output//image_0/a_fish_in_a_pan/output.png) | ![image](/assets/images/L3D/a4/Q2/output//image/a_fish_in_a_pan/output.png) |
+| "a mansion" | ![image](/assets/images/L3D/a4/Q2/output//image_0/a_mansion/output.png) | ![image](/assets/images/L3D/a4/Q2/output//image/a_mansion/output.png) |
+
+### 2.2 Texture Map Optimization for Mesh
+
+Run: 
+
+```zsh
+python python Q22_mesh_optimization.py
+```
+
+In order to reduce the CUDA memory footprint, I reduced the image size to `256x256`.
+
+| Prompt | Initial Mesh GIF |Final Mesh GIF |
+|:---:|:---:|:---:|
+| "a tiger" | ![image](/assets/images/L3D/a4/Q2/output//mesh/a_tiger/initial_mesh.gif) | ![image](/assets/images/L3D/a4/Q2/output//mesh/a_tiger/final_mesh.gif) | 
+| "a zebra" | ![image](/assets/images/L3D/a4/Q2/output//mesh/a_zebra/initial_mesh.gif) |![image](/assets/images/L3D/a4/Q2/output//mesh/a_zebra/final_mesh.gif) |
+
+### 2.3 NeRF Optimization
+
+I perfomed no CUDA memory optimization here. All values were the same as default as pulled from GitHub.
+
+Prompt: "a standing corgi dog"
+
+Run:
+
+```zsh
+python Q23_nerf_optimization.py --prompt "a standing corgi dog" --lambda_entropy 1e-2 --lambda_orient 1e-2 --latent_iter_ratio 0.1 
+```
+
+Rendered RGB video:
+
+<video width="640" height="360" controls loop>
+  <source src="/assets/images/L3D/a4/Q2/output//nerf/a_standing_corgi_dog/videos/rgb_ep_99.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+Rendered depth video:
+
+<video width="640" height="360" controls loop>
+  <source src="/assets/images/L3D/a4/Q2/output//nerf/a_standing_corgi_dog/videos/depth_ep_99.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+Prompt: "a hamburger"
+
+Run:
+
+```zsh
+python Q23_nerf_optimization.py --prompt "a hamburger" --iters 2500 --lambda_entropy 1e-3 --lambda_orient 1e-2 --latent_iter_ratio 0.2 
+```
+
+Rendered RGB video:
+
+<video width="640" height="360" controls loop>
+  <source src="/assets/images/L3D/a4/Q2/output//nerf/a_hamburger/videos/rgb_ep_24.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+Rendered depth video:
+
+<video width="640" height="360" controls loop>
+  <source src="/assets/images/L3D/a4/Q2/output//nerf/a_hamburger/videos/depth_ep_24.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+Prompt: "a mansion"
+
+Run:
+
+```zsh
+python Q23_nerf_optimization.py --prompt "a mansion" --iters 2500 --lambda_entropy 1e-2 --lambda_orient 1e-2 --latent_iter_ratio 0.1 
+```
+
+Rendered RGB video:
+
+<video width="640" height="360" controls loop>
+  <source src="/assets/images/L3D/a4/Q2/output//nerf/a_mansion/videos/rgb_ep_24.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+Rendered depth video:
+
+<video width="640" height="360" controls loop>
+  <source src="/assets/images/L3D/a4/Q2/output//nerf/a_mansion/videos/depth_ep_24.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
+### 2.4 Extensions
+
+#### 2.4.1 View-dependent text embedding
+
+Prompt: "a standing corgi dog"
+
+Run:
+
+```zsh
+python Q23_nerf_optimization.py --prompt "a standing corgi dog" --lambda_entropy 1e-2 --lambda_orient 1e-2 --latent_iter_ratio 0.1 --view_dep_text 1
+```
+
+Rendered RGB video:
+
+<video width="640" height="360" controls loop>
+  <source src="/assets/images/L3D/a4/Q2/output//nerf/2.4/a_standing_corgi_dog/videos/rgb_ep_99.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+Rendered depth video:
+
+<video width="640" height="360" controls loop>
+  <source src="/assets/images/L3D/a4/Q2/output//nerf/2.4/a_standing_corgi_dog/videos/depth_ep_99.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+Prompt: "a hamburger"
+
+Run:
+
+```zsh
+python Q23_nerf_optimization.py --prompt "a hamburger" --iters 2500 --lambda_entropy 1e-3 --lambda_orient 1e-2 --latent_iter_ratio 0.2 --view_dep_text 1
+```
+
+Rendered RGB video:
+
+<video width="640" height="360" controls loop>
+  <source src="/assets/images/L3D/a4/Q2/output//nerf/2.4/a_hamburger/videos/rgb_ep_24.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+Rendered depth video:
+
+<video width="640" height="360" controls loop>
+  <source src="/assets/images/L3D/a4/Q2/output//nerf/2.4/a_hamburger/videos/depth_ep_24.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+Comparing with 2.3:
+
+In 2.3, the NeRF model used one fixed text embedding for all views. This led to consistent but somewhat flat results and sometimes produced artifacts like multiple front faces (standing corgi dog example) because the model didn't know how to adjust for different angles.
+
+With view-dependent text conditioning, different embeddings (like front, side, and back) are used based on the camera angle. This helps the model adjust lighting, highlights, and reflections for each view, resulting in more realistic and 3D-consistent images.
+
+The "hamburger" looks really good with view-dependent conditioning, while the "standing corgi dog" did not turn out as well, likely because it needs more training to capture all its details.
+
+---
+
+# Assignment 5
+
+Questions: [Github Assignment 5](https://github.com/learning3d/assignment5)
+
+## 1. Classification Model
+
+Run:
+
+```zsh
+python train.py --task cls
+
+python eval_cls.py
+```
+
+The model was trained for 250 epochs, and the best model was saved at epoch 115.
+
+Train loss = 1.1288
+
+Test accuracy of best model = 0.9696
+
+Visualization of a few random test point clouds and their predicted classes:
+
+|Correct Prediction | Chairs | Vases | Lamps |
+|:---:|:---:|:---:|:---:|
+|Point Cloud| ![image](/assets/images/L3D/a5/output/Q1/cls_s_num51_0_0.gif) | ![image](/assets/images/L3D/a5/output/Q1/cls_s_num638_1_1.gif) | ![image](/assets/images/L3D/a5/output/Q1/cls_s_num763_2_2.gif) |
+|Point Cloud| ![image](/assets/images/L3D/a5/output/Q1/cls_s_num134_0_0.gif) | ![image](/assets/images/L3D/a5/output/Q1/cls_s_num630_1_1.gif) | ![image](/assets/images/L3D/a5/output/Q1/cls_s_num877_2_2.gif) |
+
+
+Visualization of a failure prediction for each class:
+
+|Correct Label | Vase | Lamp | Vase |
+|:---:|:---:|:---:|:---:|
+|Point Cloud| ![image](/assets/images/L3D/a5/output/Q1/cls_f_num673_1_2.gif) | ![image](/assets/images/L3D/a5/output/Q1/cls_f_num777_2_1.gif) | ![image](/assets/images/L3D/a5/output/Q1/cls_f_num714_1_2.gif) |
+|Incorrect Prediction | Lamp | Vase | Lamp |
+
+The successful results show that the model is able to pick out important features. For example, it correctly identifies the distinct structure of chairs, vases, and lamps. But in some cases, the shapes can be ambiguous or similar, which causes the model to misclassify objects. This can happen when the point sampling misses some important details or when the features are too similar between classes. 
+
+## 2. Segmentation Model
+
+Run:
+
+```zsh
+python train.py --task seg
+
+python eval_seg.py
+```
+
+
+The model was trained for 250 epochs, and the best model was saved at epoch 225.
+
+Train loss = 13.0442
+
+Test accuracy of best model = 0.8966
+
+Visualization of correct segmentation predictions along with their corresponding ground truth:
+
+|Accuracy | 0.9317 | 0.9147 | 0.9308 |
+|:---:|:---:|:---:|:---:|
+|Ground Truth| ![image](/assets/images/L3D/a5/output/Q2/success_gt_0.gif)  | ![image](/assets/images/L3D/a5/output/Q2/success_gt_1.gif)  | ![image](/assets/images/L3D/a5/output/Q2/success_gt_2.gif)  |
+|Good Segmentation Predictions| ![image](/assets/images/L3D/a5/output/Q2/success_pred_0.gif)  | ![image](/assets/images/L3D/a5/output/Q2/success_pred_1.gif)  | ![image](/assets/images/L3D/a5/output/Q2/success_pred_2.gif)  |
+
+
+Visualization of incorrect segmentation predictions along with their corresponding ground truth:
+
+|Accuracy | 0.5604 | 0.5572 | 0.4702 |
+|:---:|:---:|:---:|:---:|
+|Ground Truth| ![image](/assets/images/L3D/a5/output/Q2/failure_gt_0.gif)  | ![image](/assets/images/L3D/a5/output/Q2/failure_gt_1.gif)  | ![image](/assets/images/L3D/a5/output/Q2/failure_gt_2.gif)  |
+|Bad Segmentation Predictions| ![image](/assets/images/L3D/a5/output/Q2/failure_pred_0.gif)  | ![image](/assets/images/L3D/a5/output/Q2/failure_pred_1.gif)  | ![image](/assets/images/L3D/a5/output/Q2/failure_pred_2.gif)  |
+
+The good segmentation predictions show that the model can distinguish the chair's seat, back, and legs fairly accurately. In the failure cases, we can see that certain parts like the seat or back merges with the legs or other regions. A possible reason could be that if the training data includes ambiguous or poorly differentiated boundaries, the model may struggle to learn to differentiate segments in these areas.
+
+## 3. Robustness Analysis
+
+### 3.1 Rotate Input Point Clouds
+
+#### 3.1.1 Classification Model
+
+Visualization of a few random test point clouds and their predicted classes:
+
+|Angle | Accuracy| Chairs | Vases | Lamps |
+|:---:|:---:|:---:|:---:|:---:|
+|10 degrees| 0.958| Successful![image](/assets/images/L3D/a5/output/Q3/rotate/10/cls/cls_s_num114_0_0.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/rotate/10/cls/cls_s_num620_1_1.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/rotate/10/cls/cls_s_num730_2_2.gif) |
+|10 degrees| 0.958| Successful ![image](/assets/images/L3D/a5/output/Q3/rotate/10/cls/cls_s_num396_0_0.gif) |Successful ![image](/assets/images/L3D/a5/output/Q3/rotate/10/cls/cls_s_num675_1_1.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/rotate/10/cls/cls_s_num929_2_2.gif) |
+|20 degrees| 0.894| Successful![image](/assets/images/L3D/a5/output/Q3/rotate/20/cls/cls_s_num114_0_0.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/rotate/20/cls/cls_s_num620_1_1.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/rotate/20/cls/cls_s_num730_2_2.gif) |
+|20 degrees| 0.894| Wrong predicted as lamp ![image](/assets/images/L3D/a5/output/Q3/rotate/20/cls/cls_f_num396_0_2.gif) |Successful ![image](/assets/images/L3D/a5/output/Q3/rotate/20/cls/cls_s_num675_1_1.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/rotate/20/cls/cls_s_num929_2_2.gif) |
+|30 degrees| 0.679| Successful![image](/assets/images/L3D/a5/output/Q3/rotate/30/cls/cls_s_num114_0_0.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/rotate/30/cls/cls_s_num620_1_1.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/rotate/30/cls/cls_s_num730_2_2.gif) |
+|30 degrees| 0.679| Wrong predicted as lamp ![image](/assets/images/L3D/a5/output/Q3/rotate/30/cls/cls_f_num396_0_2.gif) |Wrongly predicted as lamp ![image](/assets/images/L3D/a5/output/Q3/rotate/30/cls/cls_f_num675_1_2.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/rotate/30/cls/cls_s_num929_2_2.gif) |
+|60 degrees| 0.299| Wrongly predicted as vase ![image](/assets/images/L3D/a5/output/Q3/rotate/60/cls/cls_f_num114_0_1.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/rotate/60/cls/cls_s_num620_1_1.gif) | Wrongly predicted as chair ![image](/assets/images/L3D/a5/output/Q3/rotate/60/cls/cls_f_num730_2_0.gif) |
+|60 degrees| 0.299| Wrong predicted as lamp ![image](/assets/images/L3D/a5/output/Q3/rotate/60/cls/cls_f_num396_0_2.gif) |Wrongly predicted as lamp ![image](/assets/images/L3D/a5/output/Q3/rotate/60/cls/cls_f_num675_1_2.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/rotate/60/cls/cls_s_num929_2_2.gif) |
+
+From the observations above, we see that the model classifies most rotated objects correctly when the rotation is small (10 or 20 degrees). However, as the rotation angle becomes larger (30 or 60 degrees), the accuracy drops and the model starts confusing objects. This happens because the model wasn't trained with any rotational variations and so the learned features become orientation-dependent. 
+
+#### 3.1.2 Segmentation Model
+
+|Angle | Model| X | X | X |X |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+|10 degrees| Ground Truth | ![image](/assets/images/L3D/a5/output/Q3/rotate/10/seg/success_gt_0.gif) | ![image](/assets/images/L3D/a5/output/Q3/rotate/10/seg/success_gt_1.gif) |  ![image](/assets/images/L3D/a5/output/Q3/rotate/10/seg/success_gt_2.gif) | ![image](/assets/images/L3D/a5/output/Q3/rotate/10/seg/failure_gt_0.gif) | 
+|10 degrees| Prediction | Success: 0.9185 ![image](/assets/images/L3D/a5/output/Q3/rotate/10/seg/success_pred_0.gif) | Success: 0.9134 ![image](/assets/images/L3D/a5/output/Q3/rotate/10/seg/success_pred_1.gif) | Success: 0.9055 ![image](/assets/images/L3D/a5/output/Q3/rotate/10/seg/success_pred_2.gif) | Failure: 0.4798 ![image](/assets/images/L3D/a5/output/Q3/rotate/10/seg/failure_pred_0.gif) | 
+|20 degrees| Ground Truth | ![image](/assets/images/L3D/a5/output/Q3/rotate/20/seg/success_gt_0.gif) | ![image](/assets/images/L3D/a5/output/Q3/rotate/20/seg/success_gt_1.gif) |  ![image](/assets/images/L3D/a5/output/Q3/rotate/20/seg/success_gt_2.gif) | ![image](/assets/images/L3D/a5/output/Q3/rotate/20/seg/failure_gt_0.gif) | 
+|20 degrees| Prediction | Success: 0.9396 ![image](/assets/images/L3D/a5/output/Q3/rotate/20/seg/success_pred_0.gif) | Success: 0.9191 ![image](/assets/images/L3D/a5/output/Q3/rotate/20/seg/success_pred_1.gif) | Success: 0.9307 ![image](/assets/images/L3D/a5/output/Q3/rotate/20/seg/success_pred_2.gif) | Failure: 0.5906 ![image](/assets/images/L3D/a5/output/Q3/rotate/20/seg/failure_pred_0.gif) | 
+|30 degrees| Ground Truth | ![image](/assets/images/L3D/a5/output/Q3/rotate/30/seg/success_gt_0.gif) | ![image](/assets/images/L3D/a5/output/Q3/rotate/30/seg/success_gt_1.gif) |  ![image](/assets/images/L3D/a5/output/Q3/rotate/30/seg/failure_gt_0.gif) |  
+|30 degrees| Prediction | Success: 0.9093 ![image](/assets/images/L3D/a5/output/Q3/rotate/30/seg/success_pred_0.gif) | Success: 0.9429 ![image](/assets/images/L3D/a5/output/Q3/rotate/30/seg/success_pred_1.gif) | Failure: 0.4707 ![image](/assets/images/L3D/a5/output/Q3/rotate/30/seg/failure_pred_0.gif) | 
+|60 degrees| Ground Truth | ![image](/assets/images/L3D/a5/output/Q3/rotate/60/seg/failure_gt_0.gif) | ![image](/assets/images/L3D/a5/output/Q3/rotate/60/seg/failure_gt_1.gif) |  ![image](/assets/images/L3D/a5/output/Q3/rotate/60/seg/failure_gt_2.gif) |  
+|60 degrees| Prediction | Failure: 0.4707 ![image](/assets/images/L3D/a5/output/Q3/rotate/60/seg/failure_pred_0.gif) | Failure: 0.5283 ![image](/assets/images/L3D/a5/output/Q3/rotate/60/seg/failure_pred_1.gif) | Failure: 0.5478 ![image](/assets/images/L3D/a5/output/Q3/rotate/60/seg/failure_pred_2.gif) | 
+
+From the observations above, we see that the model segments most portions of the rotated objects well when the rotation is small (10 or 20 degrees). However, as the rotation angle becomes larger (30 or 60 degrees), we see a massive accuracy drop. This happens because the model wasn't trained with any rotational variations and so the learned features become orientation-dependent. The rotations make it difficult for the network to correctly differentiate between segments.
+
+
+### 3.2 Different Number of Point Points per Object
+
+#### 3.2.1 Classification Model
+
+|Number of Points | Accuracy| Chairs | Vases | Lamps |
+|:---:|:---:|:---:|:---:|:---:|
+|5000| 0.968| Successful![image](/assets/images/L3D/a5/output/Q3/points/5000/cls/cls_s_num396_0_0.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/points/5000/cls/cls_s_num675_1_1.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/points/5000/cls/cls_s_num929_2_2.gif) |
+|1000| 0.9695| Successful![image](/assets/images/L3D/a5/output/Q3/points/1000/cls/cls_s_num396_0_0.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/points/1000/cls/cls_s_num675_1_1.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/points/1000/cls/cls_s_num929_2_2.gif) |
+|500| 0.9622| Successful![image](/assets/images/L3D/a5/output/Q3/points/500/cls/cls_s_num396_0_0.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/points/500/cls/cls_s_num675_1_1.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/points/500/cls/cls_s_num929_2_2.gif) |
+|100| 0.882| Successful![image](/assets/images/L3D/a5/output/Q3/points/100/cls/cls_s_num396_0_0.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/points/100/cls/cls_s_num675_1_1.gif) | Successful ![image](/assets/images/L3D/a5/output/Q3/points/100/cls/cls_s_num929_2_2.gif) |
+
+We see that the classification model performs well even with fewer points. The drop in accuracy when the number of points is reduced to 100 or below is expected because fewer points reduce geometric detail, which makes it harder to distinguish specific features. Still, even at 100 points, the outline structure is preserved, allowing the model to classify successfully in many cases.
+
+#### 3.2.2 Segmentation Model
+
+|Number of Points | Model| X | X | X |X |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+|5000| Ground Truth | ![image](/assets/images/L3D/a5/output/Q3/points/5000/seg/success_gt_0.gif) | ![image](/assets/images/L3D/a5/output/Q3/points/5000/seg/success_gt_1.gif) |  ![image](/assets/images/L3D/a5/output/Q3/points/5000/seg/success_gt_2.gif) | ![image](/assets/images/L3D/a5/output/Q3/points/5000/seg/failure_gt_0.gif) | 
+|5000| Prediction | Success: 0.9448 ![image](/assets/images/L3D/a5/output/Q3/points/5000/seg/success_pred_0.gif) | Success: 0.992 ![image](/assets/images/L3D/a5/output/Q3/points/5000/seg/success_pred_1.gif) | Success: 0.9658 ![image](/assets/images/L3D/a5/output/Q3/points/5000/seg/success_pred_2.gif) | Failure: 0.5366 ![image](/assets/images/L3D/a5/output/Q3/points/5000/seg/failure_pred_0.gif) | 
+|1000| Ground Truth | ![image](/assets/images/L3D/a5/output/Q3/points/1000/seg/success_gt_0.gif) | ![image](/assets/images/L3D/a5/output/Q3/points/1000/seg/success_gt_1.gif) |  ![image](/assets/images/L3D/a5/output/Q3/points/1000/seg/success_gt_2.gif) | ![image](/assets/images/L3D/a5/output/Q3/points/1000/seg/failure_gt_0.gif) | 
+|1000| Prediction | Success: 0.952 ![image](/assets/images/L3D/a5/output/Q3/points/1000/seg/success_pred_0.gif) | Success: 0.988 ![image](/assets/images/L3D/a5/output/Q3/points/1000/seg/success_pred_1.gif) | Success: 0.904 ![image](/assets/images/L3D/a5/output/Q3/points/1000/seg/success_pred_2.gif) | Failure: 0.515 ![image](/assets/images/L3D/a5/output/Q3/points/1000/seg/failure_pred_0.gif) | 
+|500| Ground Truth | ![image](/assets/images/L3D/a5/output/Q3/points/500/seg/success_gt_0.gif) | ![image](/assets/images/L3D/a5/output/Q3/points/500/seg/success_gt_1.gif) |  ![image](/assets/images/L3D/a5/output/Q3/points/500/seg/success_gt_2.gif) | ![image](/assets/images/L3D/a5/output/Q3/points/500/seg/failure_gt_0.gif) | 
+|500| Prediction | Success: 0.934 ![image](/assets/images/L3D/a5/output/Q3/points/500/seg/success_pred_0.gif) | Success: 0.998 ![image](/assets/images/L3D/a5/output/Q3/points/500/seg/success_pred_1.gif) | Success: 0.926 ![image](/assets/images/L3D/a5/output/Q3/points/500/seg/success_pred_2.gif) | Failure: 0.484 ![image](/assets/images/L3D/a5/output/Q3/points/500/seg/failure_pred_0.gif) | 
+|100| Ground Truth | ![image](/assets/images/L3D/a5/output/Q3/points/100/seg/success_gt_0.gif) | ![image](/assets/images/L3D/a5/output/Q3/points/100/seg/success_gt_1.gif) |  ![image](/assets/images/L3D/a5/output/Q3/points/100/seg/success_gt_2.gif) | ![image](/assets/images/L3D/a5/output/Q3/points/100/seg/failure_gt_0.gif) | 
+|100| Prediction | Success: 0.92 ![image](/assets/images/L3D/a5/output/Q3/points/100/seg/success_pred_0.gif) | Success: 0.96 ![image](/assets/images/L3D/a5/output/Q3/points/100/seg/success_pred_1.gif) | Success: 0.91 ![image](/assets/images/L3D/a5/output/Q3/points/100/seg/success_pred_2.gif) | Failure: 0.58 ![image](/assets/images/L3D/a5/output/Q3/points/100/seg/failure_pred_0.gif) | 
+
+We see that the segmentation model performs well even with fewer points. While the model performs well even with 500 points, the performance becomes more unstable at 100 points, especially in complex or ambiguous regions. This is because fewer points reduce the structural detail, making it harder for the model to distinguish fine boundaries and specific object features like thin legs and armrests.
+
+
+
+## 4. Bonus Question - Locality
+
+I implemented a general Transformer framework for both the classification model and the segmentation model.
+
+The classification model predicts a single label for an entire point cloud. Each point’s 3D coordinates are passed through two linear layers: one to embed the input features, and another to learn positional information. These two embeddings are added together and fed into a standard Transformer Encoder. After processing, I apply max pooling across all points to extract a global feature vector. This is then passed through fully connected layers with batch normalization, ReLU activation, and dropout. The log softmax over the class scores is then returned.
+
+The segmentation model /assets/images/L3D/a5/outputs a class label for each point. I embed the 3D points and add positional information before passing them through a Transformer Encoder. Instead of pooling the features, I use 1D convolution layers to generate per-point predictions. These /assets/images/L3D/a5/outputs are also passed through a log softmax to get per-point class probabilities.
+
+
+### 4.1 Classification Model using Transformers
+
+Run:
+
+```zsh
+python train.py --task cls
+
+python eval_cls.py --load_checkpoint best_model --/assets/images/L3D/a5/output_dir ".//assets/images/L3D/a5/output/Q4/cls"
+```
+
+The model was trained for 100 epochs, and the best model was saved at epoch 18.
+
+Train loss = 30.6177
+
+Test accuracy of best model = 0.9454
+
+Visualization of a few random test point clouds and their predicted classes using Transformers:
+
+|Correct Prediction | Chairs | Vases | Lamps |
+|:---:|:---:|:---:|:---:|
+|Point Cloud| ![image](/assets/images/L3D/a5/output/Q4/cls/cls_s_num349_0_0.gif) | ![image](/assets/images/L3D/a5/output/Q4/cls/cls_s_num676_1_1.gif) | ![image](/assets/images/L3D/a5/output/Q4/cls/cls_s_num835_2_2.gif) |
+|Point Cloud| ![image](/assets/images/L3D/a5/output/Q4/cls/cls_s_num6_0_0.gif) | ![image](/assets/images/L3D/a5/output/Q4/cls/cls_s_num653_1_1.gif) | ![image](/assets/images/L3D/a5/output/Q4/cls/cls_s_num771_2_2.gif) |
+
+
+Visualization of a failure prediction for each class using Transformers:
+
+|Correct Label | Vase | Lamp | Lamp |
+|:---:|:---:|:---:|:---:|
+|Point Cloud| ![image](/assets/images/L3D/a5/output/Q4/cls/cls_f_num699_1_2.gif) | ![image](/assets/images/L3D/a5/output/Q4/cls/cls_f_num777_2_1.gif) | ![image](/assets/images/L3D/a5/output/Q4/cls/cls_f_num806_2_0.gif) |
+|Incorrect Prediction | Lamp | Vase | Chair |
+
+The model was run only for 100 epochs because it was taking a lot of time. I also did not have the time to run the segmentation Transformer model. However, there were no errors in starting the training and it only had to be left running for ~8 hours on my laptop.
+
+Moreover, the Transformer model gave a very high accuracy of 94% for just training for 100 epochs. The classification model without Transformer gave an accuracy of 97% for training for 250 epochs.

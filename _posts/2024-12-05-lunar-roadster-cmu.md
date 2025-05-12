@@ -82,7 +82,15 @@ Date: $24^{th}$ April, $2025$
 
 # Design Review
 
-## Critical Design Review (CDR)
+## Critical Design Review Report (CDRR)
+
+Date: $3^{rd}$ May, $2025$
+
+<object data="/assets/pdfs/capstone/TeamI_CDRR.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_CDRR.pdf">here</a>.</p>
+</object>
+
+## Critical Design Review Presentation (CDRP)
 
 Date: $29^{th}$ April, $2025$
 
