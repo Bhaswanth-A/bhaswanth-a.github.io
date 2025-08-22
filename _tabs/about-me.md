@@ -16,7 +16,9 @@ order: 1
 
 <!-- Hey there! I am Bhaswanth Ayapilla, a passionate fourth-year undergraduate student at BITS Pilani Hyderabad. I am pursuing Electronics and Communication Engineering, with a minor in Robotics and Automation. -->
 
-I am currently pursuing my Master's in Robotic Systems Development (MRSD) program at Carnegie Mellon University. I am currently interning as a Robotics Engineer at Milwaukee Tool. As part of my Master's program, I am working on my capstone project in space robotics — developing the Lunar ROADSTER, a Robotic Operator for Autonomous Development of Surface Trails and Exploration Routes on the Moon. This exciting project is under the supervision of [Dr. William "Red" Whittaker](https://www.ri.cmu.edu/ri-faculty/william-red-l-whittaker/). You can learn more about the project here: [Lunar ROADSTER](https://bhaswanth-a.github.io/posts/lunar-roadster-cmu/).
+I am currently pursuing my Master's in Robotic Systems Development (MRSD) program at Carnegie Mellon University. I just completed my summer internship at Milwaukee Tool as a Robotics Engineer, where I worked on developing a mobile robot integrated with a robotic manipulator. You can find my complete work here: [Milwaukee Tool](https://bhaswanth-a.github.io/posts/milwaukee-tool/).
+
+As part of my Master's program, I am working on my capstone project in space robotics — developing the Lunar ROADSTER, a Robotic Operator for Autonomous Development of Surface Trails and Exploration Routes on the Moon. This exciting project is under the supervision of [Dr. William "Red" Whittaker](https://www.ri.cmu.edu/ri-faculty/william-red-l-whittaker/). You can learn more about it here: [Lunar ROADSTER](https://bhaswanth-a.github.io/posts/lunar-roadster-cmu/).
 
 My heart lies in field robotics — to develop robots that can operate and navigate in unpredictable, unstructured environments, especially for applications in space exploration and automation on Earth. I love working across the entire spectrum of robotics, from design and hardware integration to software development.
 
@@ -38,5 +40,4 @@ Please find my [CV](https://bhaswanth-a.github.io/cv/) under the Home page.
 
 **Personal email:** [bhaswanthayapilla@gmail.com](mailto:bhaswanthayapilla@gmail.com) \\
 **Institute email:** [bayapill@andrew.cmu.edu](mailto:bayapill@andrew.cmu.edu) \\
-**Phone:** +1 (412) 224-0713 \\
 ** All other socials can be found at the bottom left of the page.
