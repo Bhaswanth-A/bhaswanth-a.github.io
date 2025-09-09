@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://bhaswanth-a.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://bhaswanth-a.github.io//" rel="alternate" type="text/html" hreflang="en" /><updated>2025-09-10T00:31:06+05:30</updated><id>https://bhaswanth-a.github.io//feed.xml</id><title type="html">Bhaswanth Ayapilla</title><subtitle>A minimal, responsive, and powerful Jekyll theme for presenting professional writing.</subtitle><entry><title type="html">Wheeled Biped</title><link href="https://bhaswanth-a.github.io//posts/wheeled-biped/" rel="alternate" type="text/html" title="Wheeled Biped" /><published>2025-09-03T21:30:00+05:30</published><updated>2025-09-03T21:30:00+05:30</updated><id>https://bhaswanth-a.github.io//posts/wheeled-biped</id><content type="html" xml:base="https://bhaswanth-a.github.io//posts/wheeled-biped/"><![CDATA[<p><em>In progress</em></p>
+
+<h1 id="wheeled-biped">Wheeled Biped</h1>]]></content><author><name>&lt;author_id&gt;</name></author><category term="Projects" /><category term="Robotics" /><category term="rl" /><category term="biped" /><category term="wheeled" /><summary type="html"><![CDATA[In progress]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://bhaswanth-a.github.io//assets/images/ldr.png" /><media:content medium="image" url="https://bhaswanth-a.github.io//assets/images/ldr.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Deep Learning - Perceptrons</title><link href="https://bhaswanth-a.github.io//posts/deep-learning-perceptrons/" rel="alternate" type="text/html" title="Deep Learning - Perceptrons" /><published>2025-06-09T21:30:00+05:30</published><updated>2025-06-09T21:30:00+05:30</updated><id>https://bhaswanth-a.github.io//posts/deep-learning-perceptrons</id><content type="html" xml:base="https://bhaswanth-a.github.io//posts/deep-learning-perceptrons/"><![CDATA[<p><em>In Progress</em></p>
+
+<h1 id="neural-networks">Neural Networks</h1>
+
+<p>Depth - length of longest path from source to sink
+Layer - Set of all neurons which are all at the same depth with respect to the source</p>
+
+<h2 id="gradient">Gradient</h2>
+
+<p>For a scalar function $f(X)$ with a multivariate input $X$:</p>
+
+\[df\left( x\right) =\nabla _{x}f\left( x\right) dx\]
+
+\[\nabla _{x}f\left( x\right) =\left[ \dfrac{\partial f}{\partial x_{1}}\dfrac{\partial f}{\partial x_{2}}\ldots \dfrac{\partial f}{\partial x_{n}}\right]\]
+
+<p>Because it is a dot product, for an increment $dX$ of any given length, $df$ is maximum if the increment $dX$ is aligned with the gradient direction $\nabla _{x}f\left( x\right)^T$. So the gradient is the direction of steepest ascent.</p>
+
+<p>So if you want a function to decrease, your increment should be in the direction of $-\nabla _{x}f\left( x\right)^T$.</p>
+
+<p>To find a maximum move in the direction of gradient:</p>
+
+\[x^{k+1} = x^k + \eta^k \nabla_x f(x^k)^T \\[1em]\]
+
+<p>To find a minimum move in the direction of gradient:</p>
+
+\[x^{k+1} = x^k - \eta^k \nabla_x f(x^k)^T \\[1em]\]
+
+<p>There are many solutions to choosing step size $\eta^k$.</p>
+
+<h2 id="hessian">Hessian</h2>
+
+\[\nabla^2_{x} f(x_1, \ldots, x_n) = \begin{bmatrix}\frac{\partial^2 f}{\partial x_1^2} &amp; \frac{\partial^2 f}{\partial x_1 \partial x_2} &amp; \cdots &amp; \frac{\partial^2 f}{\partial x_1 \partial x_n} \\\frac{\partial^2 f}{\partial x_2 \partial x_1} &amp; \frac{\partial^2 f}{\partial x_2^2} &amp; \cdots &amp; \frac{\partial^2 f}{\partial x_2 \partial x_n} \\\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\\frac{\partial^2 f}{\partial x_n \partial x_1} &amp; \frac{\partial^2 f}{\partial x_n \partial x_2} &amp; \cdots &amp; \frac{\partial^2 f}{\partial x_n^2}\end{bmatrix}\]
+
+<h2 id="network">Network</h2>
+
+<p>A continuous activation function applied to an affine function of the inputs</p>
+
+\[y = f\left( \sum_i w_i x_i + b \right) \\[1em]
+y = f(x_1, x_2, \ldots, x_N; W)\]
+
+<h3 id="activation-functions-and-derivatives">Activation Functions and Derivatives</h3>
+
+<p>Sigmoid:</p>
+
+\[f(z) = \frac{1}{1 + \exp(-z)} \\f'(z) = f(z)(1 - f(z)) \\[1.5em]\]
+
+<p>Tanh:</p>
+
+\[f(z) = \tanh(z) \\f'(z) = 1 - f^2(z)\]
+
+<p>ReLU:</p>
+
+\[f(z) = \begin{cases}z, &amp; z \geq 0 \\0, &amp; z &lt; 0\end{cases} \\f'(z) = \begin{cases}1, &amp; z \geq 0 \\0, &amp; z &lt; 0\end{cases} \]
+
+<p>Softplus:</p>
+
+\[f(z) = \log(1 + \exp(z)) \\f'(z) = \frac{1}{1 + \exp(-z)}\]
+
+<p>Softmax:</p>
+
+\[f(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}} \\
+f'(z_i) = 
+\begin{cases}
+f(z_i)(1 - f(z_i)), &amp; \text{if } i = j \\
+- f(z_i) f(z_j), &amp; \text{if } i \ne j
+\end{cases}\]
+
+<h3 id="kl-divergence">KL Divergence</h3>
+
+<p>Measures how different two probability distributions are. In classification, $Y$ is the predicted distribution and $d$ is the ground truth, usually a one-hot encoding.</p>
+
+\[KL(Y, d) = \sum_i d_i \log \frac{d_i}{y_i} \\\]
+
+<p>For one-hot, $d$ simplifies to</p>
+
+\[KL(Y, d) = -\log y_c\]
+
+<p>This means that it is minimized when correct class is predicted with the highest probability $y_c \rightarrow 1$.</p>
+
+<p>Gradient:</p>
+
+\[\frac{d}{dy_c} KL(Y, d) = -\frac{1}{y_c}\]
+
+<h2 id="training-by-back-propagation">Training by Back Propagation</h2>
+
+<p><img src="Introduction%20to%20Deep%20Learning%202110b449d4198098aa46c001aa46c944/image.png" alt="image.png" /></p>
+
+<h3 id="forward-pass">Forward Pass</h3>
+
+<p><img src="Introduction%20to%20Deep%20Learning%202110b449d4198098aa46c001aa46c944/image%201.png" alt="image.png" /></p>
+
+<p>Setting $y_i^{(0)} = x_i$ and $w_{0j}^{(k)} = b_j^{(k)}$. Let the bias equal $1$ for simplicity.</p>
+
+<p>For layer 1,</p>
+
+\[z_j^{(1)} = \sum_i w_{ij}^{(1)}y_i^{(0)} \\ y_j^{(1)} = f_1(z_j^{(1)})\]
+
+<p>For layer 2,</p>
+
+\[z_j^{(2)} = \sum_i w_{ij}^{(2)}y_i^{(1)} \\ y_j^{(2)} = f_2(z_j^{(2)})\]
+
+<p>Similarly,</p>
+
+\[z_j^{(N)} = \sum_i w_{ij}^{(N)}y_i^{(N-1)} \\ y_j^{(N)} = f_N(z_j^{(N)})\]
+
+<h3 id="backward-pass">Backward Pass</h3>
+
+<p><strong>Step 1: Initialize Gradient at Output Layer</strong></p>
+
+<p>We start by computing the gradient of the loss w.r.t. the network output:</p>
+
+\[\frac{\partial Div}{\partial y^{(N)}_i} = \frac{\partial Div(Y, d)}{\partial y_i}\]
+
+<p>Then, propagate this to the pre-activation output $z^{(N)}$:</p>
+
+\[\frac{\partial Div}{\partial z^{(N)}_i} =  \frac{\partial y_i^{(N)}}{\partial z_i^{(N)}} \cdot \frac{\partial Div}{\partial y^{(N)}_i} =f_N'\left(z^{(N)}_i\right) \cdot \frac{\partial Div}{\partial y^{(N)}_i}\]
+
+<p>In case of a vector activation function, such as the softmax function, $y_i^{(N)}$ is influenced by every $z_i^{(N)}$:</p>
+
+\[\frac{\partial Div}{\partial z_i^{(N)}} = \sum_j \frac{\partial y_j^{(N)}}{\partial z_i^{(N)}} \cdot \frac{\partial Div}{\partial y_j^{(N)}}\]
+
+<p><strong>Step 2: Backpropagation Through Layers</strong></p>
+
+<p>Loop from layers $k = (N-1) \rightarrow 0$:</p>
+
+<p>For each layer $k$ and for each neuron $i$ in that layer:</p>
+
+<p>Compute gradient of loss w.r.t. activation:</p>
+
+\[\frac{\partial Div}{\partial y^{(k)}_i} = \sum_j w_{ij}^{(k+1)} \cdot \frac{\partial Div}{\partial z^{(k+1)}_j}\]
+
+<p>Chain through activation function:</p>
+
+\[\frac{\partial Div}{\partial z^{(k)}_i} = \frac{\partial y_i^{(k)}}{\partial z_i^{(k)}} \cdot \frac{\partial Div}{\partial y^{(k)}_i} = f_k'\left(z^{(k)}_i\right) \cdot \frac{\partial Div}{\partial y^{(k)}_i}\]
+
+<p><strong>Step 3: Gradient w.r.t. Weights</strong></p>
+
+<p>For each weight connecting neuron $i$ in layer $k$ to neuron $j$ in layer $k$:</p>
+
+\[\frac{\partial Div}{\partial w_{ij}^{(k)}} = y^{(k-1)}_i \cdot \frac{\partial Div}{\partial z^{(k)}_j}\]
+
+<p><strong>Step 4: Updating Weights</strong></p>
+
+<p>Actual loss is the sum of the divergence over all training instances:</p>
+
+\[Loss = \frac{1}{|\{X\}|}\sum_X Div(Y(X), d(X))\]
+
+<p>Actual gradient is the average of the derivatives computed for each training instance:</p>
+
+\[\nabla_W Loss = \frac{1}{|\{X\}|}\sum_X \nabla_W Div(Y(X), d(X))\]
+
+\[W \leftarrow W - \eta \nabla_W Loss^T\]
+
+<h3 id="summary">Summary</h3>
+
+<p><img src="Introduction%20to%20Deep%20Learning%202110b449d4198098aa46c001aa46c944/image%202.png" alt="image.png" /></p>
+
+<h3 id="vector-formulation">Vector Formulation</h3>
+
+<p><img src="Introduction%20to%20Deep%20Learning%202110b449d4198098aa46c001aa46c944/image%203.png" alt="image.png" /></p>
+
+\[\mathbf{z}_k = \begin{bmatrix}z^{(k)}_1 \\z^{(k)}_2 \\\vdots \\z^{(k)}_{D_k}\end{bmatrix}\qquad\mathbf{y}_k = \begin{bmatrix}y^{(k)}_1 \\y^{(k)}_2 \\\vdots \\y^{(k)}_{D_k}\end{bmatrix}\]
+
+\[\mathbf{W}_k =\begin{bmatrix}w^{(k)}_{11} &amp; w^{(k)}_{21} &amp; \cdots &amp; w^{(k)}_{D_{k-1}1} \\w^{(k)}_{12} &amp; w^{(k)}_{22} &amp; \cdots &amp; w^{(k)}_{D_{k-1}2} \\\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\w^{(k)}_{1D_k} &amp; w^{(k)}_{2D_k} &amp; \cdots &amp; w^{(k)}_{D_{k-1}D_k}\end{bmatrix}\qquad\mathbf{b}_k = \begin{bmatrix}b^{(k)}_1 \\b^{(k)}_2 \\\vdots \\b^{(k)}_{D_k}\end{bmatrix}\]
+
+\[\mathbf{z_k} = \mathbf{W_ky_{k-1} + b_k} \\ 
+
+\mathbf{y_k} = \mathbf{f_k(z_k)}\]
+
+<p><strong>Setup:</strong></p>
+
+<ul>
+  <li>Let $\mathbf{y_n = Y}$, the network output</li>
+  <li>Let $\mathbf{y_0 = X}$, the input</li>
+  <li>Initialize:</li>
+</ul>
+
+\[\nabla_{\mathbf{y}_N} Div = \nabla_{\mathbf{Y}} Div\]
+
+<p><strong>For each layer $k = N \rightarrow 1$:</strong></p>
+
+<p><strong>Compute the Jacobian of activation:</strong></p>
+
+\[J_{\mathbf{y}_k}(\mathbf{z}_k) = \frac{\partial \mathbf{y}_k}{\partial \mathbf{z}_k}\]
+
+<p>This is a matrix of partial derivatives:</p>
+
+\[J_{\mathbf{y}}(\mathbf{z}) =\begin{bmatrix}\frac{\partial y_1}{\partial z_1} &amp; \cdots &amp; \frac{\partial y_1}{\partial z_D} \\\vdots &amp; \ddots &amp; \vdots \\\frac{\partial y_M}{\partial z_1} &amp; \cdots &amp; \frac{\partial y_M}{\partial z_D}\end{bmatrix}\]
+
+<p><strong>Backward recursion step:</strong></p>
+
+\[\nabla_{\mathbf{z}_k} Div = \nabla_{\mathbf{y}_k} Div \cdot J_{\mathbf{y}_k}(\mathbf{z}_k)\]
+
+\[\nabla_{\mathbf{y}_{k-1}} Div = \nabla_{\mathbf{z}_k} Div \cdot \mathbf{W}_k\]
+
+<p><strong>Gradient Computation:</strong></p>
+
+\[\nabla_{\mathbf{W}_k} Div = \mathbf{y}_{k-1} \cdot \nabla_{\mathbf{z}_k} Div\]
+
+\[\nabla_{\mathbf{b}_k} Div = \nabla_{\mathbf{z}_k} Div\]
+
+<h3 id="summary-1">Summary</h3>
+
+<p><img src="Introduction%20to%20Deep%20Learning%202110b449d4198098aa46c001aa46c944/image%204.png" alt="image.png" /></p>
+
+<h3 id="important-points">Important Points</h3>
+
+<ul>
+  <li>Backpropagation will often not find a separating solution even though the solution is within the class of functions learnable by the network, because the separable solution is not a feasible optimum for the loss function.
+    <ul>
+      <li>It is minimally changed by new training instances — doesn’t swing wildly in response to small changes to the input</li>
+      <li>It prefers consistency over perfection, due to which it works better even if there are outliers</li>
+      <li>It is a low-variance estimator, at the potential cost of bias</li>
+    </ul>
+  </li>
+  <li>Minimizing the differentiable loss function does not imply minimizing the classification error.</li>
+</ul>
+
+<h2 id="convergence-of-gradient-descent">Convergence of Gradient Descent</h2>
+
+<h3 id="covergence-rate">Covergence Rate</h3>
+
+<p>It measures <strong>how quickly</strong> an iterative optimization algorithm approaches the solution.</p>
+
+\[R = \left| \frac{f(x^{(k+1)}) - f(x^*)}{f(x^{(k)}) - f(x^*)} \right|\]
+
+<p>Where:</p>
+
+<ul>
+  <li>$x^{(k)}$: point at iteration $k$</li>
+  <li>$x^*$: optimal point (solution)</li>
+  <li>$f(x)$: objective function</li>
+</ul>
+
+<p>If $R&lt;1$, that means that the function value is getting closer to the optimum and is hence converging. The smaller the $R$, the faster the convergence.</p>
+
+<p>If $R$ is a constant or upper-bounded, then the algorithm has linear convergence. This means that the difference between the function value and the optimum shrinks exponentially with iterations.</p>
+
+\[|f(x^{(k)}) - f(x^*)| \leq R^k \cdot |f(x^{(0)}) - f(x^*)|\]
+
+<h3 id="convergence-for-quadratic-surfaces">Convergence for Quadratic Surfaces</h3>
+
+<p><strong>What is the optimal step size $\eta$ to reach the minimum value of the error fastest?</strong></p>
+
+<ul>
+  <li>Consider a general quadratic function:</li>
+</ul>
+
+\[E(w) = \frac{1}{2}aw^2 + bw + c\]
+
+<ul>
+  <li>Gradient descent update:</li>
+</ul>
+
+\[w^{(k+1)} = w^{(k)} - \eta \frac{dE(w^{(k)})}{dw}\]
+
+<ul>
+  <li>Taylor expansion of $E(w)$ around $w^{(k)}$:</li>
+</ul>
+
+\[E(w) \approx E(w^{(k)}) + E'(w^{(k)})(w - w^{(k)}) + \frac{1}{2} E''(w^{(k)})(w - w^{(k)})^2\]
+
+<ul>
+  <li>Newton’s method gives:</li>
+</ul>
+
+\[w_{\text{min}} = w^{(k)} - \left(E''(w^{(k)})\right)^{-1} E'(w^{(k)})\]
+
+<ul>
+  <li>Optimal learning rate:</li>
+</ul>
+
+\[\eta_{\text{opt}} = \left(E''(w^{(k)})\right)^{-1} = a^{-1}\]
+
+<p><strong>Effect of step size $\eta$:</strong></p>
+
+<ul>
+  <li>$\eta &lt; \eta_{opt} \rightarrow$ monotonic convergence</li>
+  <li>$\eta = \eta_{opt} \rightarrow$  fast convergence in one step</li>
+  <li>$\eta_{opt}&lt;\eta &lt; 2\eta_{opt} \rightarrow$ oscillating convergence</li>
+  <li>$\eta \geq 2\eta_{opt} \rightarrow$ divergence</li>
+</ul>
+
+<p><img src="Introduction%20to%20Deep%20Learning%202110b449d4198098aa46c001aa46c944/image%205.png" alt="image.png" /></p>
+
+<h3 id="convergence-for-multivariate-quadratic-functions">Convergence for Multivariate Quadratic Functions</h3>
+
+<ul>
+  <li>General form of a quadratic convex function:</li>
+</ul>
+
+\[\mathbf{w} = [w_1, w_2, ..., w_N] \\ E(\mathbf{w}) = \frac{1}{2} \mathbf{w}^T A \mathbf{w} + \mathbf{w}^T \mathbf{b} + c\]
+
+<ul>
+  <li>If $A$ is diagonal:</li>
+</ul>
+
+\[E(\mathbf{w}) = \frac{1}{2} \sum_i (a_{ii} w_i^2 + b_i w_i) + c\]
+
+<p>This means the cost function is a sum of independent univariate quadratics. Each direction $w_i$ is uncoupled.</p>
+
+<p><strong>Equal-Value Contours:</strong></p>
+
+<ul>
+  <li>For diagonal $A$, the contours are ellipses aligned with coordinate axes.</li>
+  <li>Each coordinate’s behavior is independent of the others.</li>
+</ul>
+
+<p><strong>Optimal Step Size:</strong></p>
+
+<p>For each dimension $i$:</p>
+
+\[\eta_{i,\text{opt}} = \frac{1}{a_{ii}} = \left( \frac{\partial^2 E}{\partial w_i^2} \right)^{-1}\]
+
+<p>Each coordinate has a different optimal learning rate.</p>
+
+<p><img src="Introduction%20to%20Deep%20Learning%202110b449d4198098aa46c001aa46c944/image%206.png" alt="image.png" /></p>
+
+<p><strong>Problem with Vector Update Rule:</strong></p>
+
+<p>Conventional update applies the same step size $\eta$ to all coordinates. An issue with this is that one direction might converge optimally while another direction might diverge due to too large a step.</p>
+
+\[\mathbf{w}^{(k+1)} = \mathbf{w}^{(k)} - \eta \nabla_{\mathbf{w}} E\]
+
+<p><strong>Safe Learning Rate Rule to Avoid Divergence:</strong></p>
+
+\[\eta &lt; 2 \cdot \min_i \eta_{i,\text{opt}}\]
+
+<p>This guarantees convergence but slows down overall learning.</p>
+
+<h3 id="generic-convex-functions">Generic Convex Functions</h3>
+
+<ul>
+  <li>We can apply Taylor expansion to approximate any smooth convex function:</li>
+</ul>
+
+\[E(\mathbf{w}) \approx E(\mathbf{w}^{(k)}) + \nabla_{\mathbf{w}} E(\mathbf{w}^{(k)})(\mathbf{w} - \mathbf{w}^{(k)})+ \frac{1}{2} (\mathbf{w} - \mathbf{w}^{(k)})^T H_E(\mathbf{w}^{(k)})(\mathbf{w} - \mathbf{w}^{(k)})\]
+
+<ul>
+  <li>$H_E$ is the Hessian of second derivatives and measures the curvature of loss function</li>
+  <li>Optimal step size is inversely proportional to eigenvalues of the Hessian
+    <ul>
+      <li>The eigenvalues give curvature in orthogonal directions</li>
+      <li>For the smoothest convergence, the eigenvalues must all be equal</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="convergence-challenges">Convergence Challenges</h3>
+
+<ul>
+  <li>In high dimensions, convergence becomes harder to control</li>
+  <li>Ideally, the step size $\eta$ should work for both:</li>
+</ul>
+
+\[\max_i \eta_{i,\text{opt}}, \quad \min_i \eta_{i,\text{opt}}\]
+
+<ul>
+  <li>If the following condition number is large, then convergence is slow and unstable.</li>
+</ul>
+
+\[\frac{\max_i \eta_{i,\text{opt}}}{\min_i \eta_{i,\text{opt}}}\]
+
+<h2 id="decaying-learning-rate">Decaying Learning Rate</h2>
+
+<p>The loss surface has many saddle points and gradient descent can stagnate on saddle points</p>
+
+<ul>
+  <li>Start with a large learning rate to explore fast</li>
+  <li>Gradually reduce step size to fine-tune near the minimum</li>
+  <li>Prevents overshooting and bouncing around the optimum</li>
+</ul>
+
+<p><strong>Common Decay Schedules:</strong></p>
+
+\[\text{Linear:} \quad \eta_k = \frac{\eta_0}{k + 1}\]
+
+\[\text{Quadratic:} \quad \eta_k = \frac{\eta_0}{(k + 1)^2}\]
+
+\[\text{Exponential:} \quad \eta_k = \eta_0 \cdot e^{-\beta k}, \quad \beta &gt; 0\]
+
+<p>Common Approach for Neural Networks:</p>
+
+<ul>
+  <li>Train with a fixed learning rate until the validation loss stagnates</li>
+  <li>Reduce learning rate:</li>
+</ul>
+
+\[\eta \leftarrow \alpha \eta \quad \text{(e.g., } \alpha = 0.1 \text{)}\]
+
+<ul>
+  <li>Resume training from the same weights, repeat as needed</li>
+</ul>
+
+<h3 id="rprop">RProp</h3>
+
+<ul>
+  <li>Resilient Propagation is a first-order optimization algorithm that adjusts step size independently for each parameter</li>
+  <li>It doesn’t rely on the gradient magnitude, rather only on the sign of the gradient</li>
+  <li>It is more robust than vanilla gradient descent</li>
+  <li>Does not need a global learning rate</li>
+  <li>Doesn’t require Hessian or curvature information and doesn’t assume convexity</li>
+</ul>
+
+<p>The core idea is that at each step:</p>
+
+<ul>
+  <li>If the gradient sign has not changed → increase step size in the same direction</li>
+  <li>If the gradient sign has flipped → reduce step size and reverse direction (overshoot detected)</li>
+</ul>
+
+<p><strong>Algorithm:</strong></p>
+
+<ul>
+  <li>For each layer $l$, for each parameter $w_{l,i,j}$:</li>
+</ul>
+
+\[\Delta w_{l, i, j} &gt; 0 \\ \text{prevD}(l, i, j) = \frac{d \, \text{Loss}(w_{l, i, j})}{d w_{l, i, j}} \\ \Delta w_{l, i, j} = \text{sign(prevD}(l, i, j)) \cdot \Delta w_{l, i, j}\]
+
+<ul>
+  <li>While not converged:
+    <ul>
+      <li>Update parameter:</li>
+    </ul>
+
+\[w_{l, i, j} = w_{l, i, j} - \Delta w_{l, i, j}\]
+
+    <ul>
+      <li>Recompute gradient:</li>
+    </ul>
+
+\[D(l, i, j) = \frac{d \, \text{Loss}(w_{l, i, j})}{d w_{l, i, j}}\]
+
+    <ul>
+      <li>
+        <p>Check sign consistency:</p>
+
+        <p>If:</p>
+
+\[\text{sign(prevD}(l, i, j)) == \text{sign}(D(l, i, j))\]
+
+        <p>Then,</p>
+
+\[\Delta w_{l, i, j} = \min(\alpha \cdot \Delta w_{l, i, j}, \Delta_{\max}) \\ \text{prevD}(l, i, j) = D(l, i, j)\]
+
+        <p>Else undo step:</p>
+
+\[w_{l, i, j} = w_{l, i, j} + \Delta w_{l, i, j}  \quad \\ \Delta w_{l, i, j} = \max(\beta \cdot \Delta w_{l, i, j}, \Delta_{\min})\]
+      </li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>&lt;author_id&gt;</name></author><category term="Blog" /><category term="Robotics" /><category term="learning" /><category term="nnets" /><summary type="html"><![CDATA[In Progress]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://bhaswanth-a.github.io//assets/images/ldr.png" /><media:content medium="image" url="https://bhaswanth-a.github.io//assets/images/ldr.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Deep Learning - CNNs, RNNs, &amp;amp; Language Models</title><link href="https://bhaswanth-a.github.io//posts/deep-learning-cnn-rnn-lang/" rel="alternate" type="text/html" title="Deep Learning - CNNs, RNNs, &amp;amp; Language Models" /><published>2025-06-09T21:30:00+05:30</published><updated>2025-06-09T21:30:00+05:30</updated><id>https://bhaswanth-a.github.io//posts/deep-learning-cnn-rnn-lang</id><content type="html" xml:base="https://bhaswanth-a.github.io//posts/deep-learning-cnn-rnn-lang/"><![CDATA[<p><em>In Progress</em></p>]]></content><author><name>&lt;author_id&gt;</name></author><category term="Blog" /><category term="Robotics" /><category term="learning" /><category term="nnets" /><summary type="html"><![CDATA[In Progress]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://bhaswanth-a.github.io//assets/images/ldr.png" /><media:content medium="image" url="https://bhaswanth-a.github.io//assets/images/ldr.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Deep Learning</title><link href="https://bhaswanth-a.github.io//posts/deep-learning/" rel="alternate" type="text/html" title="Deep Learning" /><published>2025-06-09T21:30:00+05:30</published><updated>2025-06-09T21:30:00+05:30</updated><id>https://bhaswanth-a.github.io//posts/deep-learning</id><content type="html" xml:base="https://bhaswanth-a.github.io//posts/deep-learning/"><![CDATA[<h1 id="deep-learning">Deep Learning</h1>
+
+<p>This series of blogs are my notes from the class <a href="https://deeplearning.cs.cmu.edu/S25/index.html">11-785 Introduction to Deep Learning</a>, taught by <a href="https://engineering.cmu.edu/directory/bios/ramakrishnan-bhiksha-raj.html">Bhiksha Raj</a> at CMU. For my own sake of understanding and simplicity, the blog has been divided into 3 broad categories:</p>
+<ol>
+  <li><a href="https://bhaswanth-a.github.io/posts/deep-learning-perceptrons/">Perceptrons</a></li>
+  <li><a href="https://bhaswanth-a.github.io/posts/deep-learning-cnn-rnn-lang/">CNNs, RNNs, and Language Models</a></li>
+  <li><a href="https://bhaswanth-a.github.io/posts/deep-learning-advanced/">Advnaced</a></li>
+</ol>]]></content><author><name>&lt;author_id&gt;</name></author><category term="CMU MRSD" /><category term="Robotics" /><category term="learning" /><category term="nnets" /><summary type="html"><![CDATA[Deep Learning]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://bhaswanth-a.github.io//assets/images/ldr.png" /><media:content medium="image" url="https://bhaswanth-a.github.io//assets/images/ldr.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Milwaukee Tool</title><link href="https://bhaswanth-a.github.io//posts/milwaukee-tool/" rel="alternate" type="text/html" title="Milwaukee Tool" /><published>2025-06-09T21:30:00+05:30</published><updated>2025-06-09T21:30:00+05:30</updated><id>https://bhaswanth-a.github.io//posts/milwaukee-tool</id><content type="html" xml:base="https://bhaswanth-a.github.io//posts/milwaukee-tool/"><![CDATA[<p><em>In Progress</em></p>
+
+<h1 id="milwaukee-tool">Milwaukee Tool</h1>]]></content><author><name>&lt;author_id&gt;</name></author><category term="Projects" /><category term="Robotics" /><category term="robotics" /><category term="wheeled" /><category term="manipulator" /><category term="planning" /><category term="control" /><category term="perception" /><category term="industry" /><summary type="html"><![CDATA[In Progress]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://bhaswanth-a.github.io//assets/images/Milwaukee_Tool/Logo-Milwaukee.jpg" /><media:content medium="image" url="https://bhaswanth-a.github.io//assets/images/Milwaukee_Tool/Logo-Milwaukee.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Planning and Decision Making</title><link href="https://bhaswanth-a.github.io//posts/planning-decision-making/" rel="alternate" type="text/html" title="Planning and Decision Making" /><published>2025-06-09T21:30:00+05:30</published><updated>2025-06-09T21:30:00+05:30</updated><id>https://bhaswanth-a.github.io//posts/planning-decision-making</id><content type="html" xml:base="https://bhaswanth-a.github.io//posts/planning-decision-making/"><![CDATA[]]></content><author><name>&lt;author_id&gt;</name></author><category term="CMU MRSD" /><category term="Robotics" /><category term="learning" /><category term="nnets" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://bhaswanth-a.github.io//assets/images/ldr.png" /><media:content medium="image" url="https://bhaswanth-a.github.io//assets/images/ldr.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Visual Learning and Recognition</title><link href="https://bhaswanth-a.github.io//posts/visual-learning-recognition/" rel="alternate" type="text/html" title="Visual Learning and Recognition" /><published>2025-06-09T21:30:00+05:30</published><updated>2025-06-09T21:30:00+05:30</updated><id>https://bhaswanth-a.github.io//posts/visual-learning-recognition</id><content type="html" xml:base="https://bhaswanth-a.github.io//posts/visual-learning-recognition/"><![CDATA[]]></content><author><name>&lt;author_id&gt;</name></author><category term="CMU MRSD" /><category term="Robotics" /><category term="learning" /><category term="nnets" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://bhaswanth-a.github.io//assets/images/ldr.png" /><media:content medium="image" url="https://bhaswanth-a.github.io//assets/images/ldr.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Deep Learning - Advanced</title><link href="https://bhaswanth-a.github.io//posts/deep-learning-advanced/" rel="alternate" type="text/html" title="Deep Learning - Advanced" /><published>2025-06-09T21:30:00+05:30</published><updated>2025-06-09T21:30:00+05:30</updated><id>https://bhaswanth-a.github.io//posts/deep-learning-advanced</id><content type="html" xml:base="https://bhaswanth-a.github.io//posts/deep-learning-advanced/"><![CDATA[<p><em>In Progress</em></p>]]></content><author><name>&lt;author_id&gt;</name></author><category term="Blog" /><category term="Robotics" /><category term="learning" /><category term="nnets" /><summary type="html"><![CDATA[In Progress]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://bhaswanth-a.github.io//assets/images/ldr.png" /><media:content medium="image" url="https://bhaswanth-a.github.io//assets/images/ldr.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Deep Reinforcement Learning</title><link href="https://bhaswanth-a.github.io//posts/deep-rl/" rel="alternate" type="text/html" title="Deep Reinforcement Learning" /><published>2025-06-09T21:30:00+05:30</published><updated>2025-06-09T21:30:00+05:30</updated><id>https://bhaswanth-a.github.io//posts/deep-rl</id><content type="html" xml:base="https://bhaswanth-a.github.io//posts/deep-rl/"><![CDATA[<p><em>In Progress</em></p>
+
+<p>This blog will only contain pseudocodes and important pointers for my reference.</p>
+
+<h1 id="deep-q-network-dqn">Deep Q Network (DQN)</h1>
+
+<h1 id="double-dqn">Double DQN</h1>
+
+<h1 id="actor-critic-network">Actor-Critic Network</h1>
+
+<h1 id="deterministic-policy-gradient-dpg">Deterministic Policy Gradient (DPG)</h1>
+
+<h1 id="deep-deterministic-policy-gradient-ddpg">Deep Deterministic Policy Gradient (DDPG)</h1>
+
+<h1 id="advantage-actor-critic-network-a2c">Advantage Actor-Critic Network (A2C)</h1>
+
+<h1 id="asynchronous-advantage-actor-critic-network-a3c">Asynchronous Advantage Actor-Critic Network (A3C)</h1>
+
+<h1 id="proximal-policy-optimization-ppo">Proximal Policy Optimization (PPO)</h1>]]></content><author><name>&lt;author_id&gt;</name></author><category term="Blog" /><category term="Robotics" /><category term="learning" /><category term="rl" /><summary type="html"><![CDATA[In Progress]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://bhaswanth-a.github.io//assets/images/ldr.png" /><media:content medium="image" url="https://bhaswanth-a.github.io//assets/images/ldr.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Introduction to Reinforcement Learning</title><link href="https://bhaswanth-a.github.io//posts/intro-to-rl/" rel="alternate" type="text/html" title="Introduction to Reinforcement Learning" /><published>2025-06-09T21:30:00+05:30</published><updated>2025-06-09T21:30:00+05:30</updated><id>https://bhaswanth-a.github.io//posts/intro-to-rl</id><content type="html" xml:base="https://bhaswanth-a.github.io//posts/intro-to-rl/"><![CDATA[<p><em>In Progress</em></p>
+
+<h1 id="introduction-to-reinforcement-learning">Introduction to Reinforcement Learning</h1>
+
+<p>This blog is a collection of my notes based on the book “Reinforcement Learning: An Introduction by Richard S. Sutton and Andrew G. Barto”.</p>
+
+<h1 id="finite-markov-decision-processes">Finite Markov Decision Processes</h1>
+
+<h2 id="context">Context</h2>
+
+<p><img src="Introduction%20to%20Reinforcement%20Learning%202530b449d41980ac9b8cc4af04f345ba/image.png" alt="The agent-environment interaction" /></p>
+
+<p>The agent-environment interaction</p>
+
+<p>Reinforcement learning is built around the interaction between an agent and an environment over time. At each step:</p>
+
+<ul>
+  <li>The agent observes the current situation (state).</li>
+  <li>It chooses an action based on a policy.</li>
+  <li>The environment responds by providing a reward and transitioning to a new state.</li>
+</ul>
+
+<p>This back-and-forth loop defines the learning problem.</p>
+
+<p>Discounting: The agent tries to select actions so that the sum of the discounted rewards it receives over the future is maximized.</p>
+
+<aside>
+💡
+
+$$
+G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \cdots = \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}
+$$
+
+</aside>
+
+<p>where $0 \le \gamma \le 1,$  is called the discount rate.</p>
+
+<p>The discount rate determines the present value of future rewards: a reward received $k$ time steps in the future is worth only $\gamma^{k-1}$ times what it would be worth if it were received immediately. If $\gamma = 0,$  the agent is “myopic” in being concerned only with maximizing immediate rewards.</p>
+
+<p>In case of episodic tasks that have a “termination state”, the discounted rewards can be written as</p>
+
+<aside>
+💡
+
+$$
+G_t =  \sum_{k=0}^{T-t-1} \gamma^k R_{t+k+1}
+$$
+
+</aside>
+
+<h2 id="markov-decision-process">Markov Decision Process</h2>
+
+<p>In the most general case, the environment’s response at time $t+1$ can depend on everything that has happened earlier. Thus, the dynamics can be defined by the complete probability distribution:</p>
+
+\[\Pr\{ R_{t+1} = r , S_{t+1} = s' \mid S_0, A_0, R_1, \ldots, S_{t-1}, A_{t-1}, R_t, S_t, A_t \}\]
+
+<p>If the state signal has the Markov property, then the environment’s response at time $t+1$ depends only on the current state and action. In this case, the environment’s dynamics are simplified to:</p>
+
+\[p(s', r \mid s, a) = \Pr\{ R_{t+1} = r,  S_{t+1} = s' \mid S_t = s, A_t = a \}\]
+
+<p>Given these dynamics, we can compute everything else we might want to know about the environment.</p>
+
+<p><strong>Expected reward for a state–action pair:</strong></p>
+
+<aside>
+💡
+
+$$
+r(s,a)= \mathbb{E}[R_{t+1}\mid S_t=s, A_t=a]  = \sum_{r\in\mathcal{R}} r \sum_{s'\in\mathcal{S}} p(s',r\mid s,a).
+$$
+
+</aside>
+
+<p>From definition of conditional expectation</p>
+
+\[\mathbb{E}[R_{t+1}\mid S_t=s, A_t=a] = \sum_{r\in\mathcal{R}} r \Pr\{R_{t+1}=r \mid S_t=s, A_t=a\}\]
+
+<p>Using law of total probability</p>
+
+\[\Pr\{R_{t+1}=r \mid S_t=s, A_t=a\}
+
+= \sum_{s'\in\mathcal{S}} \Pr\{S_{t+1}=s', R_{t+1}=r \mid S_t=s, A_t=a\} \\
+
+= \sum_{s'\in\mathcal{S}} p(s',r\mid s,a).\]
+
+<p>Plugging back in, we get</p>
+
+\[r(s,a)=   \sum_{r\in\mathcal{R}} r \sum_{s'\in\mathcal{S}} p(s',r\mid s,a)\]
+
+<p><strong>State transition probability:</strong></p>
+
+<aside>
+💡
+
+$$
+p(s'\mid s,a)
+= \sum_{r\in\mathcal{R}} \Pr\{S_{t+1}=s', R_{t+1}=r \mid S_t=s, A_t=a\}
+
+= \sum_{r\in\mathcal{R}} p(s',r\mid s,a).
+$$
+
+</aside>
+
+<p><strong>Expected rewards for state–action–next-state triples:</strong></p>
+
+<aside>
+💡
+
+$$
+r(s,a,s')  = \mathbb{E}[R_{t+1}\mid S_t=s, A_t=a, S_{t+1}=s']
+
+= \frac{\sum_{r\in\mathcal{R}} r p(s',r\mid s,a)}{p(s'\mid s,a)}
+$$
+
+</aside>
+
+<p>Start from conditional expectation</p>
+
+\[r(s,a,s') = \mathbb{E}[R_{t+1}\mid S_t=s, A_t=a, S_{t+1}=s'] \\  =\sum_{r\in\mathcal{R}} r \Pr\{R_{t+1}=r \mid S_t=s, A_t=a, S_{t+1}=s'\}\]
+
+<p>Then using Bayes’ rule</p>
+
+\[\Pr\{R_{t+1}=r \mid S_t=s, A_t=a, S_{t+1}=s'\}
+
+=\frac{\Pr\{S_{t+1}=s', R_{t+1}=r \mid S_t=s, A_t=a\}}{\Pr\{S_{t+1}=s' \mid S_t=s, A_t=a\}}
+
+=\frac{p(s',r\mid s,a)}{p(s'\mid s,a)}.\]
+
+<p>Plugging this in above, we get</p>
+
+\[r(s,a,s') 
+= \frac{\sum_{r\in\mathcal{R}} r p(s',r\mid s,a)}{p(s'\mid s,a)}\]
+
+<h2 id="value-functions">Value Functions</h2>
+
+<h3 id="state-value-function">State-Value Function</h3>
+
+<aside>
+💡
+
+$$
+v_{\pi}(s) = \mathbb{E}_{\pi}[G_t \mid S_t = s]
+
+= \mathbb{E}_{\pi}\left[ \sum_{k=0}^{\infty} \gamma^k R_{t+k+1} \middle| S_t = s \right]
+$$
+
+</aside>
+
+<p>This is the expected long-term return (sum of discounted rewards) if you start in state $s$ and follow policy $\pi$.</p>
+
+<p><em><strong>Intuition:</strong> “If I’m standing in this state, and I keep behaving according to my current policy, how good is this situation in the long run?”</em></p>
+
+<h3 id="action-value-function">Action-Value Function</h3>
+
+<aside>
+💡
+
+$$
+q_{\pi}(s,a) = \mathbb{E}_{\pi}[G_t \mid S_t = s, A_t = a]
+
+= \mathbb{E}_{\pi}\left[ \sum_{k=0}^{\infty} \gamma^k R_{t+k+1} \middle| S_t = s, A_t = a \right]
+$$
+
+</aside>
+
+<p>This is the expected long-term return if you start in state $s,$ take action $a$ immediately, and then afterwards follow policy $\pi$.</p>
+
+<p><em><strong>Intuition:</strong> “If I’m in this state and I try this particular move right now, and then keep following my usual policy, how good will things turn out?”</em></p>
+
+<h3 id="relationship-between-state-value-and-action-value-functions"><strong>Relationship between state-value and action-value functions</strong></h3>
+
+<aside>
+💡
+
+$$
+v_\pi(s) = \sum_a\pi(a|s)\space q_\pi(s,a)
+$$
+
+</aside>
+
+<p>The value functions $v_\pi$ and $q_\pi$ can be estimated from experience. For example, if an agent follows policy $\pi$ and maintains an average, for each state encountered, of the actual returns that have followed that state, then the average will converge to the state’s value, $v_\pi(s),$ as the number of times that state is encountered approaches infinity. If separate averages are kept for each action taken in a state, then these averages will similarly converge to the action values, $q_\pi(s,a).$  These estimation methods are called Monte Carlo methods, and are discussed in the sections below.</p>
+
+<h3 id="bellman-equation">Bellman Equation</h3>
+
+\[v_{\pi}(s) = \mathbb{E}_{\pi}[G_t \mid S_t = s] =  \mathbb{E}_{\pi}[R_{t+1} + \gamma G_{t+1} \mid S_t = s]\]
+
+<p>Consider random variables $X,Y,Z$</p>
+
+\[\mathbb{E}[X \mid Z] = \sum_y \mathbb{E}[X \mid Y=y, Z] \space \Pr(Y=y \mid Z)\]
+
+<p>Let</p>
+
+\[X = R_{t+1} + \gamma G_{t+1}, \quad Y = A_t, \quad Z = \{ S_t=s \}\]
+
+<p>Then</p>
+
+\[\mathbb{E}_{\pi}[R_{t+1} + \gamma G_{t+1}  \mid S_t=s] = \sum_a \mathbb{E}_{\pi}[R_{t+1} + \gamma G_{t+1}  \mid S_t=s, A_t=a]  \Pr(A_t=a \mid S_t=s) \\ v_\pi(s)
+ = \sum_a \pi(a \mid s) \space  \mathbb{E}_{\pi}[R_{t+1} + \gamma G_{t+1}  \mid S_t=s, A_t=a]\]
+
+<p>Applying the same law again</p>
+
+\[\mathbb{E}_{\pi}[R_{t+1} + \gamma G_{t+1} \mid S_t=s, A_t=a]
+\\
+= \sum_{s'} \sum_r \mathbb{E}_{\pi}[R_{t+1} + \gamma G_{t+1} \mid S_t=s, A_t=a, S_{t+1}=s', R_{t+1}=r] \space  p(s',r \mid s,a)\]
+
+<p>Given $R_{t+1} = r$ we know the first term is just $r.$</p>
+
+<p>For the second term, by Markov property, the future return $G_{t+1}$ depends on the future only through $S_{t+1},$ so</p>
+
+\[\mathbb{E}_{\pi}[G_{t+1} \mid S_t=s, A_t=a, S_{t+1}=s', R_{t+1}=r] = \mathbb{E}_{\pi}[ G_{t+1} \mid S_{t+1}=s']\]
+
+<p>Therefore the inner expectation becomes</p>
+
+\[r + \gamma \space \mathbb{E}_{\pi}[ G_{t+1} \mid S_{t+1}=s']\]
+
+<p>Plugging this back in, we get</p>
+
+\[v_{\pi}(s) = \sum_a \pi(a \mid s) \sum_{s',r} p(s',r \mid s,a) \Big[ r + \gamma \mathbb{E}_{\pi}[ G_{t+1} \mid S_{t+1}=s']  \Big]\]
+
+<p>Finally, recognise that $\mathbb{E}<em>{\pi}[ G</em>{t+1} \mid S_{t+1}=s’]  = v_\pi(s’)$. So we have</p>
+
+<aside>
+💡
+
+$$
+v_{\pi}(s) = \sum_a \pi(a \mid s) \sum_{s',r} p(s',r \mid s,a) \Big[ r + \gamma v_{\pi}(s') \Big]
+$$
+
+</aside>
+
+<p><strong>Intuition:</strong></p>
+
+<p>In a nutshell, the Bellman equation says that:  The value of a state = immediate reward + future value. But instead of computing everything into the infinite future directly, it breaks the problem down recursively.</p>
+
+<p>The value of a state $v_\pi(s)$ is obtained by:</p>
+
+<ol>
+  <li>Looking at all possible actions $a$ that policy $\pi$ might choose</li>
+  <li>For each action, look at all possible next states $s’$ and rewards $r$ that the environment could produce</li>
+  <li>Weight each outcome by how likely it is</li>
+  <li>Add up the immediate reward $r$ plus the discounted value of the next state $\gamma v_\pi(s’)$</li>
+</ol>
+
+<h2 id="optimal-value-functions">Optimal Value Functions</h2>
+
+<p>There exists at least one policy that is better than or equal to all other policies. This is called the optimal policy.</p>
+
+<p><strong>Optimal state-value function:</strong></p>
+
+<aside>
+💡
+
+$$
+v_*(s) = \max_{\pi} v_\pi(s)
+$$
+
+</aside>
+
+<p>for all $s \in S$.</p>
+
+<p><strong>Optimal action-value function:</strong></p>
+
+<aside>
+💡
+
+$$
+q_*(s,a) = \max_\pi q_\pi(s,a)
+$$
+
+</aside>
+
+<p>for all $s \in S, \space a \in \mathcal{A}(s).$</p>
+
+<p>For the state-action pair $(s,a)$, this function gives the expected return for taking action $a$ in state $s$ and thereafter following an optimal policy. Thus, we can write $q_<em>$ in terms of $v_</em>$ as:</p>
+
+<aside>
+💡
+
+$$
+q_*(s,a) = \mathbb{E}_{\pi}[ R_{t+1} + \gamma v_*(S_{t+1}) \mid S_{t}=s, A_t=a] 
+$$
+
+</aside>
+
+<h3 id="bellman-optimality-equation">Bellman Optimality Equation</h3>
+
+<p><strong>Bellman Optimality for state-value function:</strong></p>
+
+<p>It expresses the fact that the value of a state under an optimal policy must equal the expected return for the best action from that state.</p>
+
+\[{v_{*}(s)} = \max_{a \in \mathcal{A}(s)} q_{\pi_{}}(s,a) \newline = \max_{a} \mathbb{E}_{\pi_{*}}\left[G_t \middle| S_t = s, A_t = a \right] \newline 
+= \max_{a} \mathbb{E}_{\pi_{*}}\left[ \sum_{k=0}^{\infty} \gamma^k R_{t+k+1} \middle| S_t = s, A_t = a \right] \newline
+= \max_{a} \mathbb{E}_{\pi_{*}}\left[ R_{t+1} + \gamma \sum_{k=0}^{\infty} \gamma^k R_{t+k+2} \middle| S_t = s, A_t = a \right] \newline
+= \max_{a} \mathbb{E}[R_{t+1} + \gamma v_{*}(S_{t+1}) \mid S_t = s, A_t = a] \newline
+= \max_{a \in \mathcal{A}(s)} \sum_{s',r} p(s',r \mid s,a) \big[ r + \gamma v_{*}(s') \big]\]
+
+<p>So,</p>
+
+<aside>
+💡
+
+$$
+v_*(s)= \max_{a} \mathbb{E}[R_{t+1} + \gamma v_{*}(S_{t+1}) \mid S_t = s, A_t = a]\\ = \max_{a \in \mathcal{A}(s)} \sum_{s',r} p(s',r \mid s,a) \big[ r + \gamma v_{*}(s') \big]
+$$
+
+</aside>
+
+<p><strong>Bellman Optimality for action-value function:</strong></p>
+
+<aside>
+💡
+
+$$
+q_*(s,a) = \mathbb{E}\big[R_{t+1} + \gamma \max_{a'}q_*(S_{t+1},a') \mid S_t=s, A_t=a\big] \\
+= \sum_{s',r}p(s',r \mid s,a) \big[r + \gamma \max_{a'}q_*(s',a') \big]
+$$
+
+</aside>
+
+<p><img src="Introduction%20to%20Reinforcement%20Learning%202530b449d41980ac9b8cc4af04f345ba/image%201.png" alt="Backup diagrams for (a) v∗ and (b) q∗" /></p>
+
+<p>Backup diagrams for (a) v∗ and (b) q∗</p>
+
+<h3 id="optimal-value-functions-to-optimal-policies">Optimal Value Functions to Optimal Policies</h3>
+
+<p><strong>Using the Optimal State-Value Function $v_*$:</strong></p>
+
+<p>Once we know $v_*,$ we can derive an optimal policy by:</p>
+
+<ul>
+  <li>Looking at the actions that achieve the maximum in the Bellman optimality equation</li>
+  <li>Any policy that assigns probability only to these maximizing actions is optimal</li>
+</ul>
+
+<p>This process is like a one-step lookahead search — $v_*$ already accounts for all long-term returns, so just looking at the immediate action + expected next-state values is enough.</p>
+
+<p><em>Simply put, a policy that is greedy w.r.t $v_{*}$ (chooses the best action based only on short-term consequences evaluated via $v_{*}$) is optimal in the long run, because $v_{*}$ already encodes all future returns.</em></p>
+
+<p><strong>Using the Optimal Action-Value Function $q_*$:</strong></p>
+
+<p>With $q_*$ the process is even simpler. For any state $s$, just pick the action $a$ that maximizes $q_*(s,a)$.</p>
+
+<p>This is easier because:</p>
+
+<ul>
+  <li>$q_*$ already represents the cached results of the one-step lookahead</li>
+  <li>No need to know transition probabilities $p(s’,r \mid s,a)$ or successor states</li>
+  <li>Directly gives the optimal expected return for each state–action pair</li>
+</ul>
+
+<p><strong>Key insights:</strong></p>
+
+<ul>
+  <li>$v_* \implies$need one-step lookahead to find best actions</li>
+  <li>$q_* \implies$<strong>no lookahead needed</strong>, just take the $\max_a q_*(s,a)$</li>
+</ul>
+
+<h2 id="practical-limits">Practical Limits</h2>
+
+<ol>
+  <li><strong>True optimality is rarely achievable</strong>
+    <ul>
+      <li>Computing the exact optimal policy is usually too expensive (requires solving the Bellman optimality equation exactly).</li>
+      <li>Even with a complete model of the environment, tasks like chess are too complex to solve optimally.</li>
+    </ul>
+  </li>
+  <li><strong>Constraints in practice</strong>
+    <ul>
+      <li>Computation per step is limited (agent can’t spend forever planning)</li>
+      <li>Memory is limited (can’t store values for every possible state)</li>
+    </ul>
+  </li>
+  <li><strong>Tabular vs Function Approximation</strong>
+    <ul>
+      <li>Tabular methods: possible when state/action space is small (store values in arrays/tables)</li>
+      <li>Function approximation: required when state space is huge or continuous (use compact parameterized functions, e.g. neural networks)</li>
+    </ul>
+  </li>
+  <li><strong>Approximating optimal behavior</strong>
+    <ul>
+      <li>Not all states matter equally</li>
+      <li>Agents can focus on frequent states and ignore rare states with little effect on overall performance</li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="dynamic-programming">Dynamic Programming</h1>
+
+<h2 id="policy-evaluation">Policy Evaluation</h2>
+
+<h2 id="policy-improvement">Policy Improvement</h2>
+
+<h2 id="policy-iteration">Policy Iteration</h2>
+
+<h2 id="value-iteration">Value Iteration</h2>
+
+<h2 id="asynchronous-dynamic-programming">Asynchronous Dynamic Programming</h2>
+
+<h2 id="generalized-policy-iteration">Generalized Policy Iteration</h2>
+
+<h2 id="efficiency">Efficiency</h2>
+
+<h1 id="monte-carlo-methods">Monte Carlo Methods</h1>
+
+<h1 id="temporal-difference-learning">Temporal Difference Learning</h1>]]></content><author><name>&lt;author_id&gt;</name></author><category term="Blog" /><category term="Robotics" /><category term="learning" /><category term="rl" /><summary type="html"><![CDATA[In Progress]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://bhaswanth-a.github.io//assets/images/ldr.png" /><media:content medium="image" url="https://bhaswanth-a.github.io//assets/images/ldr.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
