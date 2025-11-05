@@ -142,6 +142,14 @@ Date: $12^{th}$ December, $2024$
 
 ---
 
+# Standards and Regulations
+
+<object data="/assets/pdfs/capstone/TeamI_Stds&Regs.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/capstone/TeamI_Stds.pdf">here</a>.</p>
+</object>
+
+---
+
 # Test Plans
 
 ## Fall Test Plan
@@ -236,6 +244,14 @@ Date: $8^{th}$ October, $2025$
     <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/Progress_Review_9.pdf">here</a>.</p>
 </object>
 
+## Progress Review 10
+
+Date: $29^{th}$ October, $2025$
+
+<object data="/assets/pdfs/capstone/Progress_Review_10.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/Progress_Review_10.pdf">here</a>.</p>
+</object>
+
 ---
 
 # Individual Lab Reports
@@ -303,4 +319,12 @@ Date: $9^{th}$ October, $2025$
 
 <object data="/assets/pdfs/capstone/TeamI_bayapill_ILR08.pdf" width="100%" height="800" type="application/pdf">
     <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/capstone/TeamI_bayapill_ILR08.pdf">here</a>.</p>
+</object>
+
+## ILR 09
+
+Date: $30^{th}$ October, $2025$
+
+<object data="/assets/pdfs/capstone/TeamI_bayapill_ILR09.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/capstone/TeamI_bayapill_ILR09.pdf">here</a>.</p>
 </object>

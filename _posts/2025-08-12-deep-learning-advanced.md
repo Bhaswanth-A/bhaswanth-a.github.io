@@ -1,16 +1,14 @@
 ---
-title: Deep Learning - Advanced
+title: Deep Learning - Attention & Transformers
 date: 2025-06-10 00:00:00 +0800
 categories: [Blog, Robotics]
-tags: [learning, nnets]     # TAG names should always be lowercase
+tags: [learning, nnets, transformer, attention, llm]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true
 pin: false
 math: true
-image: /assets/images/ldr.png
+image: /assets/images/Thumbnail/transformer2.png
 ---
-
-*In Progress*
 
 # Attention Models
 
@@ -142,17 +140,23 @@ $$
     g(h_i, s_{t-1}) = h_i^T W_g s_{t-1}
     $$
     
+    $W_g$ needs to be learned.
+    
 2. Concat (Additive) Attention
     
     $$
     g(h_i, s_{t-1}) = v_g^T \tanh ( W_g \begin{bmatrix} h_i \\ s_{t-1}\end{bmatrix} \big)
     $$
     
+    $v_g, W_g$ need to be learned.
+    
 3. MLP-based Attention
     
     $$
     g(h_i, s_{t-1}) = \text{MLP}([h_i, s_{t-1}])
     $$
+    
+    $\text{MLP}$ needs to be learned.
     
 
 We will be using the general attention scoring function.
@@ -164,7 +168,7 @@ We will be using the general attention scoring function.
 Query–Key–Value (QKV) introduces a more flexible and general framework:
 
 - Each input is represented by a key and a value.
-- Keys represent how an input is searched or matched. Values represent the actua; content/information to be passed.
+- Keys represent how an input is searched or matched. Values represent the actual content/information to be passed.
 - Each decoder step generates a query. Queries represent what the decoder is currently looking for.
 - Attention weights are computed as a function of query and keys, and the final context is a weighted sum of values.
 
@@ -309,7 +313,7 @@ Another trick is sampling from the model’s predicted distribution instead of a
 
 The Gumbel trick allows differentiable sampling.
 
-1. Given decoder logits $l_i$, we add Humbel noise $g_i$:
+1. Given decoder logits $l_i$, we add Gumbel noise $g_i$:
     
     $$
     z_i = l_i + g_i, \quad g_i \sim \text{Gumbel(0,1)}
@@ -385,7 +389,7 @@ So the solution is to use the attention framework itself to introduce contextspe
 
 ## Self-Attention
 
-- Use the **attention mechanism itself** to inject context into embeddings.
+- Use the attention mechanism itself to inject context into embeddings.
 - Each word’s representation is updated by attending to all other words in the sequence (including itself).
 - This creates context-sensitive embeddings without recurrence.
 
@@ -602,6 +606,8 @@ $$
 
 This means the positional encoding shifts in a predictable way when moving from one position to another, allowing the model to learn shift-invariant (translation-invariant) relationships.
 
+So now, with positional encoding, we have a mechanism where the attention that we pay to a word also depends on how far away it is.
+
 ## Masked Self-Attention
 
 ![image.png](/assets/images/IDL/Introduction%20to%20Deep%20Learning%20Advanced/image%2012.png)
@@ -695,7 +701,7 @@ Example: The sentence *"CMU’s 11785 is the best deep learning course"* becomes
 
 Converts discrete token IDs into dense vectors using an embedding matrix. In Pytorch, it is the function `nn.Embedding`, and is essentially a linear layer.
 
-If vocabulary size $\|V\|$, embedding dimension $D$, and sequence length $L$, then:
+If vocabulary size $|V|$, embedding dimension $D$, and sequence length $L$, then:
 
 $$
 X ∈ ℝ^{L × |V|}, \quad W ∈ ℝ^{|V| × D}
@@ -1124,5 +1130,3 @@ where:
 - $W_0:$ frozen pre-trained weight
 - $A,B:$ small trainable low-rank matrices
 - Much fewer trainable parameters
-
-# Large Language Models

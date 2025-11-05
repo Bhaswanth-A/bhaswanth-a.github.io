@@ -2,15 +2,13 @@
 title: Deep Learning - Perceptrons
 date: 2025-06-10 00:00:00 +0800
 categories: [Blog, Robotics]
-tags: [learning, nnets]     # TAG names should always be lowercase
+tags: [learning, nnets, backpropagation]     # TAG names should always be lowercase
 author: <author_id>
 mermaid: true
 pin: false
 math: true
-image: /assets/images/ldr.png
+image: /assets/images/Thumbnail/perceptron2.png
 ---
-
-*In Progress*
 
 # Neural Networks
 
