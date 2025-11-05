@@ -145,7 +145,7 @@ Date: $12^{th}$ December, $2024$
 # Standards and Regulations
 
 <object data="/assets/pdfs/capstone/TeamI_Stds&Regs.pdf" width="100%" height="800" type="application/pdf">
-    <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/capstone/TeamI_Stds.pdf">here</a>.</p>
+    <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/capstone/TeamI_Stds&Regs.pdf">here</a>.</p>
 </object>
 
 ---
