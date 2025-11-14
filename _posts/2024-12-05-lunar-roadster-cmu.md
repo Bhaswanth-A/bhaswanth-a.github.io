@@ -252,6 +252,14 @@ Date: $29^{th}$ October, $2025$
     <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/Progress_Review_10.pdf">here</a>.</p>
 </object>
 
+## Progress Review 11
+
+Date: $12^{th}$ November, $2025$
+
+<object data="/assets/pdfs/capstone/Progress_Review_11.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/Progress_Review_11.pdf">here</a>.</p>
+</object>
+
 ---
 
 # Individual Lab Reports
@@ -327,4 +335,12 @@ Date: $30^{th}$ October, $2025$
 
 <object data="/assets/pdfs/capstone/TeamI_bayapill_ILR09.pdf" width="100%" height="800" type="application/pdf">
     <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/capstone/TeamI_bayapill_ILR09.pdf">here</a>.</p>
+</object>
+
+## ILR 10
+
+Date: $13^{th}$ November, $2025$
+
+<object data="/assets/pdfs/capstone/TeamI_bayapill_ILR10.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the slides <a href="/assets/pdfs/capstone/TeamI_bayapill_ILR10.pdf">here</a>.</p>
 </object>
