@@ -12,8 +12,6 @@ image: /assets/images/ldr.png
 
 *In Progress*
 
-# Introduction to Reinforcement Learning
-
 This blog is a collection of my notes based on the book “Reinforcement Learning: An Introduction by Richard S. Sutton and Andrew G. Barto”. 
 
 # Finite Markov Decision Processes

@@ -56,8 +56,22 @@ Team: Bhaswanth Ayapilla, Ankit Aggarwal, Deepam Ameria, Simson D'Souza, Boxiang
 
 ## FVD Presentation
 
+Date: $17^{th}$ November, $2025$
+
+<object data="/assets/pdfs/capstone/TeamI_FVD_Presentation.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_FVD_Presentation.pdf">here</a>.</p>
+</object>
 
 ## Encore
+
+
+## Encore Presentation
+
+Date: $24^{th}$ November, $2025$
+
+<object data="/assets/pdfs/capstone/TeamI_FVDEncore.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_FVDEncore.pdf">here</a>.</p>
+</object>
 
 ---
 
@@ -88,6 +102,10 @@ Date: $24^{th}$ April, $2025$
     <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_SVDEncore.pdf">here</a>.</p>
 </object>
 
+
+---
+
+# Final Project Report
 
 ---
 
