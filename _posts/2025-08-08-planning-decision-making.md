@@ -26,5 +26,3 @@ These are my notes as part of the [16-782 Planning and Decision-making in Roboti
 
 
 
-
-

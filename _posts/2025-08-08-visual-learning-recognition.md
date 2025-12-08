@@ -11,6 +11,8 @@ math: true
 image: /assets/images/ldr.png
 ---
 
-*In progress*
-
 # Language-Conditioned BEV Perception for Autonomous Driving
+
+<object data="/assets/pdfs/vlr/VLR_Project.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/vlr/VLR_Project.pdf">here</a>.</p>
+</object>
