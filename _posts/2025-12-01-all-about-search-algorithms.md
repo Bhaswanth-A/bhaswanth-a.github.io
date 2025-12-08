@@ -7,7 +7,7 @@ author: <author_id>
 mermaid: true
 pin: false
 math: true
-image: /assets/images/ldr.png
+image: /assets/images/Thumbnail/search_2.png
 ---
 
 *In progress*

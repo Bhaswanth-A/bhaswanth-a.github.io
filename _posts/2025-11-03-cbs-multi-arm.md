@@ -8,7 +8,7 @@ author: <author_id>
 mermaid: true
 pin: false
 math: true
-image: /assets/images/ldr.png
+image: /assets/images/Thumbnail/multiarm_2.png
 ---
 
 [![Bhaswanth-A/XePlanner - GitHub](https://gh-card.dev/repos/Bhaswanth-A/XePlanner.svg)](https://github.com/Bhaswanth-A/XePlanner)
