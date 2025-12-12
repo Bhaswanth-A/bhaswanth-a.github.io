@@ -15,6 +15,10 @@ image: /assets/images/Thumbnail/multiarm_2.png
 
 # Techincal Report
 
+<object data="/assets/pdfs/planning/Planning_Project_report.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/planning/Planning_Project_report.pdf">here</a>.</p>
+</object>
+
 # Results
 
 ## xECBS
