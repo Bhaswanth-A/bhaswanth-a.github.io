@@ -24,5 +24,7 @@ These are my notes as part of the [16-782 Planning and Decision-making in Roboti
 
 # Project: Accelerating Search-Based Planning for Multi-Robot Manipulation by Leveraging Online-Generated Experiences
 
-
+<object data="/assets/pdfs/planning/Planning_Project_report.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/planning/Planning_Project_report.pdf">here</a>.</p>
+</object>
 
