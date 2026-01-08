@@ -22,15 +22,17 @@ order: 1
 
 <!-- Hey there! I am Bhaswanth Ayapilla, a passionate fourth-year undergraduate student at BITS Pilani Hyderabad. I am pursuing Electronics and Communication Engineering, with a minor in Robotics and Automation. -->
 
-I am currently pursuing my Master's in Robotic Systems Development (MRSD) program at Carnegie Mellon University. I just completed my summer internship at Milwaukee Tool as a Robotics Engineer, where I worked on developing a mobile robot integrated with a robotic manipulator. You can find my complete work here: [Milwaukee Tool](https://bhaswanth-a.github.io/posts/milwaukee-tool/).
+I am currently pursuing my Master's in Robotic Systems Development (MRSD) program at Carnegie Mellon University. I recently completed my summer internship at Milwaukee Tool as a Robotics Engineer, where I worked on developing a mobile robot integrated with a robotic manipulator. 
 
-As part of my Master's program, I am working on my capstone project in space robotics — developing the Lunar ROADSTER, a Robotic Operator for Autonomous Development of Surface Trails and Exploration Routes on the Moon. This exciting project is under the supervision of [Dr. William "Red" Whittaker](https://www.ri.cmu.edu/ri-faculty/william-red-l-whittaker/). You can learn more about it here: [Lunar ROADSTER](https://bhaswanth-a.github.io/posts/lunar-roadster-cmu/).
+As part of my Master's program, I completed my capstone project in space robotics — developing the Lunar ROADSTER, a Robotic Operator for Autonomous Development of Surface Trails and Exploration Routes on the Moon. This exciting project was conducted under the supervision of [Dr. William "Red" Whittaker](https://www.ri.cmu.edu/ri-faculty/william-red-l-whittaker/). You can learn more about it here: [Lunar ROADSTER](https://bhaswanth-a.github.io/posts/lunar-roadster-cmu/).
 
 Alongside this, I am conducting research in CMU’s [DRIVE Lab](https://drive-lab-cmu.github.io/) on CMU’s first wheeled-biped robot, developing the complete autonomy stack — from multi-sensor localization and perception to reinforcement-learning-based locomotion and navigation policies.
 
 My heart lies in field robotics — to develop robots that can operate and navigate in unpredictable, unstructured environments, especially for applications in space exploration and automation on Earth. I love working across the entire spectrum of robotics, from design and hardware integration to software development.
 
 <!-- I am a recent graduate from BITS Pilani, India, where I majored in Electronics and Communication Engineering with a minor in Robotics and Automation. During my undergraduate tenure, I completed my thesis at the [Institute for Systems and Robotics, Lisbon](https://welcome.isr.tecnico.ulisboa.pt/) under the supervision of [Dr. David Cabecinhas](https://welcome.isr.tecnico.ulisboa.pt/author/davidalexandre/) and [Dr. Pedro Batista](https://welcome.isr.tecnico.ulisboa.pt/author/pedrotiagomartins/) in underwater robotics. Check out my work here: [Autonomous Underwater Glider Simulator](https://bhaswanth-a.github.io/posts/aug-simulator/). -->
+
+I enjoy blogging about technical concepts I learn, using writing as a way to clarify my own thinking and share intuitive explanations of robotics and AI topics. You can read my posts [here](https://bhaswanth-a.github.io/blog/).
 
 **Currently, I am seeking full-time opportunities (from May 2026) in robotics engineering, research and development, with a focus on RL and vision-based autonomy for robots.**
 
