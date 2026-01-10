@@ -16,7 +16,7 @@ lang: en
 prefer_datetime_locale:
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
-timezone: Asia/Kolkata
+timezone: America/New_York
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
@@ -26,7 +26,7 @@ title: Bhaswanth Ayapilla # the main title
 tagline: Perception | Reinforcement Learning # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
+  Robotics engineer and researcher focused on learning-based autonomy, perception, and 3D vision, with work spanning mobile robots, space robotics, and foundation models for robotics.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: "https://bhaswanth-a.github.io/"
