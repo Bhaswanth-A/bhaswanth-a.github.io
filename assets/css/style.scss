@@ -1,0 +1,17 @@
+$tab-count: {
+        {
+        site.tabs | size | plus: 1
+    }
+}
+
+; // plus 1 for home tab
+
+@import {
+        {
+        site.theme
+    }
+}
+
+.text-content {
+    text-align: justify;
+}
