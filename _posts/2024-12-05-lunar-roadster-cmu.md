@@ -53,10 +53,14 @@ Team: Bhaswanth Ayapilla, Ankit Aggarwal, Deepam Ameria, Simson D'Souza, Boxiang
 
 ## Demo
 
+<iframe width="800" height="480" src="https://www.youtube.com/embed/NeD9G3OpAL4" frameborder="0" allowfullscreen></iframe>
+
 
 ## FVD Presentation
 
 Date: $17^{th}$ November, $2025$
+
+<iframe width="800" height="480" src="https://www.youtube.com/embed/k5vJpgODnrU" frameborder="0" allowfullscreen></iframe>
 
 <object data="/assets/pdfs/capstone/TeamI_FVD_Presentation.pdf" width="100%" height="800" type="application/pdf">
     <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_FVD_Presentation.pdf">here</a>.</p>
@@ -64,6 +68,7 @@ Date: $17^{th}$ November, $2025$
 
 ## Encore
 
+<iframe width="800" height="480" src="https://www.youtube.com/embed/vNSlWSwJKLo" frameborder="0" allowfullscreen></iframe>
 
 ## Encore Presentation
 
@@ -106,6 +111,10 @@ Date: $24^{th}$ April, $2025$
 ---
 
 # Final Project Report
+
+<object data="/assets/pdfs/capstone/TeamI_FinalReport.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_FinalReport.pdf">here</a>.</p>
+</object>
 
 ---
 
@@ -176,6 +185,12 @@ Date: $12^{th}$ December, $2024$
     <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_FallTestPlan.pdf">here</a>.</p>
 </object>
 
+## Fall Validation Demo Test Plan
+
+<object data="/assets/pdfs/capstone/TeamI_FVD.pdf" width="100%" height="800" type="application/pdf">
+    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_FVD.pdf">here</a>.</p>
+</object>
+
 ## Spring Test Plan
 
 <object data="/assets/pdfs/capstone/TeamI_SpringTestPlan.pdf" width="100%" height="800" type="application/pdf">
@@ -186,12 +201,6 @@ Date: $12^{th}$ December, $2024$
 
 <object data="/assets/pdfs/capstone/TeamI_SVD_TestPlan.pdf" width="100%" height="800" type="application/pdf">
     <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_SVD_TestPlan.pdf">here</a>.</p>
-</object>
-
-## Fall Validation Demo Test Plan
-
-<object data="/assets/pdfs/capstone/TeamI_FVD.pdf" width="100%" height="800" type="application/pdf">
-    <p>Your browser does not support PDFs. Please download the report <a href="/assets/pdfs/capstone/TeamI_FVD.pdf">here</a>.</p>
 </object>
 
 # Progress Review Presentations
