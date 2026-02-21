@@ -1,0 +1,1395 @@
+<!DOCTYPE html><html lang="en" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="ROS Theory" /><meta name="author" content="<author_id>" /><meta property="og:locale" content="en" /><meta name="description" content="Synopsis" /><meta property="og:description" content="Synopsis" /><link rel="canonical" href="https://bhaswanth-a.github.io//posts/ros-theory/" /><meta property="og:url" content="https://bhaswanth-a.github.io//posts/ros-theory/" /><meta property="og:site_name" content="Bhaswanth Ayapilla" /><meta property="og:image" content="https://bhaswanth-a.github.io//assets/images/ros-nedir_1.jpg" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2022-07-28T12:00:00-04:00" /><meta name="twitter:card" content="summary_large_image" /><meta property="twitter:image" content="https://bhaswanth-a.github.io//assets/images/ros-nedir_1.jpg" /><meta property="twitter:title" content="ROS Theory" /><meta name="twitter:site" content="@twitter_username" /><meta name="twitter:creator" content="@<author_id>" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"<author_id>"},"dateModified":"2024-12-13T17:24:47-05:00","datePublished":"2022-07-28T12:00:00-04:00","description":"Synopsis","headline":"ROS Theory","image":"https://bhaswanth-a.github.io//assets/images/ros-nedir_1.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://bhaswanth-a.github.io//posts/ros-theory/"},"url":"https://bhaswanth-a.github.io//posts/ros-theory/"}</script><title>ROS Theory | Bhaswanth Ayapilla</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="Bhaswanth Ayapilla"><meta name="application-name" content="Bhaswanth Ayapilla"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get MODE_ATTR() { return "data-mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } static get ID() { return "mode-toggle"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } let self = this; /* always follow the system prefers */ this.sysDarkPrefers.addEventListener("change", () => { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.notify(); }); } /* constructor() */ get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; } get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } setDark() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_ATTR); sessionStorage.removeItem(ModeToggle.MODE_KEY); } /* Notify another plugins that the theme mode has changed */ notify() { window.postMessage({ direction: ModeToggle.ID, message: this.modeStatus }, "*"); } } /* ModeToggle */ const toggle = new ModeToggle(); function flipMode() { if (toggle.hasMode) { if (toggle.isSysDarkPrefer) { if (toggle.isLightMode) { toggle.clearMode(); } else { toggle.setLight(); } } else { if (toggle.isDarkMode) { toggle.clearMode(); } else { toggle.setDark(); } } } else { if (toggle.isSysDarkPrefer) { toggle.setLight(); } else { toggle.setDark(); } } toggle.notify(); } /* flipMode() */ </script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" alt="avatar" class="mx-auto"> <img src="/assets/images/prfl.jpg" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">Bhaswanth Ayapilla</a></div><div class="site-subtitle font-italic">Perception | Reinforcement Learning</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-user ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT ME</span> </a><li class="nav-item"> <a href="/projects/" class="nav-link"> <i class="fa-fw fas fa-book ml-xl-3 mr-xl-3 unloaded"></i> <span>PROJECTS</span> </a><li class="nav-item"> <a href="/cmu/" class="nav-link"> <i class="fa-fw fas fa-school ml-xl-3 mr-xl-3 unloaded"></i> <span>CMU MRSD</span> </a><li class="nav-item"> <a href="/blog/" class="nav-link"> <i class="fa-fw fas fa-blog ml-xl-3 mr-xl-3 unloaded"></i> <span>BLOG</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/cv/" class="nav-link"> <i class="fa-fw fas fa-file ml-xl-3 mr-xl-3 unloaded"></i> <span>CURRICULUM VITAE</span> </a><li class="nav-item"> <a href="/contact/" class="nav-link"> <i class="fa-fw fas fa-address-book ml-xl-3 mr-xl-3 unloaded"></i> <span>CONTACT</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center"> <a href="https://github.com/Bhaswanth-A" aria-label="github" class="order-3" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['bhaswanthayapilla','gmail.com'].join('@')" aria-label="email" class="order-4" > <i class="fas fa-envelope"></i> </a> <a href="https://www.instagram.com/bhaswanth_a/" aria-label="instagram" class="order-5" target="_blank" rel="noopener"> <i class="fab fa-instagram"></i> </a> <a href="https://www.linkedin.com/in/bhaswanth-a/" aria-label="linkedin" class="order-6" target="_blank" rel="noopener"> <i class="fab fa-linkedin-in"></i> </a> <a href="https://bhaswanth-a.github.io/cv/" aria-label="cv" class="order-7" target="_blank" rel="noopener"> <i class="fas fa-file"></i> </a> <span id="mode-toggle-wrapper" class="order-1"> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get MODE_ATTR() { return "data-mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } static get ID() { return "mode-toggle"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } let self = this; /* always follow the system prefers */ this.sysDarkPrefers.addEventListener("change", () => { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.notify(); }); } /* constructor() */ get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; } get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } setDark() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_ATTR); sessionStorage.removeItem(ModeToggle.MODE_KEY); } /* Notify another plugins that the theme mode has changed */ notify() { window.postMessage({ direction: ModeToggle.ID, message: this.modeStatus }, "*"); } } /* ModeToggle */ const toggle = new ModeToggle(); function flipMode() { if (toggle.hasMode) { if (toggle.isSysDarkPrefer) { if (toggle.isLightMode) { toggle.clearMode(); } else { toggle.setLight(); } } else { if (toggle.isDarkMode) { toggle.clearMode(); } else { toggle.setDark(); } } } else { if (toggle.isSysDarkPrefer) { toggle.setLight(); } else { toggle.setDark(); } } toggle.notify(); } /* flipMode() */ </script> </span></div></div><div id="topbar-wrapper"><div id="topbar" class="container d-flex align-items-center justify-content-between h-100 pl-3 pr-3 pl-md-4 pr-md-4"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>ROS Theory</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper" class="d-flex justify-content-center"><div id="main" class="container pl-xl-4 pr-xl-4"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-9 pr-xl-4"><div class="post pl-1 pr-1 pl-md-2 pr-md-2"><h1 data-toc-skip>ROS Theory</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1659024000" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jul 28, 2022 </em> </span> <span> Updated <em class="" data-ts="1734128687" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Dec 13, 2024 </em> </span><div class="d-flex justify-content-between"> <span> By <em> Bhaswanth Ayapilla </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="8403 words"> <em>46 min</em> read</span></div></div></div><div class="post-content"><h1 id="synopsis">Synopsis</h1><p>ROS is an open-source project that provides a framework to your robot. It has become an integral part of robots today, and has massively impacted the Robotics Arena. ROS is extremely fascinating to study, but is not easy or beginner friendly.</p><p><strong>ROS Theory</strong> is an attempt to document the basics of ROS. This documentation will take you through a number of examples to better understand the concepts, and is neatly demonstarted by code and pictures of my terminal.</p><h2 id="table-of-contents"><span class="mr-2">Table of contents</span><a href="#table-of-contents" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ol><li><a href="https://bhaswanth-a.github.io/posts/ros-theory/#introduction">Introduction</a><li><a href="https://bhaswanth-a.github.io/posts/ros-theory/#ros-tools">Tools</a><li><a href="https://bhaswanth-a.github.io/posts/ros-theory/#ros-topics">Topics</a><li><a href="https://bhaswanth-a.github.io/posts/ros-theory/#ros-messages">Messages</a><li><a href="https://bhaswanth-a.github.io/posts/ros-theory/#ros-services">Services</a><li><a href="https://bhaswanth-a.github.io/posts/ros-theory/#ros-actions">Actions</a><li><a href="https://bhaswanth-a.github.io/posts/ros-theory/#ros-tf2">TF2</a></ol><h1 id="introduction">Introduction</h1><h2 id="11-what-is-ros"><span class="mr-2">1.1 What is ROS?</span><a href="#11-what-is-ros" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>ROS stands for Robot Operating System. Although the name implies that it is an OS, it is not. Rather, it is a framework that helps integrate the various parts of a robot by setting up communication between hardware and software of your robot, and between different processes going on within the software.</p><p>Let us consider the following example in order to understand it better. Suppose you are building a simple robot for a ‘fetch an item’ task, in which your robot needs to navigate a given environment, find the required item and bring it back to a specified location. The robot has various parts that perform different functions such as locomotion and navigation (by the wheels of the robot), computer vision (by the camera on the robot), etc. However, these parts cannot talk to each other directly, due to which the robot will not know when it should stop/resume a certain task assigned to it. This is where ROS comes in. ROS helps integrate these various parts, thereby facilitating easy communication. The different parts now receive messages from other parts, thereby performing their functions more efficiently.</p><hr /><h2 id="12-ros-graph"><span class="mr-2">1.2 ROS Graph</span><a href="#12-ros-graph" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>ROS Graph is a convenient way of representing the various programs, messages and message streams of a ROS system as a graph. The various ROS programs, called nodes, communicate with each other by sending/receiving messages. The nodes in a ROS Graph are connected by “topics”, which represents a stream of messages that nodes use to communicate with each other.</p><p><img data-src="/assets/images/ROS/rosgraph.png" alt="" data-proofer-ignore></p><h2 id="13-roscore"><span class="mr-2">1.3 roscore</span><a href="#13-roscore" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p><code class="language-plaintext highlighter-rouge">roscore</code> is a service that provides connection information to nodes so that they can find and transmit/receive messages with other nodes. Every node connects to roscore at startup to register details of the message streams it publishes and the streams to which it wishes to subscribe. When a new node appears, roscore provides it with the information that it needs to form a direct connection with other nodes publishing and subscribing to the same message topics.</p><p><img data-src="/assets/images/ROS/roscore_1.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/roscore_2.png" alt="" data-proofer-ignore></p><h2 id="14-catkin"><span class="mr-2">1.4 catkin</span><a href="#14-catkin" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>catkin is the ROS build system, which is a set of tools that ROS uses to generate executable programs, scripts, libraries, etc. catkin comprises a set of CMake macros and custom Python scripts. Every catkin directory will contain two files - <strong><em>CMakeLists.txt</em></strong> and <strong><em>package.xml</em></strong>, that you need to make changes in order for things to work properly.</p><h2 id="15-workspaces"><span class="mr-2">1.5 Workspaces</span><a href="#15-workspaces" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>A workspace is a set of files and directories that contain ROS code. You can have multiple workspaces but you can work on only one workspace at a time.</p><p>A catkin workspace is a directory where you build, modify, and install catkin packages. Running catkin_make will create two new directories - devel and build, along with the previously existing src directory.</p><ul><li>Build is where catkin will store the results of some of its work such as libraries, etc.<li>Devel contains a number of files and directories, including setup files. Running these setup files configures the system to use the workspace and run the necessary code. Hence it is necessary to source your workspace every time you open a new shell.</ul><p><img data-src="/assets/images/ROS/workspaces.png" alt="" data-proofer-ignore></p><h2 id="16-ros-packages"><span class="mr-2">1.6 ROS Packages</span><a href="#16-ros-packages" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Documentation - http://wiki.ros.org/ROS/Tutorials/CreatingPackage</p><p>Packages are projects that contain your ROS work. A workspace can have several packages, and all of them are located inside the <code class="language-plaintext highlighter-rouge">src</code> directory.</p><p>For a package to be considered a catkin package, it must meet the following requirements-</p><ul><li>Must contain package.xml file - provides meta information about the package<li>Must contain CMakeLists.txt file - Describes how to build the code and where to install it<li>Each package must have its own folder</ul><p><img data-src="/assets/images/ROS/package.png" alt="" data-proofer-ignore></p><blockquote><p>All packages must be created inside <code class="language-plaintext highlighter-rouge">~/catkin_ws/src</code></p></blockquote><h3 id="161-creating-a-catkin-package"><span class="mr-2">1.6.1 Creating a catkin package</span><a href="#161-creating-a-catkin-package" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>To create a package the following syntax can be used:</p><p><code class="language-plaintext highlighter-rouge">catkin_create_pkg &lt;package_name&gt; [depend1] [depend2] [depend3]</code></p><p><img data-src="/assets/images/ROS/create_package.png" alt="" data-proofer-ignore></p><p>On creating a new package, the <em>CMakeLists.txt</em> file, <em>package.xml</em> file and the <em>src</em> directory come built-in automatically.</p><h3 id="162-building-the-catkin-workspace"><span class="mr-2">1.6.2 Building the catkin workspace</span><a href="#162-building-the-catkin-workspace" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Once a package has been created, it needs to be compiled in order for it to work.</p><ul><li><p><code class="language-plaintext highlighter-rouge">catkin_make</code> - Will compile the entire src directory and needs to be issued only in the <code class="language-plaintext highlighter-rouge">catkin_ws</code> directory.</p><li><p><code class="language-plaintext highlighter-rouge">catkin_make --only-pkg-with-deps &lt;package_name&gt;</code> - Will only compile the selected package.</p></ul><p>To add your workspace to the ROS environment, you need to source the generated setup file.</p><p><img data-src="/assets/images/ROS/source.png" alt="" data-proofer-ignore></p><p>Once the package has been created, the Python nodes can be saved in the src directory of the package.</p><p><img data-src="/assets/images/ROS/src.png" alt="" data-proofer-ignore></p><h3 id="163-package-dependencies"><span class="mr-2">1.6.3 Package dependencies</span><a href="#163-package-dependencies" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><img data-src="/assets/images/ROS/depends_1.png" alt="" data-proofer-ignore></p><p><code class="language-plaintext highlighter-rouge">rospack depends1 beginner_tutorials</code> returns a list of the first-order dependencies</p><p><code class="language-plaintext highlighter-rouge">rospack depends beginner_tutorials</code> returns a list of all dependencies, direct and indirect.</p><p>These dependencies are stored in the package.xml file.</p><p><img data-src="/assets/images/ROS/depends_2.png" alt="" data-proofer-ignore></p><h2 id="17-packagexml"><span class="mr-2">1.7 package.xml</span><a href="#17-packagexml" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Documentation: http://wiki.ros.org/catkin/package.xml</p><p>The package.xml file provides meta information about the package such as package name, version number, authors, etc.</p><p>What does a package.xml file contain?</p><ul><li><em>&lt;name&gt;</em> - The name of the package<li><em>&lt;version&gt;</em> - The version number of the package (required to be 3 dot-separated integers)<li><em>&lt;description&gt;</em> - A description of the package contents<li><em>&lt;maintainer&gt;</em> - The name of the person(s) that is/are maintaining the package<li><em>&lt;license&gt;</em> - The software license(s) under which the code is released.</ul><p><img data-src="/assets/images/ROS/package_xml.png" alt="" data-proofer-ignore></p><h3 id="171-dependencies"><span class="mr-2">1.7.1 Dependencies</span><a href="#171-dependencies" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>These four types of dependencies are specified using the following respective tags:</p><ul><li>&lt;buildtool_depend&gt;: Build Tool Dependencies specify build system tools which this package needs to build itself. Typically the only build tool needed is catkin.<li>&lt;build_depend&gt;: Build Dependencies specify which dependencies are needed to build this package.<li>&lt;run_depend&gt;: Run Dependencies specify which dependencies are needed to run code in this package, or build libraries against this package.<li>&lt;test_depend&gt;: Test Dependencies specify only additional dependencies for unit tests. They should never duplicate any dependencies already mentioned as build or run dependencies.</ul><hr /><h1 id="ros-tools">ROS Tools</h1><h2 id="21-rosbash"><span class="mr-2">2.1 rosbash</span><a href="#21-rosbash" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Documentation- http://wiki.ros.org/rosbash</p><p>rosbash is a package that contains some useful bash functions and adds tab-completion to a large number of the basic ROS utilities. When you source your setup file, you will implicitly get all bash-specific commands.</p><p>rosbash includes the following command-line utilities:</p><ul><li>roscd - change directory starting with package, stack, or location name<li>rospd - pushd equivalent of roscd<li>rosd - lists directories in the directory-stack<li>rosls - list files of a ros package<li>rosed - edit a file in a package<li>roscp - copy a file from a package<li>rosrun - run executables of a ros package</ul><ol><li><p>rospd: rospd is the pushd equivalent of roscd, that allows you to navigate between different ros directories by keeping the multiple locations in a directory-stack, and allowing you to jump back to a ros directory that you were previously working on.</p><p><img data-src="/assets/images/ROS/rospd.png" alt="" data-proofer-ignore></p><li><p>rosed: rosed allows you to edit files in a ROS package by typing the package name and the name of the file that you want to edit.</p><p><img data-src="/assets/images/ROS/rosed.png" alt="" data-proofer-ignore></p><li><p>roscp: roscp allows you to copy a file from a ROS package by specifying the package name and the name of the file that you want to copy.</p><p><img data-src="/assets/images/ROS/roscp.png" alt="" data-proofer-ignore></p></ol><h2 id="22-common-file-system-tools"><span class="mr-2">2.2 Common File system tools</span><a href="#22-common-file-system-tools" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ol><li><p>rospack:</p><p>Documentation- https://docs.ros.org/en/independent/api/rospkg/html/rospack.html</p><p>rospack is a command-line tool that is used to get information about ROS packages available on the filesystem. Below are listed some common rospack options-</p><ul><li><code class="language-plaintext highlighter-rouge">rospack find</code> - returns the absolute path to the package<li><code class="language-plaintext highlighter-rouge">rospack depends</code> - returns a list of all the package’s dependencies, direct and indirect<li><code class="language-plaintext highlighter-rouge">rospack depends1</code> - returns a list of the package’s primary dependencies<li><code class="language-plaintext highlighter-rouge">rospack depends-on</code> - returns a list of all the packages that depend on the given package<li><code class="language-plaintext highlighter-rouge">rospack export</code> - returns flags necessary for building and linking against a package<li><p><code class="language-plaintext highlighter-rouge">rospack list</code> - returns a list of all ROS packages on the filesystem</p><p><img data-src="/assets/images/ROS/rospack.png" alt="" data-proofer-ignore></p></ul><li><p>roscd:</p><p>roscd allows us to change directory or subdirectory using a package name, stack name, or special location. You can only move to the packages installed into your ROS system.</p><p><img data-src="/assets/images/ROS/roscd.png" alt="" data-proofer-ignore></p><p>roscd log will take you to the ROS directory that contains log files. If no ROS program has been run yet, it will yield an error saying that it does not exist.</p><p><img data-src="/assets/images/ROS/roscd_2.png" alt="" data-proofer-ignore></p><li><p>rosls:</p><p>rosls allows you to view the contents of a package, stack or location.</p><p><img data-src="/assets/images/ROS/rosls.png" alt="" data-proofer-ignore></p><li><p>rosparam:</p></ol><h2 id="23-rosrun"><span class="mr-2">2.3 rosrun</span><a href="#23-rosrun" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>rosrun is a ROS command-line utility that searches for a package for the requested program and runs it.</p><p>Syntax-</p><p><code class="language-plaintext highlighter-rouge">rosrun &lt;package&gt; &lt;executable&gt;</code></p><p><img data-src="/assets/images/ROS/rosrun_1.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/rosrun_2.png" alt="" data-proofer-ignore></p><p>rosrun displays a sequence of timestamps, which in the above picture, prints the string ‘Hello World’ 10 times per second. This reduced frequency helps in recognizing any changes in the messages.</p><h2 id="24-roslaunch"><span class="mr-2">2.4 roslaunch</span><a href="#24-roslaunch" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Although rosrun is great for starting single ROS nodes, most robot systems end up running tens or hundreds of nodes simultaneously. Since it would not be practical to call rosrun on each of these, ROS includes a tool for starting collections of nodes, called roslaunch.</p><p>roslaunch is a command line tool that helps run several nodes at a time, instead of using rosrun for each individual node. Syntax- <code class="language-plaintext highlighter-rouge">roslaunch PACKAGE LAUNCH_FILE</code></p><p>roslaunch operates on launch files instead of nodes. Launch files are XML files that are a collection of nodes along with their topic remappings and other parameters. These files have the suffix <em>.launch</em>.</p><p><img data-src="/assets/images/ROS/roslaunch_1.png" alt="" data-proofer-ignore></p><p>roslaunch includes several other features such as the ability to launch programs on other computers in the network via ssh, to automatically respawn nodes that crash, etc. roslaunch will also automatically run roscore, if it doesn’t already exist. However, pressing Ctrl+C will exit roscore as well, along with roslaunch.</p><h3 id="241-creating-a-launch-file"><span class="mr-2">2.4.1 Creating a launch file</span><a href="#241-creating-a-launch-file" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-html highlighter-rouge"><div class="code-header"> <span data-label-text="HTML"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre><td class="rouge-code"><pre><span class="nt">&lt;launch&gt;</span>
+
+  <span class="nt">&lt;group</span> <span class="na">ns=</span><span class="s">"turtlesim1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"turtlesim"</span> <span class="na">name=</span><span class="s">"sim"</span> <span class="na">type=</span><span class="s">"turtlesim_node"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/group&gt;</span>
+
+  <span class="nt">&lt;group</span> <span class="na">ns=</span><span class="s">"turtlesim2"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"turtlesim"</span> <span class="na">name=</span><span class="s">"sim"</span> <span class="na">type=</span><span class="s">"turtlesim_node"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/group&gt;</span>
+
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"turtlesim"</span> <span class="na">name=</span><span class="s">"mimic"</span> <span class="na">type=</span><span class="s">"mimic"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;remap</span> <span class="na">from=</span><span class="s">"input"</span> <span class="na">to=</span><span class="s">"turtlesim1/turtle1"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;remap</span> <span class="na">from=</span><span class="s">"output"</span> <span class="na">to=</span><span class="s">"turtlesim2/turtle1"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
+
+<span class="nt">&lt;/launch&gt;</span>
+</pre></table></code></div></div><p>The launch tag <code class="language-plaintext highlighter-rouge">&lt;launch&gt;</code> is used to identify the file as a launch file. Lines 3-9: starts two instances of the same node Lines 11-14: start the mimic node with the topics input and output renamed to turtlesim1 and turtlesim2. This renaming will cause turtlesim2 to mimic turtlesim1.</p><p><img data-src="/assets/images/ROS/roslaunch_2.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/roslaunch_3.png" alt="" data-proofer-ignore></p><h2 id="25-ros-nodes"><span class="mr-2">2.5 ROS Nodes</span><a href="#25-ros-nodes" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>A node is a ROS program that performs a certain task. Differnent nodes communicate with each other by sending messages through topics.</p><h3 id="251-launching-a-node"><span class="mr-2">2.5.1 Launching a node</span><a href="#251-launching-a-node" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Syntax-</p><p><code class="language-plaintext highlighter-rouge">rosrun &lt;package_name&gt; &lt;node_name&gt; __name:=new_node_name __ns:=name_space topic:=new_topic</code></p><h3 id="252-controlling-2-turtles-using-different-keyboards"><span class="mr-2">2.5.2 Controlling 2 turtles using different keyboards</span><a href="#252-controlling-2-turtles-using-different-keyboards" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><img data-src="/assets/images/ROS/1.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/2.png" alt="" data-proofer-ignore></p><blockquote><p><strong>NOTE</strong> - We cannot have 2 turtlesims in the same namespace. Take a look at the below image to see what happens if we initialize 2 turtlebots in the same namespace.</p></blockquote><p><img data-src="/assets/images/ROS/3.png" alt="" data-proofer-ignore></p><h3 id="253-using-rosnode"><span class="mr-2">2.5.3 Using rosnode</span><a href="#253-using-rosnode" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>The rosnode command is used to display information about ROS nodes that are currently running.</p><p><img data-src="/assets/images/ROS/4.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/5.png" alt="" data-proofer-ignore></p><blockquote><p>rosout documentation - http://wiki.ros.org/rosout</p></blockquote><hr /><h1 id="ros-topics">ROS Topics</h1><p>ROS Topics represent a stream of messages that connect two or more nodes. The nodes act as publishers or subscribers of messages - publisher nodes send messages through topics and subscriber nodes receive the messages transmitted through a particular topic.</p><ul><li><p>A publisher node would have to register the topic name and the type of messages, and only then it can publish to a topic.</p><li><p>A subscriber node would make a request to roscore to get details about a topic in order to receive the transmitted messages sent through it.</p></ul><blockquote><p>In ROS, all messages on the same topic must have the same data type. Any number of nodes can publish to a topic as long as they have the same message type.</p></blockquote><blockquote><p>A ROS Topic cannot be published without initializing a ROS Node.</p></blockquote><h2 id="31-using-rostopic"><span class="mr-2">3.1 Using rostopic</span><a href="#31-using-rostopic" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>The rostopic command is used to display information about ROS topics that are currently running.</p><p><img data-src="/assets/images/ROS/topic_1.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/topic_2.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/topic_3.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/topic_4.png" alt="" data-proofer-ignore></p><p>rostopic hz reports the rate at which data is being published. The below image tells us that turtlesim is publishing data about our turtle at the rate of 60 Hz.</p><p><img data-src="/assets/images/ROS/topic_5.png" alt="" data-proofer-ignore></p><h1 id="ros-messages">ROS Messages</h1><h2 id="41-ros-msg"><span class="mr-2">4.1 ROS msg</span><a href="#41-ros-msg" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>The message definition file has an extension of <code class="language-plaintext highlighter-rouge">.msg</code> and all such files need to be located inside the <code class="language-plaintext highlighter-rouge">msg</code> directory of a package.</p><h2 id="42-creating-a-ros-msg"><span class="mr-2">4.2 Creating a ROS msg</span><a href="#42-creating-a-ros-msg" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p><img data-src="/assets/images/ROS/msg_1.png" alt="" data-proofer-ignore></p><p>Now we need to make sure that the msg files are turned into source code for Python, C++, and other languages. Open <em>package.xml</em> and make sure the following lines are uncommented.</p><div class="language-html highlighter-rouge"><div class="code-header"> <span data-label-text="HTML"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="nt">&lt;build_depend&gt;</span>message_generation<span class="nt">&lt;/build_depend&gt;</span>
+<span class="nt">&lt;build_export_depend&gt;</span>message_runtime<span class="nt">&lt;/build_export_depend&gt;</span>
+<span class="nt">&lt;exec_depend&gt;</span>message_runtime<span class="nt">&lt;/exec_depend&gt;</span>
+</pre></table></code></div></div><p>Now we need to make changes to the <em>CMakeLists.txt</em> file.</p><div class="language-py highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="c1"># Modify the existing text
+</span><span class="n">find_package</span><span class="p">(</span><span class="n">catkin</span> <span class="n">REQUIRED</span> <span class="n">COMPONENTS</span>
+   <span class="n">roscpp</span>
+   <span class="n">rospy</span>
+   <span class="n">std_msgs</span>
+   <span class="n">message_generation</span>
+<span class="p">)</span>
+</pre></table></code></div></div><div class="language-py highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="n">catkin_package</span><span class="p">(</span>
+  <span class="p">...</span>
+  <span class="n">CATKIN_DEPENDS</span> <span class="n">message_runtime</span> <span class="p">...</span>
+  <span class="p">...)</span>
+</pre></table></code></div></div><div class="language-py highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="n">add_message_files</span><span class="p">(</span>
+  <span class="n">FILES</span>
+  <span class="n">Message1</span><span class="p">.</span><span class="n">msg</span>
+  <span class="n">Message2</span><span class="p">.</span><span class="n">msg</span>
+<span class="p">)</span>
+</pre></table></code></div></div><div class="language-py highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="n">generate_messages</span><span class="p">(</span>
+  <span class="n">DEPENDENCIES</span>
+  <span class="n">std_msgs</span>
+<span class="p">)</span>
+</pre></table></code></div></div><p>Now since we have made a few changes to our package and created new files/directories, we need to compile out workspace by running <code class="language-plaintext highlighter-rouge">catkin_make</code> or <code class="language-plaintext highlighter-rouge">catkin_make --only-pkg-with-deps &lt;package_name&gt;</code>.</p><h2 id="43-using-rosmsg"><span class="mr-2">4.3 Using rosmsg</span><a href="#43-using-rosmsg" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Documentation - http://wiki.ros.org/rosmsg</p><p><img data-src="/assets/images/ROS/msg_2.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/msg_3.png" alt="" data-proofer-ignore></p><h2 id="44-publishing-to-a-topic"><span class="mr-2">4.4 Publishing to a Topic</span><a href="#44-publishing-to-a-topic" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre><span class="c1">#! /usr/bin/python2
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'Node_name'</span><span class="p">,</span><span class="n">anonymous</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s">'/orchis_dark'</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">latch</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+	<span class="n">pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="s">'Current time: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()))</span>
+	<span class="n">r</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+</pre></table></code></div></div><h3 id="441-code-explanation"><span class="mr-2">4.4.1 Code explanation:</span><a href="#441-code-explanation" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Line 1: <code class="language-plaintext highlighter-rouge">#! /usr/bin/python2</code> is known as the shebang. It lets the kernel know that this is a Python file and that it should be passed into the Python interpreter.</p><p>Line 3: <code class="language-plaintext highlighter-rouge">import rospy</code> appears in every ROS node and imports some basic functionalities, classes and functions.</p><p>Line 4: this line allows us to reuse the <code class="language-plaintext highlighter-rouge">std_msgs/String</code> message type for publishing.</p><p><img data-src="/assets/images/ROS/pub_1.png" alt="" data-proofer-ignore></p><p>Line 8: This is used to initialize a ROS node and the node takes the name that you give it. anonymous = True ensures that you have a unique name by adding random numbers to the end of name.</p><p>Line 9: pub here is an object of the class Publisher, and allows us to publish to any topic of any message type that you give it. queue_size limits the amount of queued messages if any subscriber is not receiving them fast enough.</p><p>Line 11: This line creates an object r of the class Rate. When r.sleep() is called, it sleeps just long enough for the loop to run at the desired rate. When the argument 10 is passed, it goes through the loop 10 times per second.</p><p>Line 14: This is used to publish the desired message to the topic.</p><p><img data-src="/assets/images/ROS/pub_2.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/pub_3.png" alt="" data-proofer-ignore></p><p>rostopic hz tells us the rate at which messages are being published. Here we see that it is being published at a rate specified by the argument in rospy.Rate(arg).</p><p><img data-src="/assets/images/ROS/pub_4.png" alt="" data-proofer-ignore></p><h2 id="45-subscribing-to-a-topic"><span class="mr-2">4.5 Subscribing to a Topic</span><a href="#45-subscribing-to-a-topic" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre><span class="c1">#! /usr/bin/python2
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'simple_subscriber'</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">my_string</span><span class="p">):</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">my_string</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
+	
+<span class="n">rospy</span><span class="p">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s">'/force'</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></table></code></div></div><h3 id="451-code-explanation"><span class="mr-2">4.5.1 Code explanation:</span><a href="#451-code-explanation" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Line 1: <code class="language-plaintext highlighter-rouge">#! /usr/bin/python2</code> is known as the shebang. It lets the kernel know that this is a Python file and that it should be passed into the Python interpreter.</p><p>Line 3: <code class="language-plaintext highlighter-rouge">import rospy</code> appears in every ROS node and imports some basic functionalities, classes and functions.</p><p>Line 4: this line allows us to reuse the <code class="language-plaintext highlighter-rouge">std_msgs/String</code> message type for publishing.</p><p><img data-src="/assets/images/ROS/sub_1.png" alt="" data-proofer-ignore></p><p>Line 6: This is used to initialize a ROS node and the node takes the name that you give it. anonymous = True ensures that you have a unique name by adding random numbers to the end of name.</p><p>Line 8-9: This is a callback function. Once a node has subscribed to a topic, everytime a message arrives on it, the associated callback function is called with the message as it’s parameter.</p><p>Line 11: In this line, we subscribe to the topic, giving it the name of the topic, message type and callback function as its arguments.</p><p>Line 13: This basically instructs ROS to loop over again, once a subscription has been made.</p><p>Behind the scenes, the subscriber passes this information on to roscore and tries to make a direct connection with the publishers of this topic. If the topic does not exist, or if the type is wrong, there are no error messages: the node will simply wait until messages start being published on the topic.</p><blockquote><p>A subscriber callback function is not executed continuously, that is, it is not processing all the time. It will only process when new data is published.</p></blockquote><p><img data-src="/assets/images/ROS/sub_2.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/sub_3.png" alt="" data-proofer-ignore></p><p>On VS Code - Output:</p><p><img data-src="/assets/images/ROS/sub_4.png" alt="" data-proofer-ignore></p><hr /><h1 id="ros-services">ROS Services</h1><h2 id="51-what-are-services"><span class="mr-2">5.1 What are Services?</span><a href="#51-what-are-services" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Services are synchronous calls, which when called by one node executes a function in another node. They are used only when a function/task needs to be executed occassionally, say when a robot needs to perform a very discrete task such as taking a high resolution picture using a camera, etc.</p><blockquote><p>Synchronous refers to an intereference with time, and means the that functions are performed one after the other. Messages, on the other hand, are asynchronous which means that they branch out into dfferent functions that execute simultaneously.</p></blockquote><p>A <strong>Server</strong> provides a service by responding to a service call, and a <strong>Client</strong> requests for a service and accesses the service response.</p><blockquote><h2 id="what-is-the-difference-between-services-and-messges"><span class="mr-2">What is the difference between Services and Messges?</span><a href="#what-is-the-difference-between-services-and-messges" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>ROS messages, which are transported using publishers and subscribers, are used whenever we need data to flow constantly and when we want to act on this data asynchronously. ROS services, on the other hand, are used only when we require data at specific time or when we want a task to be executed only at particular instances.</p><p>To better understand this, take a look at the following example.</p><ol><li>We have a robot that simulates it’s environment in real-time. In such cases, we would use publishers/subscribers to send messages as that data flow needs to be constant. Also, we would want the robot to do other tasks as well, apart from just reading real-time data. If we use services, then the server/client would have to wait for a response/request and blocks the other code in the node, preventing other tasks from being executed,<li>We have a robot that detects people in front of it. We would use services here as the node will wait for a person to come in front of it, then sends a request to the server and blocks the code while waiting for a response. Using messages here is pointless as we don’t want to continuously check for people in front of the robot (it’s just a one-time task).</ol><p>Reference: https://stackoverflow.com/questions/29458467/ros-service-and-message#:~:text=It%20is%20a%20similar%20example,the%20rest%20of%20its%20job.</p></blockquote><h2 id="52-service-files"><span class="mr-2">5.2 Service files</span><a href="#52-service-files" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Service files have an input and output call, and have the extension <code class="language-plaintext highlighter-rouge">.srv</code>. These files are present in the <strong>srv</strong> directory of a package. Here’s how a typical service file is defined</p><pre><code class="language-txt">int 64 a
+int 64 b
+---
+int64 sum
+</code></pre><p><img data-src="/assets/images/ROS/serv_1.png" alt="" data-proofer-ignore></p><p>In order for the service files to run, a few changes have to be made in the <em>package.xml</em> file and <em>CMakeLists.txt</em> file.</p><p><strong>In <em>package.xml</em></strong></p><div class="language-html highlighter-rouge"><div class="code-header"> <span data-label-text="HTML"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre># The following lines need to be added at the end of the file
+  <span class="nt">&lt;build_depend&gt;</span>message_generation<span class="nt">&lt;/build_depend&gt;</span>
+  <span class="nt">&lt;exec_depend&gt;</span>message_runtime<span class="nt">&lt;/exec_depend&gt;</span>
+</pre></table></code></div></div><p><strong>In <em>CMakeLists.txt</em></strong> Modify the file to make the following changes, if not done earlier</p><div class="language-py highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="c1"># Modify the existing line
+</span><span class="n">find_package</span><span class="p">(</span><span class="n">catkin</span> <span class="n">REQUIRED</span> <span class="n">COMPONENTS</span>
+  <span class="n">roscpp</span>
+  <span class="n">rospy</span>
+  <span class="n">std_msgs</span>
+  <span class="n">message_generation</span>
+<span class="p">)</span>
+</pre></table></code></div></div><blockquote><p><code class="language-plaintext highlighter-rouge">message_generation</code> was added in both the files and is done while creating messages as well. It works for both msg and srv.</p></blockquote><div class="language-py highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="n">add_service_files</span><span class="p">(</span>
+  <span class="n">FILES</span>
+  <span class="n">Service1</span><span class="p">.</span><span class="n">srv</span>
+  <span class="n">Service2</span><span class="p">.</span><span class="n">srv</span>
+<span class="p">)</span>
+</pre></table></code></div></div><p>After the necessary changes are made, we need to run <code class="language-plaintext highlighter-rouge">catkin_make</code> or <code class="language-plaintext highlighter-rouge">catkin_make --only_pkg_with_deps &lt;package_name&gt;</code> to compile the workspace or a particular package.</p><p>Running <code class="language-plaintext highlighter-rouge">catkin_make</code> will create 2 additional classes for the service file as well. For example, if a service file is named add_two_int.srv, then the two classes add_two_intResponse and add_two_intRequest are created along with the previously existing add_two_int class. These classes allow us to interact with the service by calling for a <em>Response</em> or a <em>Request</em>.</p><h2 id="53-using-rossrv"><span class="mr-2">5.3 Using rossrv</span><a href="#53-using-rossrv" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Documentation - http://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv</p><p><img data-src="/assets/images/ROS/serv_2.png" alt="" data-proofer-ignore></p><h2 id="54-using-rosservice"><span class="mr-2">5.4 Using rosservice</span><a href="#54-using-rosservice" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p><img data-src="/assets/images/ROS/serv_3.png" alt="" data-proofer-ignore></p><blockquote><h3 id="difference-between-rossrv-and-rosservice"><span class="mr-2">Difference between rossrv and rosservice</span><a href="#difference-between-rossrv-and-rosservice" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><code class="language-plaintext highlighter-rouge">rossrv</code> is a tool that provides us with information about all files ending in <em>.srv</em></p><p><code class="language-plaintext highlighter-rouge">rosservice</code> is a tool that allows us to interact with <em>Servers</em> and <em>Clients</em> that are currently active.</p><p>Reference - https://answers.ros.org/question/349148/rossrv-vs-rosservice/</p></blockquote><h2 id="55-creating-a-simple-server"><span class="mr-2">5.5 Creating a simple Server</span><a href="#55-creating-a-simple-server" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Before we get into creating a server, let us take a look at out service definition file.</p><p><img data-src="/assets/images/ROS/server_1.png" alt="" data-proofer-ignore></p><p>The same info can be gathered using the <code class="language-plaintext highlighter-rouge">rossrv</code> command, as shown below.</p><p><img data-src="/assets/images/ROS/server_2.png" alt="" data-proofer-ignore></p><p>Let us now create a server file, which would act as a python node for providing the service. Here’s the code for creating a simple server.</p><p><strong>Code:</strong></p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre><td class="rouge-code"><pre><span class="c1">#! /usr/bin/python2
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">beginner_tutorials.srv</span> <span class="kn">import</span> <span class="n">add_two_int</span><span class="p">,</span><span class="n">add_two_intResponse</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">add_two_intResponse</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">add_ints</span><span class="p">(</span><span class="n">req</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Adding {} + {} '</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="n">req</span><span class="p">.</span><span class="n">b</span><span class="p">))</span>
+    <span class="n">response</span><span class="p">.</span><span class="nb">sum</span> <span class="o">=</span> <span class="n">req</span><span class="p">.</span><span class="n">a</span> <span class="o">+</span> <span class="n">req</span><span class="p">.</span><span class="n">b</span>
+    <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="nb">sum</span>
+
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'add_two_int_server'</span><span class="p">)</span>
+
+<span class="n">srv</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Service</span><span class="p">(</span><span class="s">'add_two_int'</span><span class="p">,</span><span class="n">add_two_int</span><span class="p">,</span><span class="n">add_ints</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'Server is ready'</span><span class="p">)</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></table></code></div></div><h3 id="551-code-explanation"><span class="mr-2">5.5.1 Code Explanation</span><a href="#551-code-explanation" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>We import the <code class="language-plaintext highlighter-rouge">add_two_intResponse</code> class as we are writing code for a Server, which provides a response for the service that is called.</p><p><code class="language-plaintext highlighter-rouge">response</code> is an object of the class <code class="language-plaintext highlighter-rouge">add_two_intResponse()</code>.</p><p><code class="language-plaintext highlighter-rouge">srv = rospy.Service('add_two_int',add_two_int,add_ints)</code> This line creates an object named <em>srv</em> and declares/starts a service. The new service is given the name ‘add_two_int’ and has the service type <code class="language-plaintext highlighter-rouge">add_two_int</code>. <strong>add_ints</strong> is a callback function that performs a desired task.</p><p>The function <strong>add_ints</strong> takes a variable as a request and returns the sum of ‘a’ and ‘b’.</p><p><strong>Execution:</strong></p><p><img data-src="/assets/images/ROS/server_3.png" alt="" data-proofer-ignore></p><h2 id="56-creating-a-simple-client"><span class="mr-2">5.6 Creating a simple Client</span><a href="#56-creating-a-simple-client" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Like all python nodes, the client service file should also be created under the <code class="language-plaintext highlighter-rouge">src</code> directory of a package.</p><p><strong>Code:</strong></p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre><span class="c1">#! /usr/bin/python2
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">beginner_tutorials.srv</span> <span class="kn">import</span> <span class="n">add_two_int</span><span class="p">,</span> <span class="n">add_two_intRequest</span>
+
+
+<span class="n">req</span> <span class="o">=</span> <span class="n">add_two_intRequest</span><span class="p">()</span>
+<span class="n">req</span><span class="p">.</span><span class="n">a</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">req</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s">'add_two_int'</span><span class="p">)</span>
+
+<span class="n">add_two_ints</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s">'add_two_int'</span><span class="p">,</span><span class="n">add_two_int</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">add_two_ints</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nb">sum</span><span class="p">)</span>
+</pre></table></code></div></div><h3 id="561-code-explanation"><span class="mr-2">5.6.1 Code Explanation</span><a href="#561-code-explanation" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>The class <em>add_two_intRequest</em> is imported in a client node as we need to send a <em>Request</em> to the Server.</p><p><code class="language-plaintext highlighter-rouge">req = add_two_intRequest()</code> : <em>req</em> is an object of the class <em>add_two_intRequest()</em>. The inputs for the object are given in the next two lines, which are to be sent to the server.</p><p><code class="language-plaintext highlighter-rouge">rospy.wait_for_service('add_two_int')</code>: This is a method that blocks until the service named ‘add_two_int’ is available.</p><p><code class="language-plaintext highlighter-rouge">add_two_ints = rospy.ServiceProxy('add_two_int',add_two_int)</code>: This is how we call a service of the service name <em>add_two_int</em> and service type <em>add_two_int</em>.</p><blockquote><p><strong>What is ServiceProxy?</strong></p><p>Before we get into that, what is a <em>Proxy</em> ? A proxy is a gateway between a client and a server (usually a website) that takes a request and performs a function.</p><p>In a similar way, a ServiceProxy acts as an intermediary between a Client and a Server. It takes in the request from a Client and sends it to the Sever where it is passed into a function.</p></blockquote><p><code class="language-plaintext highlighter-rouge">response = add_two_ints(req)</code>: The request is passed into the service call line, and is sent to the server which returns the desired output.</p><p><code class="language-plaintext highlighter-rouge">print(response.sum)</code>: The sum is then printed on the screen.</p><blockquote><p><strong>NOTE - The server node needs to be running while a client node is being executed.</strong></p></blockquote><p><strong>Execution:</strong></p><p><img data-src="/assets/images/ROS/client_1.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/client_2.png" alt="" data-proofer-ignore></p><p><em>Refer to the server code above to better understand how the service is being provided and why it returns the above outputs.</em></p><h2 id="57-a-deeper-dive-into-services"><span class="mr-2">5.7 A deeper dive into Services</span><a href="#57-a-deeper-dive-into-services" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Let us take a look at a few other interesting things that we can do using services.</p><h3 id="571-spawning-2-turtles-in-the-same-node"><span class="mr-2">5.7.1 Spawning 2 turtles in the same node</span><a href="#571-spawning-2-turtles-in-the-same-node" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Here’s a list of the services associated with turtlesim. <img data-src="/assets/images/ROS/spawn_1.png" alt="" data-proofer-ignore></p><p>The one which we are particularly interested in, to spawn 2 turtles in the same node, is the service named ‘/spawn’. Here’s some info about the service ‘/spawn’.</p><p><img data-src="/assets/images/ROS/spawn_2.png" alt="" data-proofer-ignore></p><p>In order to spawn two turtles, we call a service and pass in the necessary parameters, which is demonstrated below</p><p><img data-src="/assets/images/ROS/spawn_3.png" alt="" data-proofer-ignore></p><h3 id="572-getting-laser-scan-data-using-gazebo"><span class="mr-2">5.7.2 Getting laser scan data using gazebo</span><a href="#572-getting-laser-scan-data-using-gazebo" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Spawn your turtlebot3 on gazebo by running the following command <code class="language-plaintext highlighter-rouge">roslaunch turtlebot3_gazebo turtlebot3_empty_world.launch</code></p><p>Place a block in front of your turtlebot3, as shown below</p><p><img data-src="/assets/images/ROS/laser_1.png" alt="" data-proofer-ignore></p><p>Let us take a look at the various topics associated with gazebo</p><p><img data-src="/assets/images/ROS/laser_2.png" alt="" data-proofer-ignore></p><p>Here, we find a topic named <strong>/scan</strong> which is pretty interesting. To learn more about this topic, let us do a <code class="language-plaintext highlighter-rouge">rostopic info</code>, as shown below.</p><p><img data-src="/assets/images/ROS/laser_3.png" alt="" data-proofer-ignore></p><p>Let us now take a look at what this message <em>sensors_msgs/LaserScan</em> has to offer.</p><p><img data-src="/assets/images/ROS/laser_4.png" alt="" data-proofer-ignore></p><p>Thus, this message provides us with several things related to the sensors output, and more importantly, gives us an array of all ranges of the laser scan. This is something that can be incredibly useful. However, subscribing to this would provide us with a list of 360 values (for 360 degrees), which is kinda unnecessary. Using services, we can have a synchronous callback function that provides us with data only for discrete inputs, such as giving us the range for a particular angle.</p><p>Let us now call for a service, by creating a server and a client. Before we do this, we would obviously need a service definition file present in the <code class="language-plaintext highlighter-rouge">srv</code> directory.</p><p>Create a file named <strong>gazebo_server.srv</strong> under the <em>srv</em> directory, and have the following lines.</p><pre><code class="language-txt">int64 direction
+---
+float32 distance
+</code></pre><p><code class="language-plaintext highlighter-rouge">int64 direction</code> would serve as an input while <code class="language-plaintext highlighter-rouge">float32 distance</code> serves as the output.</p><p>We need to make the necessary changes to <em>package.xml</em> file and <em>CMakeList.txt</em> file. This has been discussed above.</p><h4 id="creating-a-server"><span class="mr-2">Creating a Server</span><a href="#creating-a-server" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><h5 id="code"><span class="mr-2">Code</span><a href="#code" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+</pre><td class="rouge-code"><pre><span class="c1">#! /usr/bin/python2
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">LaserScan</span>
+<span class="kn">from</span> <span class="nn">beginner_tutorials.srv</span> <span class="kn">import</span> <span class="n">gazebo_server</span><span class="p">,</span> <span class="n">gazebo_serverResponse</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'My_Node'</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">ls_obj</span> <span class="o">=</span> <span class="n">LaserScan</span><span class="p">()</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">gazebo_serverResponse</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">ls_obj</span>
+    <span class="n">ls_obj</span> <span class="o">=</span> <span class="n">val</span>
+    
+
+<span class="k">def</span> <span class="nf">func_serv</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">ls_obj</span>
+    <span class="n">response</span><span class="p">.</span><span class="n">distance</span> <span class="o">=</span> <span class="n">ls_obj</span><span class="p">.</span><span class="n">ranges</span><span class="p">[</span><span class="n">request</span><span class="p">.</span><span class="n">direction</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="n">distance</span>
+
+
+<span class="n">sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s">'/scan'</span><span class="p">,</span> <span class="n">LaserScan</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+
+<span class="n">serv</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Service</span><span class="p">(</span><span class="s">'my_service'</span><span class="p">,</span> <span class="n">gazebo_server</span><span class="p">,</span> <span class="n">func_serv</span><span class="p">)</span>
+<span class="n">rospy</span><span class="p">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></table></code></div></div><h5 id="explanation"><span class="mr-2">Explanation</span><a href="#explanation" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5><p><code class="language-plaintext highlighter-rouge">ls_obj = LaserScan()</code>, <code class="language-plaintext highlighter-rouge">response = gazebo_serverResponse()</code> : Objects are created for the respective classes</p><p><code class="language-plaintext highlighter-rouge">sub = rospy.Subscriber('/scan', LaserScan, callback)</code> : Subscribing to the topic <strong>/scan</strong> of the message type <strong>LaserScan</strong>, and the data from this is passed into the function named <strong>callback</strong> which stores the data in the object <strong>ls_obj</strong>.</p><p><code class="language-plaintext highlighter-rouge">serv = rospy.Service('my_service', gazebo_server, func_serv)</code> : A service is started with the name <strong>my_service</strong>, service type <strong>gazebo_server</strong>, and a callback function named <strong>func_serv</strong> which returns the desired output based on the request.</p><h5 id="execution"><span class="mr-2">Execution</span><a href="#execution" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5><p><img data-src="/assets/images/ROS/laser_server.png" alt="" data-proofer-ignore></p><h4 id="creating-a-client"><span class="mr-2">Creating a Client</span><a href="#creating-a-client" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><h5 id="code-1"><span class="mr-2">Code</span><a href="#code-1" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre><td class="rouge-code"><pre><span class="c1">#! /usr/bin/python2
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">LaserScan</span>
+<span class="kn">from</span> <span class="nn">beginner_tutorials.srv</span> <span class="kn">import</span> <span class="n">gazebo_server</span><span class="p">,</span> <span class="n">gazebo_serverRequest</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'client_node'</span><span class="p">)</span>
+<span class="n">rospy</span><span class="p">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s">'my_service'</span><span class="p">)</span>
+
+<span class="n">req</span> <span class="o">=</span> <span class="n">gazebo_serverRequest</span><span class="p">()</span>
+<span class="n">req</span><span class="p">.</span><span class="n">direction</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">srv</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s">'my_service'</span><span class="p">,</span> <span class="n">gazebo_server</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">srv</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">distance</span><span class="p">)</span>
+    <span class="n">r</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+</pre></table></code></div></div><h5 id="explanation-1"><span class="mr-2">Explanation</span><a href="#explanation-1" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5><p><code class="language-plaintext highlighter-rouge">rospy.wait_for_service('my_service')</code> : Waits for the service to start, which in our case is initialized by the server.</p><p><code class="language-plaintext highlighter-rouge">req = gazebo_serverRequest()</code> : An object is created and the desired request is passed</p><p><code class="language-plaintext highlighter-rouge">srv = rospy.ServiceProxy('my_service', gazebo_server)</code> : Calling for a service of the service name <strong>my_service</strong> and type <strong>gazebo_server</strong></p><p><code class="language-plaintext highlighter-rouge">result = srv(req)</code> : The request is passed into the proxy, which is sent to the server and executes the desired function.</p><p><code class="language-plaintext highlighter-rouge">print(result.distance)</code> : The distance is printed on the screen.</p><blockquote><p><strong>NOTE - The server node needs to be running while a client node is being executed.</strong></p></blockquote><h5 id="execution-1"><span class="mr-2">Execution</span><a href="#execution-1" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5><p><img data-src="/assets/images/ROS/laser_client.png" alt="" data-proofer-ignore></p><hr /><h1 id="ros-actions">ROS Actions</h1><h2 id="61-introduction"><span class="mr-2">6.1 Introduction</span><a href="#61-introduction" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Actions are asynchronous calls in ROS, which means that you do not have to wait for a particular task to be finished and you can also do other tasks simultaneously. Reference: http://wiki.ros.org/actionlib</p><blockquote><h2 id="what-is-the-difference-between-actions-and-services"><span class="mr-2">What is the difference between Actions and Services?</span><a href="#what-is-the-difference-between-actions-and-services" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Actions are asynchronous calls which would perform almost the same functions as Services (kinda), but additionally allows you to work on other tasks in the node (i.e. no blocking code). It also allows you to get feedback, status and even cancel a call.</p><p>You can better understand this with an analogy, as explained in this <a href="https://www.theconstructsim.com/ros-5-mins-034-ros-action/#:~:text=An%20action%20is%20an%20asynchronous,Action%20Server%20(Pizza%20shop).">link</a>.</p><p>In some cases, if a service takes a long time to execute, the user might want the ability to cancel the request during execution or get periodic feedback about how the request is progressing. The <strong>actionlib</strong> package provides tools to create servers that execute long-running goals that can be preempted. It also provides a client interface in order to send requests to the server. A more detaied description: http://wiki.ros.org/actionlib/DetailedDescription</p></blockquote><p>The ActionClient and ActionServer communicate via a “ROS Action Protocol”, which is built on top of <strong>ROS messages</strong>. The client and server then provide a simple API for users to request goals (on the client side) or to execute goals (on the server side) via function calls and callbacks. <img data-src="/assets/images/ROS/actions_1.png" alt="" data-proofer-ignore> There are 5 Topics provided by an Action Server:</p><ol><li><strong>goal</strong>: User (or Client) sends a goal to the Server to initiate the action.<li><strong>cancel</strong>: User sends a signal under cancel topic to interrupt or stop an action from being executed.<li><strong>status</strong>: Tells the current status of the server. There are 10 status states - PENDING, ACTIVE, PREEMPTED, SUCCEEDED, ABORTED, REJECTED, PREEMPTING, RECALLING, RECALLED and LOST.<li><strong>result</strong>: Provides the final output after executing the action.<li><strong>feedback</strong>: Provides us with intermediate results about the action while it is being executed.</ol><blockquote><p><strong>NOTE</strong> - We cannot execute two actions at the same time. Doing so will cancel the previous action from being executed. If a new goal is sent to an action server that is already busy processing a goal, then the currently active goal will be pre-empted. However, this is not a hard limitation as we can have an action server that can process multiple goals.</p></blockquote><h2 id="62-action-files"><span class="mr-2">6.2 Action files</span><a href="#62-action-files" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>The Action definition files have an extension of <code class="language-plaintext highlighter-rouge">.action</code> and is used to specify the format of <em>goal</em>, <em>result</em>, <em>feedback</em> message. These files are present in the <strong>action</strong> directory of a package. Here’s how a typical action file is defined</p><pre><code class="language-BASH">int32 goal
+---
+int32 result
+---
+int32 feedback
+</code></pre><p><img data-src="/assets/images/ROS/act_files.png" alt="" data-proofer-ignore> In order for the service files to run, a few changes have to be made in the <em>package.xml</em> file and <em>CMakeLists.txt</em> file. <strong>In <em>package.xml</em></strong> Modify the file to make the following changes, if not done earlier</p><div class="language-html highlighter-rouge"><div class="code-header"> <span data-label-text="HTML"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre><td class="rouge-code"><pre><span class="nt">&lt;buildtool_depend&gt;</span>catkin<span class="nt">&lt;/buildtool_depend&gt;</span>
+  <span class="nt">&lt;build_depend&gt;</span>rospy<span class="nt">&lt;/build_depend&gt;</span>
+  <span class="nt">&lt;build_depend&gt;</span>std_msgs<span class="nt">&lt;/build_depend&gt;</span>
+  <span class="nt">&lt;build_depend&gt;</span>actionlib_msgs<span class="nt">&lt;/build_depend&gt;</span>
+  <span class="nt">&lt;build_depend&gt;</span>actionlib<span class="nt">&lt;/build_depend&gt;</span>
+  <span class="nt">&lt;build_export_depend&gt;</span>rospy<span class="nt">&lt;/build_export_depend&gt;</span>
+  <span class="nt">&lt;build_export_depend&gt;</span>std_msgs<span class="nt">&lt;/build_export_depend&gt;</span>
+  <span class="nt">&lt;build_export_depend&gt;</span>actionlib_msgs<span class="nt">&lt;/build_export_depend&gt;</span>
+  <span class="nt">&lt;build_export_depend&gt;</span>actionlib<span class="nt">&lt;/build_export_depend&gt;</span>
+  <span class="nt">&lt;exec_depend&gt;</span>rospy<span class="nt">&lt;/exec_depend&gt;</span>
+  <span class="nt">&lt;exec_depend&gt;</span>std_msgs<span class="nt">&lt;/exec_depend&gt;</span>
+  <span class="nt">&lt;exec_depend&gt;</span>actionlib_msgs<span class="nt">&lt;/exec_depend&gt;</span>
+  <span class="nt">&lt;exec_depend&gt;</span>actionlib<span class="nt">&lt;/exec_depend&gt;</span>
+  <span class="nt">&lt;build_depend&gt;</span>message_generation<span class="nt">&lt;/build_depend&gt;</span> 
+  <span class="nt">&lt;build_export_depend&gt;</span>message_runtime<span class="nt">&lt;/build_export_depend&gt;</span>
+  <span class="nt">&lt;exec_depend&gt;</span>message_runtime<span class="nt">&lt;/exec_depend&gt;</span>
+</pre></table></code></div></div><p><strong>In <em>CMakeLists.txt</em></strong> Modify the file to make the following changes, if not done earlier</p><div class="language-py highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="c1"># Modify the existing line
+</span><span class="n">find_package</span><span class="p">(</span><span class="n">catkin</span> <span class="n">REQUIRED</span> <span class="n">COMPONENTS</span>
+  <span class="n">roscpp</span>
+  <span class="n">rospy</span>
+  <span class="n">std_msgs</span>
+  <span class="n">message_generation</span>
+  <span class="n">actionlib_msgs</span>
+<span class="p">)</span>
+</pre></table></code></div></div><div class="language-py highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="c1"># Generate actions in the 'action' folder
+</span><span class="n">add_action_files</span><span class="p">(</span>
+  <span class="n">FILES</span>
+  <span class="n">my_action</span><span class="p">.</span><span class="n">action</span>
+<span class="p">)</span>
+</pre></table></code></div></div><div class="language-py highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="c1">## Generate added messages and services with any dependencies listed here
+</span><span class="n">generate_messages</span><span class="p">(</span>
+  <span class="n">DEPENDENCIES</span>
+  <span class="n">std_msgs</span>
+  <span class="n">actionlib_msgs</span>
+<span class="p">)</span>
+</pre></table></code></div></div><div class="language-py highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="c1"># Add actionlib_msgs as a catkin dependency
+</span><span class="n">catkin_package</span><span class="p">(</span>
+  <span class="n">CATKIN_DEPENDS</span> <span class="n">rospy</span> <span class="n">std_msgs</span> <span class="n">message_runtime</span>
+  <span class="n">actionlib_msgs</span>
+<span class="p">)</span>
+</pre></table></code></div></div><p>After the necessary changes are made, we need to run <code class="language-plaintext highlighter-rouge">catkin_make</code> or <code class="language-plaintext highlighter-rouge">catkin_make --only_pkg_with_deps &lt;package_name&gt;</code> to compile the workspace or a particular package. After compiling a package, ROS wil create additional messages for you. For example, if your action definition file is named robot.action, then the following messages will be created:</p><ul><li>robotAction.msg<li>robotActionGoal.msg<li>robotActionResult.msg<li>robotActionFeedback.msg<li>robotGoal.msg<li>robotResult.msg<li>robotFeedback.msg These messages are used by actionlib to facilitate communication between ActionServer and ActionClient. <strong>The topics used in actions (mentioned above) will use one of these messages, whichever suits its function.</strong><blockquote><p>In general, if you’re using the libraries in the actionlib package, you should not need to access the autogenerated messages with Action in their type name. The bare Goal, Result, and Feedback messages should suffice. The others are used internally by ROS, i.e., by the actionlib package.</p></blockquote></ul><p><img data-src="/assets/images/ROS/act_1.png" alt="" data-proofer-ignore></p><p>Let’s take a closer look at the <strong>counterAction</strong> message type.</p><p><img data-src="/assets/images/ROS/act_2.png" alt="" data-proofer-ignore></p><p>Once the goal is registered by the action server, the request is first given a time stamp and header information by actionlib indicating when and which action client requested this goal. Then the actionlib package also assigns a unique goal identifier to this goal along with a time stamp. Finally we have the goal message that we sent from our action client. Now the same goes with the action result. Inside the actionlib package, there is a state machine that is started to process the goal request that we sent. This state machine can lead to the requested goal being in different states and provides us with the status message. The same goes with the action feedback again, but now with a different state machine, and it also has the content of the feedback message.</p><p>Let us create a custom action file and call it <strong>counter.action</strong>.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre># Goal
+int32 num_counts
+---
+# Result
+string result_message
+---
+# Feedback
+int32 counts_elapsed
+</pre></table></code></div></div><p><img data-src="/assets/images/ROS/custom_act.png" alt="" data-proofer-ignore></p><h2 id="creating-a-simple-server"><span class="mr-2">Creating a simple Server</span><a href="#creating-a-simple-server" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p><strong>Code:</strong></p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+</pre><td class="rouge-code"><pre><span class="c1">#! /usr/bin/python3
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="c1"># import actionlib library used for calling actions
+</span><span class="kn">import</span> <span class="nn">actionlib</span>
+<span class="c1"># import custom action file. Since actions are based on messages, notice how we import actions from the msg directory of a package.
+</span><span class="kn">from</span> <span class="nn">beginner_tutorials.msg</span> <span class="kn">import</span> <span class="n">counterAction</span><span class="p">,</span> <span class="n">counterResult</span><span class="p">,</span> <span class="n">counterFeedback</span>
+
+<span class="k">class</span> <span class="nc">Server</span><span class="p">():</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># create a simple ActionServer by passing the name, action type, and callback function as its parameters. 
+</span>        <span class="c1"># auto_start has to be declared explicitly and always has to be set to False to prevent autostarting the server (can break your code otherwise).
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">actionlib</span><span class="p">.</span><span class="n">SimpleActionServer</span><span class="p">(</span><span class="s">'my_action_server'</span><span class="p">,</span> <span class="n">counterAction</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">counter</span><span class="p">,</span> <span class="n">auto_start</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        
+        <span class="c1"># start server
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">rospy</span><span class="p">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s">"Action server started"</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">counter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">goal</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">counterResult</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">feedback</span> <span class="o">=</span> <span class="n">counterFeedback</span><span class="p">()</span>
+    
+        <span class="c1"># initializing the feedback variable to 0
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">feedback</span><span class="p">.</span><span class="n">counts_elapsed</span> <span class="o">=</span> <span class="mi">0</span>
+                
+        <span class="c1"># for 1s delay
+</span>        <span class="n">r</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">res</span><span class="p">.</span><span class="n">result_message</span> <span class="o">=</span> <span class="s">"Counting complete!"</span>
+    
+        <span class="c1"># start counting till the goal 
+</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">goal</span><span class="p">.</span><span class="n">num_counts</span><span class="p">):</span>
+
+            <span class="n">success</span> <span class="o">=</span> <span class="bp">True</span>
+            
+            <span class="c1"># check that preempt has not been requested by the user
+</span>            <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">is_preempt_requested</span><span class="p">():</span>
+                <span class="n">rospy</span><span class="p">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s">"my_action_server: Preempted"</span><span class="p">)</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">set_preempted</span><span class="p">()</span>
+                <span class="n">success</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="k">break</span>
+
+                <span class="c1"># publish the feedback
+</span>            <span class="bp">self</span><span class="p">.</span><span class="n">feedback</span><span class="p">.</span><span class="n">counts_elapsed</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">publish_feedback</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">feedback</span><span class="p">)</span>
+    
+            <span class="c1"># wait for 1s before incrementing the counter
+</span>            <span class="n">r</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">success</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="c1"># Once the necessary function is executed, the server notifies the client that the goal is complete by calling set_succeeded.
+</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">set_succeeded</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">res</span><span class="p">)</span>
+
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">"counter_action_server"</span><span class="p">)</span>
+<span class="c1"># initialize object called server to call the Server() class.
+</span><span class="n">server</span> <span class="o">=</span> <span class="n">Server</span><span class="p">()</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">spin</span><span class="p">()</span>
+
+</pre></table></code></div></div><p><strong>Execution:</strong></p><p><code class="language-plaintext highlighter-rouge">rosrun &lt;package_name&gt; &lt;file_name&gt;</code></p><p>Send goals via terminal:</p><p><code class="language-plaintext highlighter-rouge">rostopic pub /action_server_name/goal /package_name/action_message_type parameters</code></p><p><img data-src="/assets/images/ROS/act_server_1.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/act_server_2.png" alt="" data-proofer-ignore></p><h2 id="creating-a-simple-client"><span class="mr-2">Creating a simple Client</span><a href="#creating-a-simple-client" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p><strong>Code:</strong></p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+</pre><td class="rouge-code"><pre><span class="c1">#! /usr/bin/python3
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="c1"># import actionlib library
+</span><span class="kn">import</span> <span class="nn">actionlib</span>
+<span class="c1"># import custom action file
+</span><span class="kn">from</span> <span class="nn">beginner_tutorials.msg</span> <span class="kn">import</span> <span class="n">counterAction</span><span class="p">,</span> <span class="n">counterGoal</span>
+
+<span class="k">def</span> <span class="nf">Client</span><span class="p">():</span>
+    <span class="c1"># create client and specify the name of server and action message type 
+</span>    <span class="n">client</span> <span class="o">=</span> <span class="n">actionlib</span><span class="p">.</span><span class="n">SimpleActionClient</span><span class="p">(</span><span class="s">'my_action_server'</span><span class="p">,</span> <span class="n">counterAction</span><span class="p">)</span>
+
+    <span class="n">rospy</span><span class="p">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s">"Waiting for server"</span><span class="p">)</span>
+	<span class="c1"># wait for server (name specified above)
+</span>    <span class="n">client</span><span class="p">.</span><span class="n">wait_for_server</span><span class="p">()</span>
+
+    <span class="n">goal</span> <span class="o">=</span> <span class="n">counterGoal</span><span class="p">()</span>
+    <span class="n">goal</span><span class="p">.</span><span class="n">num_counts</span> <span class="o">=</span> <span class="mi">20</span>
+    
+	<span class="c1"># send goal to server
+</span>    <span class="n">client</span><span class="p">.</span><span class="n">send_goal</span><span class="p">(</span><span class="n">goal</span><span class="p">)</span> <span class="c1"># client.send_goal(goal, feedback_cb=feedback_func)
+</span>
+    <span class="n">rospy</span><span class="p">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s">"Goal has been sent to the action server"</span><span class="p">)</span>
+
+    <span class="c1"># can perform other tasks here as well
+</span>
+    <span class="c1"># wait for result
+</span>	<span class="n">client</span><span class="p">.</span><span class="n">wait_for_result</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">client</span><span class="p">.</span><span class="n">get_result</span><span class="p">()</span>
+
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+    <span class="c1"># initialize node
+</span>    <span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">"counter_action_client"</span><span class="p">)</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+	<span class="c1"># call the function and print result
+</span>    <span class="n">res</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+    <span class="n">r</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+</pre></table></code></div></div><h3 id="explanation-2"><span class="mr-2">Explanation</span><a href="#explanation-2" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><code class="language-plaintext highlighter-rouge">client.wait_for_result()</code>: This will wait until the action is complete and blocks the remaining code. This won’t allow you to continue to work on your thread.</p><p><code class="language-plaintext highlighter-rouge">client.get_state()</code>: It returns an integer that specifies the state of the action. There are 10 possible states, a few of which are</p><ul><li>0 implies PENDING<li>1 implies ACTIVE<li>2 implies PREEMPTED<li>3 implies SUCCEEDED<li>4 implies ABORTED</ul><p>If your get_state() is less than 2, it indicates that your action is still not complete.</p><p><code class="language-plaintext highlighter-rouge">client.cancel_goal()</code>: Used to cancel or preempt a goal.</p><p><strong>Execution</strong></p><p><img data-src="/assets/images/ROS/act_client_1.png" alt="" data-proofer-ignore></p><h2 id="turtlesim-example"><span class="mr-2">Turtlesim example</span><a href="#turtlesim-example" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>As you can see below, running the following commands instructs turtlesim to move along a pentagon.</p><p><img data-src="/assets/images/ROS/act_tur_1.png" alt="" data-proofer-ignore></p><p>On running <code class="language-plaintext highlighter-rouge">rostopic list</code> we see a list of all the current topics. <code class="language-plaintext highlighter-rouge">/turtle_shape/goal</code> is one such topic, which allows you to publish messages to the server through the terminal. It allows us to enter the number of edges and define the radius as well.</p><p><img data-src="/assets/images/ROS/act_tur_2.png" alt="" data-proofer-ignore></p><h3 id="gui"><span class="mr-2">GUI</span><a href="#gui" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>The actionlib offers a graphical way to send goal to action server. Syntax- <code class="language-plaintext highlighter-rouge">rosrun actionlib axclient.py /name_of_the_action</code></p><p>The GUI has areas for <strong>Goal</strong>, <strong>Feedback</strong> and <strong>Result</strong>. You can press the <strong>SEND GOAL</strong> button to send goals with the relevant parameters, and you can also cancel or preempt a goal anytime with the <strong>CANCEL GOAL</strong> button. After the action finished successfully, the GUI shows the <strong>Result</strong>.</p><p><img data-src="/assets/images/ROS/act_tur_3.png" alt="" data-proofer-ignore></p><hr /><h1 id="ros-tf2">ROS TF2</h1><h2 id="71-introduction-to-tf2"><span class="mr-2">7.1 Introduction to TF2</span><a href="#71-introduction-to-tf2" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p><strong>TF2</strong> is the second generation of the <em>transform library</em>, which lets the user keep track of multiple coordinate frames over time. <strong>TF2</strong> maintains the relationship between coordinate frames over time, and lets the user transform points, vectors, etc. between any two coordinate frames at any desired point in time.</p><p>TF2 is not a centralized service, but is a distributed protocol with which many different robots will communicate about the state of the robot.</p><p>In TF2, <strong>Publishers</strong> are known as <strong>Broadcasters</strong>, and <strong>Subscribers</strong> are known as <strong>Listeners</strong>.</p><ul><li><strong>Listeners</strong> listen to <strong>/tf</strong> and cache all data heard up to the cache limit.<li><strong>Broadcasters</strong> publish transforms between coordinate frames on <strong>/tf</strong>.</ul><h3 id="711-applications-of-transformations-between-frames"><span class="mr-2">7.1.1 Applications of transformations between frames:</span><a href="#711-applications-of-transformations-between-frames" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>The following are some of the applications where the tf2 library can be used:</p><ol><li>Compute inverse and forward kinematics of multi-joint robots<li>Carry out obstacle avoidance<li>Convey location of robot or parts of a robot<li>Convert sensor data from one reference to another<li>Control robot about a particular point in space<li>Analyze multiple robot data in world frame<li>Reference external objects w.r.t robot frame</ol><h2 id="72-demo-using-turtlesim"><span class="mr-2">7.2 Demo using turtlesim</span><a href="#72-demo-using-turtlesim" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Enter the following command to install the necessary dependencies and compile the demo package. <code class="language-plaintext highlighter-rouge">sudo apt-get install ros-$ROS_DISTRO-turtle-tf2 ros-$ROS_DISTRO-tf2-tools ros-$ROS_DISTRO-tf</code></p><p>After compiling the <em>turtle_tf2</em> tutorial package, enter the following the run the demo: <code class="language-plaintext highlighter-rouge">roslaunch turtle_tf2 turtle_tf2_demo.launch</code></p><p>Once the turtlesim is started you can drive the center turtle around in the turtlesim using the keyboard arrow keys. On moving the center turtle, you will see that the other turtle also moves continuously to follow the turtle that you are driving around.</p><p><img data-src="/assets/images/ROS/tf_1.png" alt="" data-proofer-ignore></p><p>On entering the above command, you are essentially executing two main things:</p><ol><li>A TF2 broadcaster that is publishing the coordinate frames of both the turtles w.r.t the world frame.<li>A TF2 listener that reads the transformations and uses it to calculate the direction in which turtle2 has to move to follow turtle1.</ol><h3 id="721-tf2-tools"><span class="mr-2">7.2.1 TF2 tools</span><a href="#721-tf2-tools" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><h4 id="view_frames"><span class="mr-2">view_frames:</span><a href="#view_frames" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><p><strong>view_frames</strong> is one of the TF2 tools that generates a diagram of the frames being broadcast by TF2 over ROS with the current TF2 tree. This diagram is stored as a pdf.</p><p>Syntax to run view_frames: <code class="language-plaintext highlighter-rouge">rosrun tf2_tools view_frames.py</code></p><p>This is what you will see:</p><pre><code class="language-txt">Listening to tf data during 5 seconds...
+Generating graph in frames.pdf file...
+</code></pre><p>To view the tree diagram, we just need to open the pdf. If evince is your default document viewer, then run the command <code class="language-plaintext highlighter-rouge">evince frames.pdf</code></p><p><img data-src="/assets/images/ROS/tf_vi_1.png" alt="" data-proofer-ignore></p><p>On opening the pdf, we see a very simple tree diagram that depicts three frames - world frame, turtle1 frame, and turtle2 frame.</p><ol><li>The world frame is transformed to the turtle1 and to turtle2, seperately.<li>We can see the Average rate, which is the publishing rate<li>We can also see the most recent transform number, which should more or less coincide with the recording time (otherwise it is not publishing correctly)</ol><p><img data-src="/assets/images/ROS/tf_vi_2.png" alt="" data-proofer-ignore></p><p>You can also listen to the TF being published, using the <em>echo</em>. There is a topic named <strong>/tf</strong> where ALL the TF are published. In simple systems like this one there is no problem, but as the system becomes more sophisticated, the quantity of data can be overwhelming. To tackle this, tf2 library provides you with tools that filters which tranformation you are interested in and just shows you that one.</p><p><img data-src="/assets/images/ROS/tf_vi_3.png" alt="" data-proofer-ignore></p><p>Running the following commands shows you the TF of the respective turtle only w.r.t the world frame.</p><p><img data-src="/assets/images/ROS/tf_vi_4.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/tf_vi_5.png" alt="" data-proofer-ignore></p><h4 id="tf_echo"><span class="mr-2">tf_echo:</span><a href="#tf_echo" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><p>If you want to see the transform change as the two turtles move relative to each other, you can use <strong>tf_echo</strong>. tf_echo reports the transform between any two frames broadcast over ROS.</p><p>Syntax: <code class="language-plaintext highlighter-rouge">rosrun tf tf_echo [reference_frame] [target_frame]</code></p><p>On running <code class="language-plaintext highlighter-rouge">rosrun tf tf_echo turtle1 turtle2</code> you get the following information:</p><ol><li>Relative translation between the two turtles<li>Relative rotation between the two turtles in terms of Quaternions, RPY (Roll Pitch Yaw)</ol><p><img data-src="/assets/images/ROS/echo_1.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/echo_2.png" alt="" data-proofer-ignore></p><h4 id="tf_monitor"><span class="mr-2">tf_monitor:</span><a href="#tf_monitor" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><h3 id="722-better-visualization---rviz"><span class="mr-2">7.2.2 Better visualization - rviz</span><a href="#722-better-visualization---rviz" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>rviz is a visualization tool that is useful for examining tf2 frames.</p><p>To open the turtle_tf2 file on rviz, enter the command: <code class="language-plaintext highlighter-rouge">rosrun rviz rviz</code> and open the relevant file. This is how your rviz environment will typically look like.</p><p><img data-src="/assets/images/ROS/rviz_1.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/rviz_2.png" alt="" data-proofer-ignore></p><blockquote><p>Reference - https://youtu.be/Ra-nXIfPWdg</p></blockquote><h2 id="73-quaternion-and-roll-pitch-yaw-conversion"><span class="mr-2">7.3 Quaternion and Roll-Pitch-Yaw Conversion</span><a href="#73-quaternion-and-roll-pitch-yaw-conversion" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+</pre><td class="rouge-code"><pre><span class="c1">#! /usr/bin/python2
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">tf2_ros</span>
+<span class="kn">import</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
+<span class="kn">from</span> <span class="nn">nav_msgs.msg</span> <span class="kn">import</span> <span class="n">Odometry</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">roll</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">pitch</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">yaw</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'Roll: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">roll</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Pitch: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">pitch</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Yaw: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">yaw</span><span class="p">)))</span>
+
+<span class="n">quaternion</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">transformations</span><span class="p">.</span><span class="n">quaternion_from_euler</span><span class="p">(</span><span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Resulting quaternions:"</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">quaternion</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+
+<span class="n">ori</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">transformations</span><span class="p">.</span><span class="n">euler_from_quaternion</span><span class="p">(</span><span class="n">quaternion</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">Euler from quaternion:'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">ori</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>	
+</pre></table></code></div></div><p><strong>Execution:</strong></p><p><img data-src="/assets/images/ROS/euler.png" alt="" data-proofer-ignore></p><h2 id="74-tf2-publisherbroadcaster"><span class="mr-2">7.4 TF2 Publisher/Broadcaster</span><a href="#74-tf2-publisherbroadcaster" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>We shall first create a new catkin package called <code class="language-plaintext highlighter-rouge">learning_tf2</code> to better understand and demonstrate writing code for publishers and subscribers.</p><p>Syntax to create the new package: <code class="language-plaintext highlighter-rouge">catkin_create_pkg learning_tf2 tf2 tf2_ros roscpp rospy turtlesim</code></p><p><img data-src="/assets/images/ROS/n1.png" alt="" data-proofer-ignore></p><p>Create a new directory called <code class="language-plaintext highlighter-rouge">nodes</code> inside the <em>learning_tf2</em> package. We will be storing all our python nodes here.</p><p>To create a broadcaster, make a new file called <strong>tf2_broadcaster.py</strong> under the <code class="language-plaintext highlighter-rouge">nodes</code> directory.</p><p><img data-src="/assets/images/ROS/n2.png" alt="" data-proofer-ignore></p><p><strong>Code:</strong></p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+</pre><td class="rouge-code"><pre><span class="c1">#! /usr/bin/python2
+</span>
+<span class="c1"># import rospy
+</span><span class="kn">import</span> <span class="nn">rospy</span>
+<span class="c1"># import tf2 module
+</span><span class="kn">import</span> <span class="nn">tf2_ros</span>
+<span class="c1"># import tf
+</span><span class="kn">import</span> <span class="nn">tf</span>
+
+<span class="kn">import</span> <span class="nn">geometry_msgs.msg</span>
+<span class="kn">import</span> <span class="nn">turtlesim.msg</span>
+
+
+<span class="k">def</span> <span class="nf">turtle_func</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">turtlename</span><span class="p">):</span>
+    <span class="c1"># TransformBroadcaster makes publishing of transforms easy. To use the TransformBroadcaster, we need to import the tf2_ros module.
+</span>    <span class="n">br</span> <span class="o">=</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">TransformBroadcaster</span><span class="p">()</span> 
+    <span class="c1"># We create a TransformStamped object which will contain the message to be published. 
+</span>    <span class="n">t</span> <span class="o">=</span> <span class="n">geometry_msgs</span><span class="p">.</span><span class="n">msg</span><span class="p">.</span><span class="n">TransformStamped</span><span class="p">()</span>
+
+    <span class="c1"># Before stuffing the actual transform values we need to give the TransformStamped object the appropriate metadata.
+</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="c1"># We need to give the transform being published a timestamp, which in our case will be the current time
+</span>    <span class="n">t</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">"world"</span> <span class="c1"># name of parent frame
+</span>    <span class="n">t</span><span class="p">.</span><span class="n">child_frame_id</span> <span class="o">=</span> <span class="n">turtlename</span> <span class="c1"># name of child frame
+</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">x</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">y</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="c1"># convert angles from euler (radians/degrees) to quaternion 
+</span>    <span class="n">q</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">transformations</span><span class="p">.</span><span class="n">quaternion_from_euler</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">msg</span><span class="p">.</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+
+    <span class="n">br</span><span class="p">.</span><span class="n">sendTransform</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="c1"># publish the transform
+</span>
+<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'tf2_broadcaster'</span><span class="p">)</span> <span class="c1"># create node
+</span>    <span class="n">turtlename</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">"~turtle"</span><span class="p">)</span>
+
+    <span class="n">rospy</span><span class="p">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s">'%s/pose'</span> <span class="o">%</span> <span class="n">turtlename</span><span class="p">,</span>
+                    <span class="n">turtlesim</span><span class="p">.</span><span class="n">msg</span><span class="p">.</span><span class="n">Pose</span><span class="p">,</span>
+                    <span class="n">turtle_func</span><span class="p">,</span>
+                    <span class="n">turtlename</span><span class="p">)</span>
+
+    <span class="n">rospy</span><span class="p">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></table></code></div></div><p><img data-src="/assets/images/ROS/br_1.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/br_2.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/br_3.png" alt="" data-proofer-ignore></p><p><strong>Execution:</strong> To run the broadcaster, we first need to create a launch file. Inside your package, create a folder called <code class="language-plaintext highlighter-rouge">launch</code>, create a file called <strong>start_demo.launch</strong>.</p><p><img data-src="/assets/images/ROS/br_4.png" alt="" data-proofer-ignore></p><div class="language-html highlighter-rouge"><div class="code-header"> <span data-label-text="HTML"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="nt">&lt;launch&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"turtlesim"</span> <span class="na">type=</span><span class="s">"turtlesim_node"</span> <span class="na">name=</span><span class="s">"sim"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"turtlesim"</span> <span class="na">type=</span><span class="s">"turtle_teleop_key"</span> <span class="na">name=</span><span class="s">"teleop"</span> <span class="na">output=</span><span class="s">"screen"</span> <span class="nt">/&gt;</span>
+
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"turtle1_tf2_broadcaster"</span> <span class="na">pkg=</span><span class="s">"learning_tf2"</span> <span class="na">type=</span><span class="s">"tf2_broadcaster.py"</span> <span class="na">respawn=</span><span class="s">"false"</span> <span class="na">output=</span><span class="s">"screen"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"turtle"</span> <span class="na">type=</span><span class="s">"string"</span> <span class="na">value=</span><span class="s">"turtle1"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"turtle2_tf2_broadcaster"</span> <span class="na">pkg=</span><span class="s">"learning_tf2"</span> <span class="na">type=</span><span class="s">"tf2_broadcaster.py"</span> <span class="na">respawn=</span><span class="s">"false"</span> <span class="na">output=</span><span class="s">"screen"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"turtle"</span> <span class="na">type=</span><span class="s">"string"</span> <span class="na">value=</span><span class="s">"turtle2"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
+
+<span class="nt">&lt;/launch&gt;</span>
+</pre></table></code></div></div><p>To execute, just run the command <code class="language-plaintext highlighter-rouge">roslaunch learning_tf2 start_demo.launch</code>.</p><p><img data-src="/assets/images/ROS/br_5.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/br_6.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/br_7.png" alt="" data-proofer-ignore></p><p><strong>Rviz:</strong></p><p><img data-src="/assets/images/ROS/br_8.png" alt="" data-proofer-ignore></p><h2 id="75-tf2-subscriberlistener"><span class="mr-2">7.5 TF2 Subscriber/Listener</span><a href="#75-tf2-subscriberlistener" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+</pre><td class="rouge-code"><pre><span class="c1">#! /usr/bin/python2
+</span>
+<span class="c1"># import rospy
+</span><span class="kn">import</span> <span class="nn">rospy</span>
+<span class="c1"># import tf2 module
+</span><span class="kn">import</span> <span class="nn">tf2_ros</span>
+<span class="c1"># import math module
+</span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
+<span class="kn">from</span> <span class="nn">turtlesim.srv</span> <span class="kn">import</span> <span class="n">Spawn</span>
+
+<span class="c1"># initialize listener node
+</span><span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">"tf2_listener"</span><span class="p">)</span>
+
+<span class="c1"># A listener object is created. Once the listener is created, it starts receiving tf2 transformations, and buffers them for up to 10 seconds.
+</span><span class="n">tfBuffer</span> <span class="o">=</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">Buffer</span><span class="p">()</span>
+<span class="n">listener</span> <span class="o">=</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">TransformListener</span><span class="p">(</span><span class="n">tfBuffer</span><span class="p">)</span>
+
+<span class="c1"># Spawn another turtle in the same turtlesim node (Refer to https://github.com/Bhaswanth-A/ROS-Theory/blob/main/Services.md#571-spawning-2-turtles-in-the-same-node )
+</span><span class="n">rospy</span><span class="p">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s">'spawn'</span><span class="p">)</span>
+<span class="n">spawner</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s">'spawn'</span><span class="p">,</span> <span class="n">Spawn</span><span class="p">)</span>
+<span class="n">turtle_name</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">'turtle'</span><span class="p">,</span> <span class="s">'turtle2'</span><span class="p">)</span>
+<span class="n">spawner</span><span class="p">(</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">turtle_name</span><span class="p">)</span>
+
+<span class="n">pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s">'%s/cmd_vel'</span> <span class="o">%</span> <span class="n">turtle_name</span><span class="p">,</span>
+                      <span class="n">Twist</span><span class="p">,</span> <span class="n">latch</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Gets the transformation from source frame to target frame (change turtle1 to carrot1 for frames example)
+</span>        <span class="n">trans</span> <span class="o">=</span> <span class="n">tfBuffer</span><span class="p">.</span><span class="n">lookup_transform</span><span class="p">(</span><span class="n">turtle_name</span><span class="p">,</span> <span class="s">'turtle1'</span><span class="p">,</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">())</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="n">tf2_ros</span><span class="p">.</span><span class="n">LookupException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">ConnectivityException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">ExtrapolationException</span><span class="p">):</span>
+        <span class="k">continue</span>
+
+    <span class="c1"># some math
+</span>    <span class="n">angular</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">trans</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+                             <span class="n">trans</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">linear</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">trans</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">x</span> <span class="o">**</span>
+                             <span class="mi">2</span> <span class="o">+</span> <span class="n">trans</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">cmd</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+    <span class="n">cmd</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">linear</span>
+    <span class="n">cmd</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">angular</span>
+
+    <span class="c1"># publish the pose
+</span>    <span class="n">pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+    <span class="n">r</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+</pre></table></code></div></div><p><img data-src="/assets/images/ROS/l_1.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/l_2.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/l_3.png" alt="" data-proofer-ignore></p><p><strong>Execution:</strong></p><p>Change the launch file <strong>start_demo.launch</strong> to this (only 1 line is added, nothing else is changed from before).</p><div class="language-html highlighter-rouge"><div class="code-header"> <span data-label-text="HTML"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre><span class="nt">&lt;launch&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"turtlesim"</span> <span class="na">type=</span><span class="s">"turtlesim_node"</span> <span class="na">name=</span><span class="s">"sim"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"turtlesim"</span> <span class="na">type=</span><span class="s">"turtle_teleop_key"</span> <span class="na">name=</span><span class="s">"teleop"</span> <span class="na">output=</span><span class="s">"screen"</span> <span class="nt">/&gt;</span>
+
+
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"turtle1_tf2_broadcaster"</span> <span class="na">pkg=</span><span class="s">"learning_tf2"</span> <span class="na">type=</span><span class="s">"tf2_broadcaster.py"</span> <span class="na">respawn=</span><span class="s">"false"</span> <span class="na">output=</span><span class="s">"screen"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"turtle"</span> <span class="na">type=</span><span class="s">"string"</span> <span class="na">value=</span><span class="s">"turtle1"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"turtle2_tf2_broadcaster"</span> <span class="na">pkg=</span><span class="s">"learning_tf2"</span> <span class="na">type=</span><span class="s">"tf2_broadcaster.py"</span> <span class="na">respawn=</span><span class="s">"false"</span> <span class="na">output=</span><span class="s">"screen"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"turtle"</span> <span class="na">type=</span><span class="s">"string"</span> <span class="na">value=</span><span class="s">"turtle2"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
+
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"learning_tf2"</span> <span class="na">type=</span><span class="s">"tf2_listener.py"</span> <span class="na">name=</span><span class="s">"listener"</span> <span class="na">output=</span><span class="s">"screen"</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/launch&gt;</span>
+</pre></table></code></div></div><p>To execute, just run the command <code class="language-plaintext highlighter-rouge">roslaunch learning_tf2 start_demo.launch</code>.</p><p>If you drive around turtle1 using your keyboard, you’ll find the second turtle following the first one.</p><p><img data-src="/assets/images/ROS/l_4.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/l_5.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/l_6.png" alt="" data-proofer-ignore></p><p><strong>Rviz:</strong></p><p><img data-src="/assets/images/ROS/l_7.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/l_8.png" alt="" data-proofer-ignore></p><h2 id="76-adding-frames"><span class="mr-2">7.6 Adding frames</span><a href="#76-adding-frames" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Create a new file called <strong>add_frame_1.py</strong> under the <code class="language-plaintext highlighter-rouge">nodes</code> directory.</p><h3 id="761-example-1"><span class="mr-2">7.6.1 Example 1</span><a href="#761-example-1" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><h4 id="broadcaster"><span class="mr-2">Broadcaster</span><a href="#broadcaster" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">tf2_ros</span>
+
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">TransformStamped</span>
+
+<span class="k">def</span> <span class="nf">frames</span><span class="p">():</span>
+
+    <span class="n">br</span> <span class="o">=</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">TransformBroadcaster</span><span class="p">()</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">TransformStamped</span><span class="p">()</span>
+
+    <span class="n">t</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">"turtle1"</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">child_frame_id</span> <span class="o">=</span> <span class="s">"carrot1"</span>
+
+    <span class="n">rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+
+        <span class="n">t</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.0</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+        <span class="n">br</span><span class="p">.</span><span class="n">sendTransform</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">rate</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'frames'</span><span class="p">)</span>
+
+    <span class="n">frames</span><span class="p">()</span>
+</pre></table></code></div></div><p>We create a new transform, from the parent “turtle1” to the new child “carrot1”. The carrot1 frame is 2 meters offset from the turtle1 frame.</p><h4 id="listener"><span class="mr-2">Listener</span><a href="#listener" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+</pre><td class="rouge-code"><pre><span class="c1">#! /usr/bin/python2
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">tf2_ros</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
+<span class="kn">from</span> <span class="nn">turtlesim.srv</span> <span class="kn">import</span> <span class="n">Spawn</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">"tf2_listener"</span><span class="p">)</span>
+
+<span class="n">tfBuffer</span> <span class="o">=</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">Buffer</span><span class="p">()</span>
+<span class="n">listener</span> <span class="o">=</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">TransformListener</span><span class="p">(</span><span class="n">tfBuffer</span><span class="p">)</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s">'spawn'</span><span class="p">)</span>
+<span class="n">spawner</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s">'spawn'</span><span class="p">,</span> <span class="n">Spawn</span><span class="p">)</span>
+<span class="n">turtle_name</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">'turtle'</span><span class="p">,</span> <span class="s">'turtle2'</span><span class="p">)</span>
+<span class="n">spawner</span><span class="p">(</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">turtle_name</span><span class="p">)</span>
+
+<span class="n">pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s">'%s/cmd_vel'</span> <span class="o">%</span> <span class="n">turtle_name</span><span class="p">,</span>
+                      <span class="n">Twist</span><span class="p">,</span> <span class="n">latch</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+
+    <span class="k">try</span><span class="p">:</span>
+		<span class="c1"># parent frame changed to carrot1
+</span>        <span class="n">trans</span> <span class="o">=</span> <span class="n">tfBuffer</span><span class="p">.</span><span class="n">lookup_transform</span><span class="p">(</span><span class="n">turtle_name</span><span class="p">,</span> <span class="s">'carrot1'</span><span class="p">,</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">())</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="n">tf2_ros</span><span class="p">.</span><span class="n">LookupException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">ConnectivityException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">ExtrapolationException</span><span class="p">):</span>
+        <span class="k">continue</span>
+
+    <span class="n">angular</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">trans</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+                             <span class="n">trans</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">linear</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">trans</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">x</span> <span class="o">**</span>
+                             <span class="mi">2</span> <span class="o">+</span> <span class="n">trans</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">cmd</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+    <span class="n">cmd</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">linear</span>
+    <span class="n">cmd</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">angular</span>
+
+    <span class="n">pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+    <span class="n">r</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+</pre></table></code></div></div><h4 id="launch-file"><span class="mr-2">Launch file</span><a href="#launch-file" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><div class="language-html highlighter-rouge"><div class="code-header"> <span data-label-text="HTML"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre><span class="nt">&lt;launch&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"turtlesim"</span> <span class="na">type=</span><span class="s">"turtlesim_node"</span> <span class="na">name=</span><span class="s">"sim"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"turtlesim"</span> <span class="na">type=</span><span class="s">"turtle_teleop_key"</span> <span class="na">name=</span><span class="s">"teleop"</span> <span class="na">output=</span><span class="s">"screen"</span> <span class="nt">/&gt;</span>
+
+
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"turtle1_tf2_broadcaster"</span> <span class="na">pkg=</span><span class="s">"learning_tf2"</span> <span class="na">type=</span><span class="s">"tf2_broadcaster.py"</span> <span class="na">respawn=</span><span class="s">"false"</span> <span class="na">output=</span><span class="s">"screen"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"turtle"</span> <span class="na">type=</span><span class="s">"string"</span> <span class="na">value=</span><span class="s">"turtle1"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"turtle2_tf2_broadcaster"</span> <span class="na">pkg=</span><span class="s">"learning_tf2"</span> <span class="na">type=</span><span class="s">"tf2_broadcaster.py"</span> <span class="na">respawn=</span><span class="s">"false"</span> <span class="na">output=</span><span class="s">"screen"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"turtle"</span> <span class="na">type=</span><span class="s">"string"</span> <span class="na">value=</span><span class="s">"turtle2"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
+
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"learning_tf2"</span> <span class="na">type=</span><span class="s">"tf2_listener.py"</span> <span class="na">name=</span><span class="s">"listener"</span> <span class="na">output=</span><span class="s">"screen"</span> <span class="nt">/&gt;</span>
+
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"learning_tf2"</span> <span class="na">type=</span><span class="s">"add_frame_1.py"</span> <span class="na">name=</span><span class="s">"broadcaster_frames"</span> <span class="na">output=</span><span class="s">"screen"</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/launch&gt;</span>
+</pre></table></code></div></div><p><img data-src="/assets/images/ROS/fr_ex1_1.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/fr_ex1_2.png" alt="" data-proofer-ignore></p><h3 id="762-example-2"><span class="mr-2">7.6.2 Example 2</span><a href="#762-example-2" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><h4 id="broadcaster-1"><span class="mr-2">Broadcaster</span><a href="#broadcaster-1" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+</pre><td class="rouge-code"><pre><span class="c1">#! /usr/bin/python2
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">tf2_ros</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">TransformStamped</span>
+
+
+<span class="k">def</span> <span class="nf">frames</span><span class="p">():</span>
+
+    <span class="n">br</span> <span class="o">=</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">TransformBroadcaster</span><span class="p">()</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">TransformStamped</span><span class="p">()</span>
+
+    <span class="n">t</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">"turtle1"</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">child_frame_id</span> <span class="o">=</span> <span class="s">"carrot1"</span>
+
+    <span class="n">rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">().</span><span class="n">to_sec</span><span class="p">()</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">pi</span>
+
+        <span class="n">t</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+        <span class="n">br</span><span class="p">.</span><span class="n">sendTransform</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">rate</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'frames'</span><span class="p">)</span>
+
+    <span class="n">frames</span><span class="p">()</span>
+</pre></table></code></div></div><p>Instead of a fixed definition of our x and y offsets, we are using the sin and cos functions on the current time so that the offset of carrot1 is constantly changing.</p><h4 id="listener-1"><span class="mr-2">Listener</span><a href="#listener-1" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+</pre><td class="rouge-code"><pre><span class="c1">#! /usr/bin/python2
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">tf2_ros</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
+<span class="kn">from</span> <span class="nn">turtlesim.srv</span> <span class="kn">import</span> <span class="n">Spawn</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">"tf2_listener"</span><span class="p">)</span>
+
+<span class="n">tfBuffer</span> <span class="o">=</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">Buffer</span><span class="p">()</span>
+<span class="n">listener</span> <span class="o">=</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">TransformListener</span><span class="p">(</span><span class="n">tfBuffer</span><span class="p">)</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s">'spawn'</span><span class="p">)</span>
+<span class="n">spawner</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s">'spawn'</span><span class="p">,</span> <span class="n">Spawn</span><span class="p">)</span>
+<span class="n">turtle_name</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">'turtle'</span><span class="p">,</span> <span class="s">'turtle2'</span><span class="p">)</span>
+<span class="n">spawner</span><span class="p">(</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">turtle_name</span><span class="p">)</span>
+
+<span class="n">pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s">'%s/cmd_vel'</span> <span class="o">%</span> <span class="n">turtle_name</span><span class="p">,</span>
+                      <span class="n">Twist</span><span class="p">,</span> <span class="n">latch</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+
+    <span class="k">try</span><span class="p">:</span>
+		<span class="c1"># parent frame changed to carrot1
+</span>        <span class="n">trans</span> <span class="o">=</span> <span class="n">tfBuffer</span><span class="p">.</span><span class="n">lookup_transform</span><span class="p">(</span><span class="n">turtle_name</span><span class="p">,</span> <span class="s">'carrot1'</span><span class="p">,</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">())</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="n">tf2_ros</span><span class="p">.</span><span class="n">LookupException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">ConnectivityException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">ExtrapolationException</span><span class="p">):</span>
+        <span class="k">continue</span>
+
+    <span class="n">angular</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">trans</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+                             <span class="n">trans</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">linear</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">trans</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">x</span> <span class="o">**</span>
+                             <span class="mi">2</span> <span class="o">+</span> <span class="n">trans</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">cmd</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+    <span class="n">cmd</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">linear</span>
+    <span class="n">cmd</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">angular</span>
+
+    <span class="n">pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+    <span class="n">r</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+</pre></table></code></div></div><h4 id="launch-file-1"><span class="mr-2">Launch file</span><a href="#launch-file-1" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><div class="language-html highlighter-rouge"><div class="code-header"> <span data-label-text="HTML"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre><span class="nt">&lt;launch&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"turtlesim"</span> <span class="na">type=</span><span class="s">"turtlesim_node"</span> <span class="na">name=</span><span class="s">"sim"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"turtlesim"</span> <span class="na">type=</span><span class="s">"turtle_teleop_key"</span> <span class="na">name=</span><span class="s">"teleop"</span> <span class="na">output=</span><span class="s">"screen"</span> <span class="nt">/&gt;</span>
+
+
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"turtle1_tf2_broadcaster"</span> <span class="na">pkg=</span><span class="s">"learning_tf2"</span> <span class="na">type=</span><span class="s">"tf2_broadcaster.py"</span> <span class="na">respawn=</span><span class="s">"false"</span> <span class="na">output=</span><span class="s">"screen"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"turtle"</span> <span class="na">type=</span><span class="s">"string"</span> <span class="na">value=</span><span class="s">"turtle1"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"turtle2_tf2_broadcaster"</span> <span class="na">pkg=</span><span class="s">"learning_tf2"</span> <span class="na">type=</span><span class="s">"tf2_broadcaster.py"</span> <span class="na">respawn=</span><span class="s">"false"</span> <span class="na">output=</span><span class="s">"screen"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"turtle"</span> <span class="na">type=</span><span class="s">"string"</span> <span class="na">value=</span><span class="s">"turtle2"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
+
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"learning_tf2"</span> <span class="na">type=</span><span class="s">"tf2_listener.py"</span> <span class="na">name=</span><span class="s">"listener"</span> <span class="na">output=</span><span class="s">"screen"</span> <span class="nt">/&gt;</span>
+
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"learning_tf2"</span> <span class="na">type=</span><span class="s">"add_frame_1.py"</span> <span class="na">name=</span><span class="s">"broadcaster_frames"</span> <span class="na">output=</span><span class="s">"screen"</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/launch&gt;</span>
+</pre></table></code></div></div><p><img data-src="/assets/images/ROS/fr_ex2_1.png" alt="" data-proofer-ignore></p><p><img data-src="/assets/images/ROS/fr_ex2_2.png" alt="" data-proofer-ignore></p><h2 id="77-time-travel"><span class="mr-2">7.7 Time travel</span><a href="#77-time-travel" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Let us see how we can get transformations from the past.</p><h3 id="771-example-1"><span class="mr-2">7.7.1 Example 1</span><a href="#771-example-1" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Make the following changes in the listener file.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">past</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">trans</span> <span class="o">=</span> <span class="n">tfBuffer</span><span class="p">.</span><span class="n">lookup_transform</span><span class="p">(</span><span class="n">turtle_name</span><span class="p">,</span><span class="s">'turtle1'</span><span class="p">,</span><span class="n">past</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="n">tf2_ros</span><span class="p">.</span><span class="n">LookupException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">ConnectivityException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">ExtrapolationException</span><span class="p">):</span>
+        <span class="k">continue</span>
+
+</pre></table></code></div></div><p>The above code asks for the pose of <em>turtle1</em> 5 seconds ago relative to turtle2 5 seconds ago. But this is not what we want. We want the pose of turtle1 5 seconds ago relative to the current pose of <em>turtle2</em>.</p><p><img data-src="/assets/images/ROS/tt_1.png" alt="" data-proofer-ignore></p><h3 id="772-example-2"><span class="mr-2">7.7.2 Example 2</span><a href="#772-example-2" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">past</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">trans</span> <span class="o">=</span> <span class="n">tfBuffer</span><span class="p">.</span><span class="n">lookup_transform_full</span><span class="p">(</span><span class="n">turtle_name</span><span class="p">,</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">(),</span> <span class="s">'turtle1'</span><span class="p">,</span> <span class="n">past</span><span class="p">,</span> <span class="s">'world'</span><span class="p">,</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="n">tf2_ros</span><span class="p">.</span><span class="n">LookupException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">ConnectivityException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">ExtrapolationException</span><span class="p">):</span>
+        <span class="k">continue</span>
+</pre></table></code></div></div><p>The above code computes the pose of <em>turtle1</em> 5 seconds ago relative to the current pose of <em>turtle2</em>.</p><p><img data-src="/assets/images/ROS/tt_2.png" alt="" data-proofer-ignore></p><hr /></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/blog/'>Blog</a>, <a href='/categories/robotics/'>Robotics</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/ros/" class="post-tag no-text-decoration" >ros</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://www.facebook.com/sharer/sharer.php?title=ROS+Theory+-+Bhaswanth+Ayapilla&u=https%3A%2F%2Fbhaswanth-a.github.io%2F%2Fposts%2Fros-theory%2F" data-toggle="tooltip" data-placement="top" title="Instagram" target="_blank" rel="noopener" aria-label="Instagram"> <i class="fa-fw fab fa-instagram"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=ROS+Theory+-+Bhaswanth+Ayapilla&u=https%3A%2F%2Fbhaswanth-a.github.io%2F%2Fposts%2Fros-theory%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fbhaswanth-a.github.io%2F%2Fposts%2Fros-theory%2F&text=ROS+Theory+-+Bhaswanth+Ayapilla" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbhaswanth-a.github.io%2F%2Fposts%2Fros-theory%2F" data-toggle="tooltip" data-placement="top" title="Linkedin" target="_blank" rel="noopener" aria-label="Linkedin"> <i class="fa-fw fab fa-linkedin"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/intro-to-rl/">Introduction to Reinforcement Learning</a><li><a href="/posts/reinforcement-learning/">Reinforcement Learning</a><li><a href="/posts/deep-rl/">Deep Reinforcement Learning</a><li><a href="/posts/lunar-roadster-cmu/">Lunar ROADSTER</a><li><a href="/posts/cmu-blog/">Coursework at CMU</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/learning/">learning</a> <a class="post-tag" href="/tags/nnets/">nnets</a> <a class="post-tag" href="/tags/rl/">rl</a> <a class="post-tag" href="/tags/python/">python</a> <a class="post-tag" href="/tags/arduino/">arduino</a> <a class="post-tag" href="/tags/computer-vision/">computer vision</a> <a class="post-tag" href="/tags/control/">control</a> <a class="post-tag" href="/tags/electronics/">electronics</a> <a class="post-tag" href="/tags/manipulators/">manipulators</a> <a class="post-tag" href="/tags/ml/">ml</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"><div class="panel-heading pl-3 pt-2 mb-2">Contents</div><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 pl-3 pr-3 pr-xl-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/ros-nav/"><div class="card-body"> <em class="small" data-ts="1659024000" data-df="ll" > Jul 28, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>ROS Navigation</h3><div class="text-muted small"><p> ROS Navigation 1.1 Introduction The ROS Navigation stack takes in information from odometry, sensor streams, and a goal pose and outputs safe velocity commands that are sent to a mobile base. Th...</p></div></div></a></div><div class="card"> <a href="/posts/ros-manipulator/"><div class="card-body"> <em class="small" data-ts="1659024000" data-df="ll" > Jul 28, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Robotic Arm on ROS</h3><div class="text-muted small"><p> Introduction The aim of this project is to build a robot manipulator on ROS (Robot Operating System). A robot manipulator is a basically a set of links and joints that together forms an arm. By ...</p></div></div></a></div><div class="card"> <a href="/posts/sauvc-sim/"><div class="card-body"> <em class="small" data-ts="1661961600" data-df="ll" > Aug 31, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>AUV Simulation</h3><div class="text-muted small"><p> Simulation is an important aspect of building an Autonomous Underwater Vehicle (AUV). It allows the team to test and validate the robot’s design and performance in a controlled environment before d...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/ros-nav/" class="btn btn-outline-primary" prompt="Older"><p>ROS Navigation</p></a> <a href="/posts/iot-disaster-management-system/" class="btn btn-outline-primary" prompt="Newer"><p>Disaster Management System for Floods using IoT and ML</p></a></div><script type="text/javascript"> $(function () { const origin = "https://giscus.app"; const iframe = "iframe.giscus-frame"; const lightTheme = "light"; const darkTheme = "dark_dimmed"; let initTheme = lightTheme; if ($("html[data-mode=dark]").length > 0 || ($("html[data-mode]").length == 0 && window.matchMedia("(prefers-color-scheme: dark)").matches)) { initTheme = darkTheme; } let giscusAttributes = { "src": "https://giscus.app/client.js", "data-repo": "Bhaswanth-A/bhaswanth-a.github.io", "data-repo-id": "R_kgDOHu5z_w", "data-category": "General", "data-category-id": "DIC_kwDOHu5z_84C0yVx", "data-mapping": "pathname", "data-reactions-enabled": "1", "data-emit-metadata": "0", "data-theme": initTheme, "data-input-position": "bottom", "data-lang": "en", "crossorigin": "anonymous", "async": "" }; let giscusScript = document.createElement("script"); Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value)); document.getElementById("tail-wrapper").appendChild(giscusScript); addEventListener("message", (event) => { if (event.source === window && event.data && event.data.direction === ModeToggle.ID) { /* global theme mode changed */ const mode = event.data.message; const theme = (mode === ModeToggle.DARK_MODE ? darkTheme : lightTheme); const message = { setConfig: { theme: theme } }; const giscus = document.querySelector(iframe).contentWindow; giscus.postMessage({ giscus: message }, origin); } }); }); </script></div></div><footer class="row pl-3 pr-3"><div class="col-12 d-flex justify-content-between align-items-center text-muted pl-0 pr-0"><div class="footer-left"><p class="mb-0"> © 2026 <a href="https://github.com/Bhaswanth-A">Bhaswanth Ayapilla</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/learning/">learning</a> <a class="post-tag" href="/tags/nnets/">nnets</a> <a class="post-tag" href="/tags/rl/">rl</a> <a class="post-tag" href="/tags/python/">python</a> <a class="post-tag" href="/tags/arduino/">arduino</a> <a class="post-tag" href="/tags/computer-vision/">computer vision</a> <a class="post-tag" href="/tags/control/">control</a> <a class="post-tag" href="/tags/electronics/">electronics</a> <a class="post-tag" href="/tags/manipulators/">manipulators</a> <a class="post-tag" href="/tags/ml/">ml</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><script src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js"></script> <script> $(function() { function updateMermaid(event) { if (event.source === window && event.data && event.data.direction === ModeToggle.ID) { const mode = event.data.message; if (typeof mermaid === "undefined") { return; } let expectedTheme = (mode === ModeToggle.DARK_MODE? "dark" : "default"); let config = { theme: expectedTheme }; /* Re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */ $(".mermaid").each(function() { let svgCode = $(this).prev().children().html(); $(this).removeAttr("data-processed"); $(this).html(svgCode); }); mermaid.initialize(config); mermaid.init(undefined, ".mermaid"); } } let initTheme = "default"; if ($("html[data-mode=dark]").length > 0 || ($("html[data-mode]").length == 0 && window.matchMedia("(prefers-color-scheme: dark)").matches ) ) { initTheme = "dark"; } let mermaidConf = { theme: initTheme /* <default|dark|forest|neutral> */ }; /* Markdown converts to HTML */ $("pre").has("code.language-mermaid").each(function() { let svgCode = $(this).children().html(); $(this).addClass("unloaded"); $(this).after(`<div class=\"mermaid\">${svgCode}</div>`); }); mermaid.initialize(mermaidConf); window.addEventListener("message", updateMermaid); }); </script><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a><div id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="false"><div class="toast-header"> <button type="button" class="ml-2 ml-auto close" data-dismiss="toast" aria-label="Close"> <span aria-hidden="true">&times;</span> </button></div><div class="toast-body text-center pt-0"><p class="pl-2 pr-2 mb-3">A new version of content is available.</p><button type="button" class="btn btn-primary" aria-label="Update"> Update </button></div></div><script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No results found.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/en.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script> /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */ MathJax = { tex: { inlineMath: [ /* start/end delimiter pairs for in-line math */ ['$','$'], ['\\(','\\)'] ], displayMath: [ /* start/end delimiter pairs for display math */ ['$$', '$$'], ['\\[', '\\]'] ] } }; </script> <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"> </script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id=G-CJ97GH1VYR"></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-CJ97GH1VYR'); }); </script>
