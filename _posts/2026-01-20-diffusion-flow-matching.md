@@ -10,8 +10,6 @@ math: true
 image: /assets/images/ldr.png
 ---
 
-# Diffusion and Flow Matching Notes
-
 This blog is a collection of my notes based on the [MIT lecture series: Introduction to Flow Matching and Diffusion Models](https://diffusion.csail.mit.edu/2025/index.html).
 
 # Flow and Diffusion Models
