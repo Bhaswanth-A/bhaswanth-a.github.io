@@ -46,7 +46,7 @@ $$
 
 The first equation requires that the derivative of $X_t$ is specified by the direction given by $u_t$. The second part of it requires that we start at $x_0$ at time $t=0$. 
 
-**Intuition:** This of this river analogy: 
+**Intuition:** Think of this river analogy: 
 
 - The vector field $u$ is the map of the water’s velocity: at every point in the river, an arrow shows the direction and speed.
 - The trajectory $X$ is the path of a leaf dropped at $x_0$, carried along by the current. The leaf has no choice but to follow wherever the water pushes it.

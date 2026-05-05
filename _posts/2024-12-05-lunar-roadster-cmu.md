@@ -26,17 +26,6 @@ Team: Bhaswanth Ayapilla, Ankit Aggarwal, Deepam Ameria, Simson D'Souza, Boxiang
     allowfullscreen>
 </iframe>
 
-<!-- <a href="https://github.com/Lunar-ROADSTER" target="_blank">
-    <img src="https://avatars.githubusercontent.com/u/104859443?v=4" alt="Lunar-ROADSTER GitHub" width="100">
-</a>
-<a href="https://github.com/Lunar-ROADSTER">GitHub</a> -->
-
-<!-- <div style="text-align: center;">
-    <a href="https://github.com/Lunar-ROADSTER" target="_blank" style="text-decoration: none; color: inherit;">
-        <img src="https://avatars.githubusercontent.com/u/104859443?v=4" alt="Lunar-ROADSTER GitHub" style="width: 120px; border-radius: 50%; margin-bottom: 10px;">
-        <p style="font-size: 18px; font-weight: bold;">Visit Lunar-ROADSTER on GitHub</p>
-    </a>
-</div> -->
 
 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 20px; margin: 0 auto; background-color: transparent; color: #000;">
     <a href="https://github.com/Lunar-ROADSTER" target="_blank" style="text-decoration: none; color: inherit;">
@@ -46,6 +35,10 @@ Team: Bhaswanth Ayapilla, Ankit Aggarwal, Deepam Ameria, Simson D'Souza, Boxiang
         Lunar-ROADSTER GitHub
     </a>
 </div>
+
+---
+# ICRA Space Robotics Workshop 2026
+
 
 
 ---
